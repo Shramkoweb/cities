@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Sergey Shramko](https://up.htmlacademy.ru/react/2/user/852139).
-* Наставник: `Неизвестно`.
+* Наставник: [Oleg Akinin](https://github.com/kicumkicum).
 
 ---
 
