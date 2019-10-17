@@ -1,6 +1,8 @@
 import React from 'react';
 
-const App = () => {
+const App = (props) => {
+  const {placeNames} = props;
+  
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -137,7 +139,7 @@ const App = () => {
                     </div>
 
                     <h2 className="place-card__name">
-                      <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+                      <a href="#">{placeNames[0]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -181,7 +183,7 @@ const App = () => {
                     </div>
 
                     <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                      <a href="#">{placeNames[1]}e</a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
@@ -223,7 +225,7 @@ const App = () => {
                     </div>
 
                     <h2 className="place-card__name">
-                      <a href="#">Canal View Prinsengracht</a>
+                      <a href="#">{placeNames[2]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -268,7 +270,7 @@ const App = () => {
                     </div>
 
                     <h2 className="place-card__name">
-                      <a href="#">Nice, cozy, warm big bed apartment</a>
+                      <a href="#">{placeNames[3]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -312,7 +314,7 @@ const App = () => {
                     </div>
 
                     <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                      <a href="#">{placeNames[4]}</a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
