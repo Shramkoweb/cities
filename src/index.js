@@ -5,18 +5,39 @@ import App from './components/app/app';
 const rootElement = document.querySelector(`#root`);
 
 const init = () => {
-
-  const PLACE_NAMES = [
-    `Beautiful & luxurious apartment at great location`,
-    `Wood and stone place`,
-    `Canal View Prinsengracht`,
-    `Nice, cozy, warm big bed apartment`,
-    `Wood and stone place`
+  const OFFERS = [
+    {
+      placeName: `Beautiful & luxurious apartment at great location`,
+      img: `img/apartment-01.jpg`,
+      price: 120,
+      rating: 93,
+      type: `Apartment`
+    },
+    {
+      placeName: `Beautiful & luxurious apartment at great location`,
+      img: `img/apartment-01.jpg`,
+      price: 80,
+      rating: 80,
+      type: `Private room`
+    },
+    {
+      placeName: `Beautiful & luxurious apartment at great location`,
+      img: `img/apartment-01.jpg`,
+      price: 132,
+      rating: 85,
+      type: `Apartment`
+    },
+    {
+      placeName: `Beautiful & luxurious apartment at great location`,
+      img: `img/apartment-01.jpg`,
+      price: 180,
+      rating: 100,
+      type: `Apartment`
+    },
   ];
-
   ReactDOM.render(
       <App
-        placeNames={PLACE_NAMES}
+        offers={OFFERS}
       />,
       rootElement
   );
