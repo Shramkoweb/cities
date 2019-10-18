@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const App = (props) => {
   const {offers} = props;
@@ -296,6 +297,12 @@ const App = (props) => {
       </main>
     </div>
   );
+};
+
+App.propTypes = {
+  offers: PropTypes.arrayOf(PropTypes.object),
+  price: PropTypes.number,
+  name: PropTypes.string
 };
 
 export default App;
