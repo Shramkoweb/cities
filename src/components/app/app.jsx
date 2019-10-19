@@ -94,6 +94,7 @@ const App = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 {offers.map((offer, i) =>
+                  // TODO Поменять index на более уникальный ключ
                   <Offer
                     key={i}
                     img={offer.img}
