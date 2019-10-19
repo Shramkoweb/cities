@@ -2,6 +2,10 @@ import React from 'react';
 import Offer from "../offer/offer";
 import PropTypes from "prop-types";
 
+const onOfferTitleClick = (evt) => {
+  evt.preventDefault();
+};
+
 const App = (props) => {
   const {offers} = props;
   return (
@@ -102,6 +106,7 @@ const App = (props) => {
                     type={offer.type}
                     rating={offer.rating}
                     placeName={offer.placeName}
+                    onOfferTitleClick={onOfferTitleClick}
                   />)}
               </div>
             </section>
