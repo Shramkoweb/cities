@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-import {OFFERS} from "./components/constants";
+import {OFFERS} from "./components/mocks";
 
 const rootElement = document.querySelector(`#root`);
 
