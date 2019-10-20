@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Offer from "../offer/offer";
 import PropTypes from "prop-types";
 
