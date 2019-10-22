@@ -10,11 +10,13 @@ it(`check click callback on Offer title`, () => {
 
   const offerComponent = shallow(
       <Offer
-        img={`img/apartment-01.jpg`}
+        previewPhoto={`img/apartment-01.jpg`}
+        isFavorite={true}
+        isPremium={true}
         price={120}
         type={`Apartment`}
         rating={30}
-        placeName={`Some text`}
+        title={`Some text`}
         onOfferTitleClick={onTitleClick}
       />
   );

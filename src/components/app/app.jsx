@@ -89,7 +89,7 @@ const App = (props) => {
                     <use xlinkHref="#icon-arrow-select"/>
                   </svg>
                 </span>
-                <ul className="places__options places__options--custom places__options--opened">
+                <ul className="places__options places__options--custom">
                   <li className="places__option places__option--active" tabIndex="0">Popular</li>
                   <li className="places__option" tabIndex="0">Price: low to high</li>
                   <li className="places__option" tabIndex="0">Price: high to low</li>
@@ -97,15 +97,17 @@ const App = (props) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {offers.map((offer, i) =>
+                {offers.map((offer) =>
                   // TODO Поменять index на более уникальный ключ
                   <Offer
-                    key={i}
-                    img={offer.img}
+                    key={offer.id}
+                    isFavorite={offer.isFavorite}
+                    previewPhoto={offer.previewPhoto}
                     price={offer.price}
+                    isPremium={offer.isPremium}
                     type={offer.type}
                     rating={offer.rating}
-                    placeName={offer.placeName}
+                    title={offer.title}
                     onOfferTitleClick={onOfferTitleClick}
                   />)}
               </div>

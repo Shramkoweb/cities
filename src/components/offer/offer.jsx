@@ -2,17 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Offer = (props) => {
-  const {img, price, rating, placeName, type, onOfferTitleClick} = props;
+  const {previewPhoto, price, isPremium, rating, title, type, onOfferTitleClick} = props;
+
+  const getMarkMarkup = (isMarked) => {
+    if (isMarked) {
+      return (
+        <div className="place-card__mark"><span>Premium</span></div>
+      );
+    }
+    return ``;
+  };
+
   return (
     <article className="cities__place-card place-card">
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+      {getMarkMarkup(isPremium)}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img
             className="place-card__image"
-            src={img}
+            src={previewPhoto}
             width="260"
             height="200"
             alt="Place image"
@@ -39,7 +47,7 @@ const Offer = (props) => {
           </div>
         </div>
         <h2 className="place-card__name" onClick={onOfferTitleClick}>
-          <a href="#">{placeName}</a>
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -48,11 +56,12 @@ const Offer = (props) => {
 };
 
 Offer.propTypes = {
-  img: PropTypes.string.isRequired,
+  previewPhoto: PropTypes.string.isRequired,
+  isPremium: PropTypes.bool,
   price: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
-  placeName: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired
 };
 

@@ -5,11 +5,13 @@ import Offer from "./offer";
 it(`Offer component render correct`, () => {
   const offer = renderer
     .create(<Offer
-      img={`img/apartment-01.jpg`}
+      previewPhoto={`img/apartment-01.jpg`}
+      isFavorite={true}
+      isPremium={true}
       price={120}
       type={`Apartment`}
       rating={30}
-      placeName={`Some text`}
+      title={`Some text`}
       onOfferTitleClick={jest.fn()}/>)
     .toJSON();
 
