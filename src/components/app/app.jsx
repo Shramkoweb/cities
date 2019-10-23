@@ -1,22 +1,14 @@
 import React from "react";
-import PlaceCard from "../place-card/place-card";
 import PropTypes from "prop-types";
+import PlacesList from "../places-list/places-list";
 
 export default class App extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      hoveredCard: null
-    };
-
-    this.cardMouseHandler = this.cardMouseHandler.bind(this);
   }
 
   render() {
     const {offers} = this.props;
-
-    console.log(this.state);
 
     return (
       <div className="page page--gray page--main">
@@ -106,20 +98,9 @@ export default class App extends React.PureComponent {
                     <li className="places__option" tabIndex="0">Top rated first</li>
                   </ul>
                 </form>
-                <div className="cities__places-list places__list tabs__content">
-                  {offers.map((offer) =>
-                    <PlaceCard
-                      key={offer.id}
-                      isFavorite={offer.isFavorite}
-                      previewPhoto={offer.previewPhoto}
-                      price={offer.price}
-                      isPremium={offer.isPremium}
-                      type={offer.type}
-                      rating={offer.rating}
-                      title={offer.title}
-                      onOfferTitleClick={this.cardMouseHandler}
-                    />)}
-                </div>
+
+                <PlacesList offers={offers}/>
+
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"/>
@@ -129,12 +110,6 @@ export default class App extends React.PureComponent {
         </main>
       </div>
     );
-  }
-
-  cardMouseHandler(evt) {
-    this.setState({
-      hoveredCard: evt.currentTarget
-    });
   }
 }
 
