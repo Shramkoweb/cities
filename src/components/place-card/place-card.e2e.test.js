@@ -7,10 +7,12 @@ Enzyme.configure({adapter: new Adapter()});
 
 it(`check click callback on Offer title`, () => {
   const onTitleClick = jest.fn();
+  const cardId = 987;
 
   const placeCardComponent = shallow(
       <PlaceCard
         previewPhoto={`img/apartment-01.jpg`}
+        id={cardId}
         isFavorite={true}
         isPremium={true}
         price={120}
@@ -25,4 +27,5 @@ it(`check click callback on Offer title`, () => {
   placeCard.simulate(`mouseEnter`);
 
   expect(onTitleClick).toHaveBeenCalled();
+  expect(onTitleClick).toHaveReturned(cardId);
 });

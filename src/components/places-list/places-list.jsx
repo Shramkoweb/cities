@@ -21,6 +21,7 @@ export default class PlacesList extends React.PureComponent {
         {offers.map((offer) =>
           <PlaceCard
             key={offer.id}
+            id={offer.id}
             isFavorite={offer.isFavorite}
             previewPhoto={offer.previewPhoto}
             price={offer.price}
@@ -34,9 +35,9 @@ export default class PlacesList extends React.PureComponent {
     );
   }
 
-  cardMouseHandler(evt) {
+  cardMouseHandler(id) {
     this.setState({
-      hoveredCard: evt.currentTarget
+      hoveredCard: id
     });
   }
 }
