@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Offer = (props) => {
+const PlaceCard = (props) => {
   const {previewPhoto, price, isPremium, rating, title, type, onOfferTitleClick} = props;
 
   const getMarkMarkup = (isMarked) => {
@@ -55,7 +55,7 @@ const Offer = (props) => {
   );
 };
 
-Offer.propTypes = {
+PlaceCard.propTypes = {
   previewPhoto: PropTypes.string.isRequired,
   isPremium: PropTypes.bool,
   price: PropTypes.number.isRequired,
@@ -65,4 +65,4 @@ Offer.propTypes = {
   onOfferTitleClick: PropTypes.func.isRequired
 };
 
-export default Offer;
+export default PlaceCard;

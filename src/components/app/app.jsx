@@ -1,5 +1,5 @@
 import React from "react";
-import Offer from "../offer/offer";
+import PlaceCard from "../place-card/place-card";
 import PropTypes from "prop-types";
 
 const onOfferTitleClick = (evt) => {
@@ -98,8 +98,7 @@ const App = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 {offers.map((offer) =>
-                  // TODO Поменять index на более уникальный ключ
-                  <Offer
+                  <PlaceCard
                     key={offer.id}
                     isFavorite={offer.isFavorite}
                     previewPhoto={offer.previewPhoto}

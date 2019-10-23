@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Offer from "./offer";
+import PlaceCard from "./place-card";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -9,7 +9,7 @@ it(`check click callback on Offer title`, () => {
   const onTitleClick = jest.fn();
 
   const offerComponent = shallow(
-      <Offer
+      <PlaceCard
         previewPhoto={`img/apartment-01.jpg`}
         isFavorite={true}
         isPremium={true}

@@ -1,10 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Offer from "./offer";
+import PlaceCard from "./place-card";
 
 it(`Offer component render correct`, () => {
   const offer = renderer
-    .create(<Offer
+    .create(<PlaceCard
       previewPhoto={`img/apartment-01.jpg`}
       isFavorite={true}
       isPremium={true}
