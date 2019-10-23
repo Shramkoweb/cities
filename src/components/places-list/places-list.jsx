@@ -28,7 +28,7 @@ export default class PlacesList extends React.PureComponent {
             type={offer.type}
             rating={offer.rating}
             title={offer.title}
-            onOfferTitleClick={this.cardMouseHandler}
+            onCardClick={this.cardMouseHandler}
           />)}
       </div>
     );

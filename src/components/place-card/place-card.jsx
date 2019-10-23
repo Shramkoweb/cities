@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const PlaceCard = (props) => {
-  const {previewPhoto, price, isPremium, rating, title, type, onOfferTitleClick} = props;
+  const {previewPhoto, price, isPremium, rating, title, type, onCardClick} = props;
 
   const getMarkMarkup = (isMarked) => {
     if (isMarked) {
@@ -14,7 +14,7 @@ const PlaceCard = (props) => {
   };
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter ={onOfferTitleClick}>
+    <article className="cities__place-card place-card" onMouseEnter ={onCardClick}>
       {getMarkMarkup(isPremium)}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
@@ -62,7 +62,7 @@ PlaceCard.propTypes = {
   type: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  onOfferTitleClick: PropTypes.func.isRequired
+  onCardClick: PropTypes.func.isRequired
 };
 
 export default PlaceCard;

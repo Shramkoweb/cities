@@ -8,7 +8,7 @@ Enzyme.configure({adapter: new Adapter()});
 it(`check click callback on Offer title`, () => {
   const onTitleClick = jest.fn();
 
-  const offerComponent = shallow(
+  const placeCardComponent = shallow(
       <PlaceCard
         previewPhoto={`img/apartment-01.jpg`}
         isFavorite={true}
@@ -17,12 +17,12 @@ it(`check click callback on Offer title`, () => {
         type={`Apartment`}
         rating={30}
         title={`Some text`}
-        onOfferTitleClick={onTitleClick}
+        onCardClick={onTitleClick}
       />
   );
 
-  const offerTitle = offerComponent.find(`.place-card__name`);
-  offerTitle.simulate(`click`);
+  const placeCard = placeCardComponent.find(`.cities__place-card`);
+  placeCard.simulate(`mouseEnter`);
 
   expect(onTitleClick).toHaveBeenCalled();
 });

@@ -12,7 +12,7 @@ it(`Offer component render correct`, () => {
       type={`Apartment`}
       rating={30}
       title={`Some text`}
-      onOfferTitleClick={jest.fn()}/>)
+      onCardClick={jest.fn()}/>)
     .toJSON();
 
   expect(offer).toMatchSnapshot();
