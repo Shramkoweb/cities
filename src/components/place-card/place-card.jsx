@@ -14,7 +14,7 @@ const PlaceCard = (props) => {
   };
 
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter ={onOfferTitleClick}>
       {getMarkMarkup(isPremium)}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
@@ -46,7 +46,7 @@ const PlaceCard = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={onOfferTitleClick}>
+        <h2 className="place-card__name">
           <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
