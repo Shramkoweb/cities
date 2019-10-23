@@ -112,3 +112,7 @@ export default class MainPage extends React.PureComponent {
     );
   }
 }
+
+MainPage.propTypes = {
+  offers: PropTypes.arrayOf(PropTypes.object).isRequired
+};
