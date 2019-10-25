@@ -14,8 +14,6 @@ export default class PlacesList extends React.PureComponent {
   }
 
   cardMouseHandler(id) {
-    console.log(this.state.hoveredCard);
-
     this.setState({
       hoveredCard: id
     });
