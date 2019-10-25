@@ -13,6 +13,14 @@ export default class PlacesList extends React.PureComponent {
     this.cardMouseHandler = this.cardMouseHandler.bind(this);
   }
 
+  cardMouseHandler(id) {
+    console.log(this.state.hoveredCard);
+
+    this.setState({
+      hoveredCard: id
+    });
+  }
+
   render() {
     const {offers} = this.props;
 
@@ -21,24 +29,11 @@ export default class PlacesList extends React.PureComponent {
         {offers.map((offer) =>
           <PlaceCard
             key={offer.id}
-            id={offer.id}
-            isFavorite={offer.isFavorite}
-            previewPhoto={offer.previewPhoto}
-            price={offer.price}
-            isPremium={offer.isPremium}
-            type={offer.type}
-            rating={offer.rating}
-            title={offer.title}
+            {...offer}
             onCardClick={this.cardMouseHandler}
           />)}
       </div>
     );
-  }
-
-  cardMouseHandler(id) {
-    this.setState({
-      hoveredCard: id
-    });
   }
 }
 
