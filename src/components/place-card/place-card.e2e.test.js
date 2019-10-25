@@ -5,7 +5,7 @@ import PlaceCard from "./place-card";
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`check click callback on Offer title`, () => {
+it(`check hover on Card & called with correct argument`, () => {
   const onTitleClick = jest.fn();
   const cardId = 987;
 
@@ -27,5 +27,5 @@ it(`check click callback on Offer title`, () => {
   placeCard.simulate(`mouseEnter`);
 
   expect(onTitleClick).toHaveBeenCalled();
-  expect(onTitleClick).toHaveReturned(cardId);
+  expect(onTitleClick).toHaveBeenCalledWith(cardId);
 });

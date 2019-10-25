@@ -5,6 +5,7 @@ import PlaceCard from "./place-card";
 it(`Offer component render correct`, () => {
   const offer = renderer
     .create(<PlaceCard
+      id={99}
       previewPhoto={`img/apartment-01.jpg`}
       isFavorite={true}
       isPremium={true}
