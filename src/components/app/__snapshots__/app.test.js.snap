@@ -436,7 +436,6 @@ exports[`App component render correct 1`] = `
               id={123072}
               onMouseEnter={[Function]}
             >
-              
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >
@@ -534,7 +533,6 @@ exports[`App component render correct 1`] = `
               id={788764}
               onMouseEnter={[Function]}
             >
-              
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >

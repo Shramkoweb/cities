@@ -2,17 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const PlaceCard = (props) => {
-  const cardHoverHandler = () => {
-    const {onCardClick} = props;
+  const onCardMouseEnter = () => {
+    const {onCardHover} = props;
     const {id} = props.offer;
 
-    onCardClick(id);
+    onCardHover(id);
   };
 
   const {id, previewPhoto, price, isPremium, rating, title, type} = props.offer;
 
   return (
-    <article id={id} className="cities__place-card place-card" onMouseEnter={cardHoverHandler}>
+    <article id={id} className="cities__place-card place-card" onMouseEnter={onCardMouseEnter}>
 
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
 
@@ -65,7 +65,7 @@ PlaceCard.propTypes = {
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
   }),
-  onCardClick: PropTypes.func.isRequired
+  onCardHover: PropTypes.func.isRequired
 };
 
 export default PlaceCard;

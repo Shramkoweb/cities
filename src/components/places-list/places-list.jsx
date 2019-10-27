@@ -10,10 +10,10 @@ export default class PlacesList extends React.PureComponent {
       hoveredCard: null
     };
 
-    this.cardMouseHandler = this.cardMouseHandler.bind(this);
+    this.handleCardHover = this.handleCardHover.bind(this);
   }
 
-  cardMouseHandler(id) {
+  handleCardHover(id) {
     this.setState({
       hoveredCard: id
     });
@@ -28,7 +28,7 @@ export default class PlacesList extends React.PureComponent {
           <PlaceCard
             key={offer.id}
             offer={offer}
-            onCardClick={this.cardMouseHandler}
+            onCardHover={this.handleCardHover}
           />)}
       </div>
     );

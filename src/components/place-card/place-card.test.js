@@ -2,19 +2,23 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PlaceCard from "./place-card";
 
-it(`Offer component render correct`, () => {
-  const offer = renderer
+const offerData = {
+  id: 834576,
+  title: `Beautiful & luxurious apartment at great location`,
+  previewPhoto: `img/apartment-01.jpg`,
+  isPremium: true,
+  isFavorite: true,
+  price: 120,
+  rating: 43,
+  type: `Apartment`
+};
+
+it(`PlaceCard component render correct`, () => {
+  const placeCardComponent = renderer
     .create(<PlaceCard
-      id={99}
-      previewPhoto={`img/apartment-01.jpg`}
-      isFavorite={true}
-      isPremium={true}
-      price={120}
-      type={`Apartment`}
-      rating={30}
-      title={`Some text`}
-      onCardClick={jest.fn()}/>)
+      offer={offerData}
+      onCardHover={jest.fn()}/>)
     .toJSON();
 
-  expect(offer).toMatchSnapshot();
+  expect(placeCardComponent).toMatchSnapshot();
 });
