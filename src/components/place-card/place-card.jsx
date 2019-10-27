@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 const PlaceCard = (props) => {
   const onCardMouseEnter = () => {
-    const {onCardHover} = props;
-    const {id} = props.offer;
+    const {offer, onCardHover} = props;
+    const {id} = offer;
 
     onCardHover(id);
   };
