@@ -27,7 +27,7 @@ export default class PlacesList extends React.PureComponent {
         {offers.map((offer) =>
           <PlaceCard
             key={offer.id}
-            {...offer}
+            offer={offer}
             onCardClick={this.cardMouseHandler}
           />)}
       </div>

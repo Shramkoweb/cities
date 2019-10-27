@@ -2,25 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const PlaceCard = (props) => {
-  const getMarkMarkup = (isMarked) => {
-    if (isMarked) {
-      return (
-        <div className="place-card__mark"><span>Premium</span></div>
-      );
-    }
-    return ``;
-  };
-
   const cardHoverHandler = () => {
-    const {onCardClick, id} = props;
+    const {onCardClick} = props;
+    const {id} = props.offer;
+
     onCardClick(id);
   };
 
-  const {id, previewPhoto, price, isPremium, rating, title, type} = props;
+  const {id, previewPhoto, price, isPremium, rating, title, type} = props.offer;
 
   return (
     <article id={id} className="cities__place-card place-card" onMouseEnter={cardHoverHandler}>
-      {getMarkMarkup(isPremium)}
+
+      {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
+
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img
@@ -61,13 +56,15 @@ const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
-  id: PropTypes.number,
-  previewPhoto: PropTypes.string.isRequired,
-  isPremium: PropTypes.bool,
-  price: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    previewPhoto: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
   onCardClick: PropTypes.func.isRequired
 };
 
