@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app";
 import {OFFERS} from "../../mocks/offers";
+import MainPage from "./main-page";
 
-it(`App component render correct`, () => {
+it(`MainPage component render correct`, () => {
   const app = renderer
-    .create(<App offers={OFFERS}/>)
+    .create(<MainPage offers={OFFERS}/>)
     .toJSON();
 
   expect(app).toMatchSnapshot();

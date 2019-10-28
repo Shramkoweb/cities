@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app";
 import {OFFERS} from "../../mocks/offers";
+import PlacesList from "./places-list";
 
-it(`App component render correct`, () => {
+it(`PlacesList component render correct`, () => {
   const app = renderer
-    .create(<App offers={OFFERS}/>)
+    .create(<PlacesList offers={OFFERS}/>)
     .toJSON();
 
   expect(app).toMatchSnapshot();

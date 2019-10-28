@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Offer component render correct 1`] = `
+exports[`PlaceCard component render correct 1`] = `
 <article
   className="cities__place-card place-card"
+  id={834576}
+  onMouseEnter={[Function]}
 >
   <div
     className="place-card__mark"
@@ -76,7 +78,7 @@ exports[`Offer component render correct 1`] = `
         <span
           style={
             Object {
-              "width": "30%",
+              "width": "43%",
             }
           }
         />
@@ -89,12 +91,11 @@ exports[`Offer component render correct 1`] = `
     </div>
     <h2
       className="place-card__name"
-      onClick={[MockFunction]}
     >
       <a
         href="#"
       >
-        Some text
+        Beautiful & luxurious apartment at great location
       </a>
     </h2>
     <p

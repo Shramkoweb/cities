@@ -1,18 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Offer = (props) => {
-  const {img, price, rating, placeName, type, onOfferTitleClick} = props;
+const PlaceCard = (props) => {
+  const onCardMouseEnter = () => {
+    const {offer, onCardHover} = props;
+    const {id} = offer;
+
+    onCardHover(id);
+  };
+
+  const {id, previewPhoto, price, isPremium, rating, title, type} = props.offer;
+
   return (
-    <article className="cities__place-card place-card">
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+    <article id={id} className="cities__place-card place-card" onMouseEnter={onCardMouseEnter}>
+
+      {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
+
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img
             className="place-card__image"
-            src={img}
+            src={previewPhoto}
             width="260"
             height="200"
             alt="Place image"
@@ -38,8 +46,8 @@ const Offer = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={onOfferTitleClick}>
-          <a href="#">{placeName}</a>
+        <h2 className="place-card__name">
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -47,13 +55,17 @@ const Offer = (props) => {
   );
 };
 
-Offer.propTypes = {
-  img: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  placeName: PropTypes.string.isRequired,
-  onOfferTitleClick: PropTypes.func.isRequired
+PlaceCard.propTypes = {
+  offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    previewPhoto: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
+  onCardHover: PropTypes.func.isRequired
 };
 
-export default Offer;
+export default PlaceCard;
