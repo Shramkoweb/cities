@@ -17,7 +17,8 @@ exports[`MainPage component render correct 1`] = `
           className="header__left"
         >
           <a
-            className="header__logo-link header__logo-link--active"
+            className="header__logo-link"
+            href="main.html"
           >
             <img
               alt="6 cities logo"
@@ -47,7 +48,7 @@ exports[`MainPage component render correct 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  serhii.shramko@gmail.com
                 </span>
               </a>
             </li>
@@ -91,6 +92,7 @@ exports[`MainPage component render correct 1`] = `
             <a
               className="locations__item-link tabs__item"
               href="#"
+              onClick={[Function]}
             >
               <span>
                 Cologne

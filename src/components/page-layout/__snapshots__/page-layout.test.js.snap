@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App component render correct 1`] = `
+exports[`PageLayout component render correct 1`] = `
 <div
   className="page page--gray page--main"
 >

@@ -11,14 +11,12 @@ const PageLayout = (props) => {
   );
 };
 
+// TODO валидация children
 PageLayout.propTypes = {
   pageClasses: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
   ]),
-  children: PropTypes.oneOfType([
-    PropTypes.object
-  ])
 };
 
 export default PageLayout;
