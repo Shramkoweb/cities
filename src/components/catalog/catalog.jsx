@@ -6,7 +6,7 @@ import Map from "../map/map";
 
 
 const Catalog = (props) => {
-  const {offers, citiesCoordinates, leaflet} = props;
+  const {offers, citiesCoordinates} = props;
 
   return (
     <Fragment>
@@ -75,9 +75,7 @@ const Catalog = (props) => {
 
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map leaflet={leaflet} citiesCoordinates={citiesCoordinates}/>
-                </section>
+                <Map citiesCoordinates={citiesCoordinates}/>
               </div>
             </div>
           </div>

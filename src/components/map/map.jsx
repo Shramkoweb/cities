@@ -1,5 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import leaflet from "leaflet";
+
 
 class Map extends PureComponent {
   constructor(props) {
@@ -7,7 +9,6 @@ class Map extends PureComponent {
   }
 
   _init() {
-    const leaflet = this.props.leaflet;
     const markerCoordinates = this.props.citiesCoordinates;
     const city = [52.38333, 4.9];
     const icon = leaflet.icon({
@@ -42,7 +43,7 @@ class Map extends PureComponent {
   }
 
   render() {
-    return <div style={{height: `760px`, width: `100%`}} id="map"/>;
+    return <div className="cities__map map" id="map"/>;
   }
 }
 

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MainPage from "../main-page/main-page";
-import leaflet from 'leaflet';
 
 
 const App = (props) => {
@@ -9,7 +8,7 @@ const App = (props) => {
   const citiesCoordinates = offers.map((it) => it.coordinates);
 
   return (
-    <MainPage offers={offers} citiesCoordinates={citiesCoordinates} leaflet={leaflet}/>
+    <MainPage offers={offers} citiesCoordinates={citiesCoordinates}/>
   );
 };
 
