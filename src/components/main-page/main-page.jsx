@@ -6,12 +6,12 @@ import Header from "../header/header";
 import {USER_DATA} from "../../mocks/user-data";
 
 const MainPage = (props) => {
-  const {offers} = props;
+  const {offers, citiesCoordinates, leaflet} = props;
 
   return (
     <PageLayout pageClasses={[`page`, `page--gray`, `page--main`]}>
       <Header user={USER_DATA}/>
-      <Catalog offers={offers}/>
+      <Catalog offers={offers} citiesCoordinates={citiesCoordinates} leaflet={leaflet}/>
     </PageLayout>
   );
 };
