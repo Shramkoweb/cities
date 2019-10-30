@@ -2,8 +2,7 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list";
 import CatalogEmpty from "../catalog-empty/catalog-empty";
-import Map from "../map/map";
-
+import Tabs from "../tabs/tabs";
 
 const Catalog = (props) => {
   const {offers, citiesCoordinates} = props;
@@ -13,44 +12,9 @@ const Catalog = (props) => {
       {offers.length ?
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
-          <div className="tabs">
-            <section className="locations container">
-              <ul className="locations__list tabs__list">
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="#">
-                    <span>Paris</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="#" onClick={() => {
-                    location.href = `http://localhost:3000/details`;
-                  }}>
-                    <span>Cologne</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="#">
-                    <span>Brussels</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item tabs__item--active">
-                    <span>Amsterdam</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="#">
-                    <span>Hamburg</span>
-                  </a>
-                </li>
-                <li className="locations__item">
-                  <a className="locations__item-link tabs__item" href="#">
-                    <span>Dusseldorf</span>
-                  </a>
-                </li>
-              </ul>
-            </section>
-          </div>
+
+          <Tabs/>
+
           <div className="cities">
             <div className="cities__places-container container">
               <section className="cities__places places">
@@ -75,7 +39,7 @@ const Catalog = (props) => {
 
               </section>
               <div className="cities__right-section">
-                <Map citiesCoordinates={citiesCoordinates}/>
+                <section className="cities__map map"/>
               </div>
             </div>
           </div>
