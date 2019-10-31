@@ -11,7 +11,10 @@ const MainPage = (props) => {
   return (
     <PageLayout pageClasses={[`page`, `page--gray`, `page--main`]}>
       <Header user={USER_DATA}/>
-      <Catalog offers={offers} citiesCoordinates={citiesCoordinates}/>
+      <Catalog
+        offers={offers}
+        citiesCoordinates={citiesCoordinates}
+      />
     </PageLayout>
   );
 };

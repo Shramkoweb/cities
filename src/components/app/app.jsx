@@ -8,7 +8,10 @@ const App = (props) => {
   const citiesCoordinates = offers.map((it) => it.coordinates);
 
   return (
-    <MainPage offers={offers} citiesCoordinates={citiesCoordinates}/>
+    <MainPage
+      offers={offers}
+      citiesCoordinates={citiesCoordinates}
+    />
   );
 };
 

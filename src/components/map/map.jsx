@@ -4,8 +4,8 @@ import leaflet from "leaflet";
 
 
 class Map extends PureComponent {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    this._init();
   }
 
   _init() {
@@ -36,10 +36,6 @@ class Map extends PureComponent {
         .marker(coordinate, {icon})
         .addTo(map);
     });
-  }
-
-  componentDidMount() {
-    this._init();
   }
 
   render() {

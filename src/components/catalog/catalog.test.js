@@ -5,7 +5,8 @@ import {OFFERS} from "../../mocks/offers";
 
 it(`Catalog component render correct`, () => {
   const catalog = renderer
-    .create(<Catalog offers={OFFERS} />)
+    .create(<Catalog offers={OFFERS}/>)
     .toJSON();
+
   expect(catalog).toMatchSnapshot();
 });
