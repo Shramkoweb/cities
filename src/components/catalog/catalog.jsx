@@ -4,6 +4,7 @@ import PlacesList from "../places-list/places-list";
 import CatalogEmpty from "../catalog-empty/catalog-empty";
 import Tabs from "../tabs/tabs";
 import Sort from "../sort/sort";
+import Map from "../map/map";
 
 const Catalog = (props) => {
   const {offers, citiesCoordinates} = props;
@@ -28,7 +29,7 @@ const Catalog = (props) => {
 
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"/>
+                <Map citiesCoordinates={citiesCoordinates}/>
               </div>
             </div>
           </div>
