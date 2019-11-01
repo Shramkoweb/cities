@@ -42,6 +42,7 @@ const Catalog = (props) => {
 
 Catalog.propTypes = {
   offers: PropTypes.array.isRequired,
+  citiesCoordinates: PropTypes.array.isRequired
 };
 
 export default Catalog;

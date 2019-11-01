@@ -20,7 +20,8 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired
+  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  citiesCoordinates: PropTypes.array.isRequired
 };
 
 export default MainPage;
