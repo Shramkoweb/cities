@@ -36,7 +36,6 @@ exports[`Catalog component render correct 1`] = `
           <a
             className="locations__item-link tabs__item"
             href="#"
-            onClick={[Function]}
           >
             <span>
               Cologne
@@ -120,7 +119,7 @@ exports[`Catalog component render correct 1`] = `
           <span
             className="places__sorting-caption"
           >
-            Sort by
+            Sort by 
           </span>
           <span
             className="places__sorting-type"
@@ -575,11 +574,7 @@ exports[`Catalog component render correct 1`] = `
       </section>
       <div
         className="cities__right-section"
-      >
-        <section
-          className="cities__map map"
-        />
-      </div>
+      />
     </div>
   </div>
 </main>
