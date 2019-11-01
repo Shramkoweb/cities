@@ -1,5 +1,11 @@
 import {OFFERS as offers} from "../mocks/offers";
 
+const filterByString = (array, cityString) => {
+  return array.filter(({city}) => {
+    return city === cityString;
+  });
+};
+
 const initialState = {
   city: `Amsterdam`,
   offers
@@ -15,7 +21,7 @@ const reducer = (state = initialState, action) => {
     case Action.CHANGE_CITY:
       return Object.assign({}, state, {city: action.city});
     case Action.GET_OFFER_LIST:
-      return state.city;
+      return state;
   }
 
   return state;
