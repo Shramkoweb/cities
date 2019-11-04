@@ -1,20 +1,19 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import Catalog from "./catalog";
 import {OFFERS} from "../../mocks/offers";
-import MainPage from "./main-page";
 
-jest.mock(`../catalog/catalog.jsx`, () => jest.fn().mockReturnValue(null));
-jest.mock(`../header/header.jsx`, () => jest.fn().mockReturnValue(null));
+jest.mock(`../map/map.jsx`, () => jest.fn().mockReturnValue(null));
 const citiesCoordinates = [[52.123123, 4.8123123], [52.21313, 4.9123123]];
 
-it(`MainPage component render correct`, () => {
-  const app = renderer
+it(`Catalog component render correct`, () => {
+  const catalog = renderer
     .create(
-        <MainPage
+        <Catalog
           offers={OFFERS}
           citiesCoordinates={citiesCoordinates}
         />)
     .toJSON();
 
-  expect(app).toMatchSnapshot();
+  expect(catalog).toMatchSnapshot();
 });
