@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from "leaflet";
+import {connect} from 'react-redux';
+
 
 const MapConfig = {
   ZOOM: 12,
@@ -16,8 +18,12 @@ class Map extends PureComponent {
     this._init();
   }
 
+  _addMarkers() {
+
+  }
+
   _init() {
-    const markerCoordinates = this.props.citiesCoordinates;
+    const markerCoordinates = this.props.coordinates;
     const city = MapConfig.MAIN_CITY;
     const icon = leaflet.icon({
       iconUrl: MapConfig.ICON_URL,
@@ -54,4 +60,11 @@ Map.propTypes = {
   citiesCoordinates: PropTypes.array.isRequired
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  currentCity: state.city,
+  coordinates: state.offers.filter((offer) => offer.city === state.city)
+    .map((element) => element.coordinates)
+});
+
+export {mapStateToProps};
+export default connect(mapStateToProps)(Map);
