@@ -14,16 +14,16 @@ class Tabs extends PureComponent {
 
   changeCity(city) {
     this.props.changeCurrentCity(city);
-
-    console.log(city);
   }
 
   render() {
+    const {cities} = this.props;
+
     return (
       <div className="tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
-            {Constants.CITIES.map((city, index) => <TabsLink
+            {cities.map((city, index) => <TabsLink
               key={index}
               city={city}
               changeCity={this.changeCity}
@@ -35,11 +35,9 @@ class Tabs extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    city: state.city
-  };
-};
+const mapStateToProps = (state) => ({
+  cities: [...new Set(state.offers.map((element) => element.city))]
+});
 
 const mapDispatchToProps = (dispatch) => ({
   changeCurrentCity: (city) => dispatch(ActionCreator.changeCity(city))
