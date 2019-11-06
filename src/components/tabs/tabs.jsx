@@ -39,7 +39,6 @@ Tabs.propTypes = {
   changeCurrentCity: PropTypes.func.isRequired
 };
 
-
 const mapStateToProps = (state) => ({
   cities: [...new Set(state.offers.map((element) => element.city))]
 });

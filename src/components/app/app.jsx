@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import MainPage from "../main-page/main-page";
 import {connect} from "react-redux";
 
-
 const App = (props) => {
   const {offers} = props;
 

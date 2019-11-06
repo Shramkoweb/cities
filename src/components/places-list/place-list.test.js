@@ -5,7 +5,10 @@ import {PlacesList} from "./places-list";
 
 it(`PlacesList component render correct`, () => {
   const app = renderer
-    .create(<PlacesList offers={OFFERS}/>)
+    .create(
+        <PlacesList
+          offers={OFFERS}
+        />)
     .toJSON();
 
   expect(app).toMatchSnapshot();
