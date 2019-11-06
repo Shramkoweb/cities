@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/reducer";
 import TabsLink from "../tabs-link/tabs-link";
-
+import PropTypes from "prop-types";
 
 class Tabs extends PureComponent {
   constructor(props) {
@@ -33,6 +33,12 @@ class Tabs extends PureComponent {
     );
   }
 }
+
+Tabs.propTypes = {
+  cities: PropTypes.array.isRequired,
+  changeCurrentCity: PropTypes.func.isRequired
+};
+
 
 const mapStateToProps = (state) => ({
   cities: [...new Set(state.offers.map((element) => element.city))]

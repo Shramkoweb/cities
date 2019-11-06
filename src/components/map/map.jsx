@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import leaflet from "leaflet";
 import {connect} from 'react-redux';
 import {CitiesCoordinatesMap} from "../../constants";
-
+import PropTypes from "prop-types";
 
 const MapConfig = {
   ZOOM: 12,
@@ -74,7 +74,10 @@ class Map extends PureComponent {
   }
 }
 
-Map.propTypes = {};
+Map.propTypes = {
+  coordinates: PropTypes.array.isRequired,
+  currentCity: PropTypes.string.isRequired
+};
 
 const mapStateToProps = (state) => ({
   currentCity: state.city,

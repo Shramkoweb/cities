@@ -43,6 +43,7 @@ const Catalog = (props) => {
 
 Catalog.propTypes = {
   offers: PropTypes.array.isRequired,
+  currentCity: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({

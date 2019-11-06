@@ -15,6 +15,7 @@ it(`Catalog component render correct`, () => {
     .create(
         <Catalog
           offers={OFFERS}
+          currentCity={`NY`}
           citiesCoordinates={citiesCoordinates}
         />)
     .toJSON();

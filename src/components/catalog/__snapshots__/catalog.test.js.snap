@@ -28,6 +28,7 @@ exports[`Catalog component render correct 1`] = `
         >
           10
            places to stay in 
+          NY
         </b>
       </section>
       <div

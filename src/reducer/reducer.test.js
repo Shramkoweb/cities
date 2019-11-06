@@ -1,5 +1,4 @@
 import {reducer} from './reducer';
-import {OFFERS} from "../mocks/offers";
 
 it(`reducer should correct change city`, () => {
   const reducerDone = reducer(
