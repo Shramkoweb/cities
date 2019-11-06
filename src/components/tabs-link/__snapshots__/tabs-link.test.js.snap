@@ -10,7 +10,7 @@ exports[`Tab-link component render correct 1`] = `
     onClick={[Function]}
   >
     <span>
-      NY
+      Paris
     </span>
   </a>
 </li>

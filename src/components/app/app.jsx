@@ -23,5 +23,4 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 export {App};
-
 export default connect(mapStateToProps)(App);

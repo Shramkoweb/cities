@@ -32,7 +32,8 @@ class TabsLink extends PureComponent {
 
 TabsLink.propTypes = {
   city: PropTypes.string.isRequired,
-  currentCity: PropTypes.string
+  currentCity: PropTypes.string.isRequired,
+  changeCity: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

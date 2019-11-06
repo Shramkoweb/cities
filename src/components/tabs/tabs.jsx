@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/reducer";
-import Constants from "../../constants";
 import TabsLink from "../tabs-link/tabs-link";
 
 

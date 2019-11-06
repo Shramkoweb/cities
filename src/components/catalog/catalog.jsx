@@ -53,5 +53,4 @@ const mapStateToProps = (state) => ({
 });
 
 export {Catalog};
-
 export default connect(mapStateToProps)(Catalog);
