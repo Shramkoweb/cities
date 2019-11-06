@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
 
-export class TabsLink extends PureComponent {
+class TabsLink extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -39,4 +39,5 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   currentCity: state.city
 });
 
+export {TabsLink};
 export default connect(mapStateToProps)(TabsLink);
