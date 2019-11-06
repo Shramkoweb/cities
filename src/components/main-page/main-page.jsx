@@ -6,14 +6,13 @@ import Header from "../header/header";
 import {USER_DATA} from "../../mocks/user-data";
 
 const MainPage = (props) => {
-  const {offers, citiesCoordinates} = props;
+  const {offers} = props;
 
   return (
     <PageLayout pageClasses={[`page`, `page--gray`, `page--main`]}>
       <Header user={USER_DATA}/>
       <Catalog
         offers={offers}
-        citiesCoordinates={citiesCoordinates}
       />
     </PageLayout>
   );
@@ -21,7 +20,6 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
-  citiesCoordinates: PropTypes.array.isRequired
 };
 
 export default MainPage;

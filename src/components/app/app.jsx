@@ -6,12 +6,10 @@ import {connect} from "react-redux";
 
 const App = (props) => {
   const {offers} = props;
-  const citiesCoordinates = offers.map((it) => it.coordinates);
 
   return (
     <MainPage
       offers={offers}
-      citiesCoordinates={citiesCoordinates}
     />
   );
 };

@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
 import leaflet from "leaflet";
 import {connect} from 'react-redux';
+import {CitiesCoordinatesMap} from "../../constants";
 
 
 const MapConfig = {
@@ -13,42 +13,60 @@ const MapConfig = {
   MAIN_CITY: [52.38333, 4.9]
 };
 
+const icon = leaflet.icon({
+  iconUrl: MapConfig.ICON_URL,
+  iconSize: MapConfig.ICON_SIZE
+});
+
 class Map extends PureComponent {
   componentDidMount() {
     this._init();
   }
 
-  _addMarkers() {
+  componentDidUpdate() {
+    this._markerGroup.clearLayers();
+    this._initMapCoordinates();
+    this.__initMarkerCoordinates();
+  }
 
+  __initMarkerCoordinates() {
+    const markerCoordinates = this.props.coordinates;
+
+    markerCoordinates.forEach((coordinate) => {
+      leaflet
+        .marker(coordinate, {icon})
+        .addTo(this._markerGroup);
+    });
+  }
+
+  _initMapCoordinates() {
+    this._map.setView(CitiesCoordinatesMap.get(this.props.currentCity), MapConfig.ZOOM);
+  }
+
+  _addMarkers() {
+    this._markerGroup = leaflet.layerGroup().addTo(this._map);
+    this.__initMarkerCoordinates();
   }
 
   _init() {
-    const markerCoordinates = this.props.coordinates;
     const city = MapConfig.MAIN_CITY;
-    const icon = leaflet.icon({
-      iconUrl: MapConfig.ICON_URL,
-      iconSize: MapConfig.ICON_SIZE
-    });
 
-    const map = leaflet.map(`map`, {
+    this._map = leaflet.map(`map`, {
       center: city,
       zoom: MapConfig.ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    map.setView(city, MapConfig.ZOOM);
+    this._initMapCoordinates();
+
     leaflet
       .tileLayer(MapConfig.TILE_LAYER, {
         attribution: MapConfig.TILE_ATTRIBUTE
       })
-      .addTo(map);
+      .addTo(this._map);
 
-    markerCoordinates.forEach((coordinate) => {
-      leaflet
-        .marker(coordinate, {icon})
-        .addTo(map);
-    });
+    this._addMarkers();
   }
 
   render() {
@@ -56,9 +74,7 @@ class Map extends PureComponent {
   }
 }
 
-Map.propTypes = {
-  citiesCoordinates: PropTypes.array.isRequired
-};
+Map.propTypes = {};
 
 const mapStateToProps = (state) => ({
   currentCity: state.city,

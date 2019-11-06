@@ -43,4 +43,5 @@ const mapDispatchToProps = (dispatch) => ({
   changeCurrentCity: (city) => dispatch(ActionCreator.changeCity(city))
 });
 
+export {Tabs};
 export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

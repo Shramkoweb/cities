@@ -12,7 +12,7 @@ module.exports = {
     contentBase: path.join(__dirname, `public`),
     compress: false,
     open: true,
-    port: 3000,
+    port: 3008,
   },
   module: {
     rules: [
