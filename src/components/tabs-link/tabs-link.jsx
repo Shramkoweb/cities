@@ -11,17 +11,21 @@ class TabsLink extends PureComponent {
 
   handleClick(evt) {
     evt.preventDefault();
+
     this.props.changeCity(this.props.city);
   }
 
   render() {
     const {city, currentCity} = this.props;
+    const activeClassName = currentCity === city && `tabs__item--active`;
+
     return (
       <li className="locations__item">
         <a
           onClick={this.handleClick}
-          className={`locations__item-link tabs__item ${currentCity === city ? `tabs__item--active` : ``}`}
-          href="#">
+          className={`locations__item-link tabs__item ${activeClassName}`}
+          href="#"
+        >
           <span>{city}</span>
         </a>
       </li>

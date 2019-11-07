@@ -21,8 +21,7 @@ it(`Should call callback on click to the link`, () => {
 
   const link = tabElement.find(`.locations__item-link`);
   link.simulate(`click`, {
-    preventDefault() {
-    }
+    preventDefault() {}
   });
 
   expect(handleClick).toHaveBeenCalled();

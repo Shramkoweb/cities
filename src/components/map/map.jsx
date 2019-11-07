@@ -82,9 +82,9 @@ Map.propTypes = {
 
 const mapStateToProps = (state) => ({
   currentCity: state.city,
-  coordinates: state.offers.filter((offer) => offer.city === state.city)
+  coordinates: state.offers
+    .filter((offer) => offer.city === state.city)
     .map((element) => element.coordinates)
 });
 
-export {mapStateToProps};
 export default connect(mapStateToProps)(Map);
