@@ -27,10 +27,10 @@ class Map extends PureComponent {
   componentDidUpdate() {
     this._markerGroup.clearLayers();
     this._initMapCoordinates();
-    this.__initMarkerCoordinates();
+    this._initMarkerCoordinates();
   }
 
-  __initMarkerCoordinates() {
+  _initMarkerCoordinates() {
     const markerCoordinates = this.props.coordinates;
 
     markerCoordinates.forEach((coordinate) => {
@@ -46,7 +46,7 @@ class Map extends PureComponent {
 
   _addMarkers() {
     this._markerGroup = leaflet.layerGroup().addTo(this._map);
-    this.__initMarkerCoordinates();
+    this._initMarkerCoordinates();
   }
 
   _init() {
