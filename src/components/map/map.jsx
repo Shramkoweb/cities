@@ -1,8 +1,9 @@
 import React, {PureComponent} from 'react';
 import leaflet from "leaflet";
 import {connect} from 'react-redux';
-import {CitiesCoordinatesMap} from "../../constants";
 import PropTypes from "prop-types";
+
+import {CitiesCoordinatesMap} from "../../constants";
 
 const MapConfig = {
   ZOOM: 12,

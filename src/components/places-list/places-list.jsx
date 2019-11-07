@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PlaceCard from "../place-card/place-card";
 import {connect} from 'react-redux';
 
+import PlaceCard from "../place-card/place-card";
 
 export class PlacesList extends React.PureComponent {
   constructor(props) {

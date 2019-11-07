@@ -1,8 +1,9 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/reducer";
-import TabsLink from "../tabs-link/tabs-link";
 import PropTypes from "prop-types";
+
+import TabsLink from "../tabs-link/tabs-link";
 
 class Tabs extends PureComponent {
   constructor(props) {

@@ -1,11 +1,12 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
 import PlacesList from "../places-list/places-list";
 import CatalogEmpty from "../catalog-empty/catalog-empty";
 import Tabs from "../tabs/tabs";
 import Sort from "../sort/sort";
 import Map from "../map/map";
-import {connect} from 'react-redux';
 
 const Catalog = (props) => {
   const {offers, currentCity} = props;

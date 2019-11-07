@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+
 import {Catalog} from "./catalog";
 import {OFFERS} from "../../mocks/offers";
 

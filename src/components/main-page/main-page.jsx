@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import PageLayout from "../page-layout/page-layout";
 import Catalog from "../catalog/catalog";
 import Header from "../header/header";
