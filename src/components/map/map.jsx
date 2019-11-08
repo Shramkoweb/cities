@@ -26,7 +26,7 @@ class Map extends PureComponent {
 
   componentDidUpdate() {
     this._markerGroup.clearLayers();
-    this._initMapCoordinates();
+    this._initMapCoordinates(this._map);
     this._initMarkerCoordinates();
   }
 
@@ -40,26 +40,24 @@ class Map extends PureComponent {
     });
   }
 
-  _initMapCoordinates() {
-    this._map.setView(CitiesCoordinatesMap.get(this.props.currentCity), MapConfig.ZOOM);
+  _initMapCoordinates(map) {
+    map.setView(CitiesCoordinatesMap.get(this.props.currentCity), MapConfig.ZOOM);
   }
 
-  _addMarkers() {
-    this._markerGroup = leaflet.layerGroup().addTo(this._map);
+  _addMarkers(map) {
+    this._markerGroup = leaflet.layerGroup().addTo(map);
     this._initMarkerCoordinates();
   }
 
   _init() {
-    const city = MapConfig.MAIN_CITY;
-
     this._map = leaflet.map(`map`, {
-      center: city,
+      center: MapConfig.MAIN_CITY,
       zoom: MapConfig.ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    this._initMapCoordinates();
+    this._initMapCoordinates(this._map);
 
     leaflet
       .tileLayer(MapConfig.TILE_LAYER, {
@@ -67,7 +65,7 @@ class Map extends PureComponent {
       })
       .addTo(this._map);
 
-    this._addMarkers();
+    this._addMarkers(this._map);
   }
 
   render() {
