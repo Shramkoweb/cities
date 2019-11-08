@@ -17,7 +17,7 @@ class TabsLink extends PureComponent {
 
   render() {
     const {city, currentCity} = this.props;
-    const activeClassName = currentCity === city && `tabs__item--active`;
+    const activeClassName = currentCity === city ? `tabs__item--active` : ``;
 
     return (
       <li className="locations__item">

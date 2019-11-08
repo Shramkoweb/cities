@@ -18,7 +18,7 @@ App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, {
+const mapStateToProps = (state) => Object.assign({}, {
   city: state.city,
 });
 
