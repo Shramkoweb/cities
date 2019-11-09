@@ -1,5 +1,5 @@
 import React from 'react';
-import {fractalRatingToPercentage} from "../../utils";
+import {convertFloatToPercentage} from "../../utils";
 import PropTypes from 'prop-types';
 
 const Property = ({isPremium, title, rating, price}) => {
@@ -45,7 +45,7 @@ const Property = ({isPremium, title, rating, price}) => {
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
-              <span style={{width: `${fractalRatingToPercentage(rating)}%`}}/>
+              <span style={{width: `${convertFloatToPercentage(rating)}%`}}/>
               <span className="visually-hidden">Rating</span>
             </div>
             <span className="property__rating-value rating__value">{rating}</span>

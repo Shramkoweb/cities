@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {fractalRatingToPercentage} from "../../utils";
+import {convertFloatToPercentage} from "../../utils";
 
 const PlaceCard = (props) => {
   const onCardMouseEnter = () => {
@@ -44,7 +44,7 @@ const PlaceCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${fractalRatingToPercentage(rating)}%`}}/>
+            <span style={{width: `${convertFloatToPercentage(rating)}%`}}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
