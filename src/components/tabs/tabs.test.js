@@ -1,6 +1,5 @@
 import React from "react";
 import renderer from "react-test-renderer";
-
 import {Tabs} from "./tabs";
 import Constants from "../../constants";
 

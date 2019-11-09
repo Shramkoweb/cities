@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import {convertFloatToPercentage} from "../../utils";
 
 const PlaceCard = (props) => {

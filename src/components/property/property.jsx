@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import {convertFloatToPercentage} from "../../utils";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const Property = ({isPremium, title, rating, price}) => {
   return (

@@ -7,7 +7,6 @@ import App from "./components/app/app";
 import {OFFERS} from "./mocks/offers";
 
 const rootElement = document.querySelector(`#root`);
-
 const store = createStore(reducer);
 
 const init = () => {

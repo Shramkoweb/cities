@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-
 import PlacesList from "../places-list/places-list";
 import CatalogEmpty from "../catalog-empty/catalog-empty";
 import Tabs from "../tabs/tabs";
