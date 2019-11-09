@@ -39,7 +39,7 @@ TabsLink.propTypes = {
   changeCity: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+const mapStateToProps = (state) => ({
   currentCity: state.city
 });
 

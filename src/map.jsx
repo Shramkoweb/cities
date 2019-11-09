@@ -1,9 +1,8 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent} from "react";
 import leaflet from "leaflet";
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
-
-import {CitiesCoordinatesMap} from "./constants";
+import Constants from "./constants";
 
 const MapConfig = {
   ZOOM: 12,
@@ -44,7 +43,7 @@ class Map extends PureComponent {
   }
 
   _setMapView(map, currentCity, zoom) {
-    map.setView(CitiesCoordinatesMap.get(currentCity), zoom);
+    map.setView(Constants.CITIES_COORDINATES.get(currentCity), zoom);
   }
 
   _initMap(mapConfig, currentCity, coordinates) {
