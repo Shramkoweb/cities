@@ -21,51 +21,49 @@ const icon = leaflet.icon({
 
 class Map extends PureComponent {
   componentDidMount() {
-    this._init();
+    this._initMap(MapConfig, this.props.currentCity, this.props.coordinates);
   }
 
   componentDidUpdate() {
     this._markerGroup.clearLayers();
-    this._initMapCoordinates(this._map);
-    this._initMarkerCoordinates();
+    this._setMapView(this._map, this.props.currentCity, MapConfig.ZOOM);
+    this._renderMarkers(this.props.coordinates, this._markerGroup);
   }
 
-  _initMarkerCoordinates() {
-    const markerCoordinates = this.props.coordinates;
-
-    markerCoordinates.forEach((coordinate) => {
+  _renderMarkers(coordinates, markerGroup) {
+    coordinates.forEach((coordinate) => {
       leaflet
         .marker(coordinate, {icon})
-        .addTo(this._markerGroup);
+        .addTo(markerGroup);
     });
   }
 
-  _initMapCoordinates(map) {
-    map.setView(CitiesCoordinatesMap.get(this.props.currentCity), MapConfig.ZOOM);
-  }
-
-  _addMarkers(map) {
+  _createMarkersGroup(map, coordinates) {
     this._markerGroup = leaflet.layerGroup().addTo(map);
-    this._initMarkerCoordinates();
+    this._renderMarkers(coordinates, this._markerGroup);
   }
 
-  _init() {
+  _setMapView(map, currentCity, zoom) {
+    map.setView(CitiesCoordinatesMap.get(currentCity), zoom);
+  }
+
+  _initMap(mapConfig, currentCity, coordinates) {
     this._map = leaflet.map(`map`, {
-      center: MapConfig.MAIN_CITY,
-      zoom: MapConfig.ZOOM,
+      center: mapConfig.MAIN_CITY,
+      zoom: mapConfig.ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    this._initMapCoordinates(this._map);
+    this._setMapView(this._map, currentCity, mapConfig.ZOOM);
 
     leaflet
-      .tileLayer(MapConfig.TILE_LAYER, {
-        attribution: MapConfig.TILE_ATTRIBUTE
+      .tileLayer(mapConfig.TILE_LAYER, {
+        attribution: mapConfig.TILE_ATTRIBUTE
       })
       .addTo(this._map);
 
-    this._addMarkers(this._map);
+    this._createMarkersGroup(this._map, coordinates);
   }
 
   render() {
