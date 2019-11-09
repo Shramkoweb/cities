@@ -6,7 +6,7 @@ import PlacesList from "../places-list/places-list";
 import CatalogEmpty from "../catalog-empty/catalog-empty";
 import Tabs from "../tabs/tabs";
 import Sort from "../sort/sort";
-import Map from "../map/map";
+import Map from "../../map";
 
 const Catalog = (props) => {
   const {offers, currentCity} = props;
