@@ -23,7 +23,7 @@ class Tabs extends PureComponent {
         <section className="locations container">
           <ul className="locations__list tabs__list">
             {cities.map((city, index) => <TabsLink
-              key={index}
+              key={index + city}
               city={city}
               changeCity={this.changeCity}
             />)}
@@ -35,7 +35,7 @@ class Tabs extends PureComponent {
 }
 
 Tabs.propTypes = {
-  cities: PropTypes.array.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   changeCurrentCity: PropTypes.func.isRequired
 };
 
