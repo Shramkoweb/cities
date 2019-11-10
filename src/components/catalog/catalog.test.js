@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {Catalog} from "./catalog";
 import {OFFERS} from "../../mocks/offers";
 
-jest.mock(`../../map.jsx`, () => jest.fn().mockReturnValue(null));
+jest.mock(`../map/map.jsx`, () => jest.fn().mockReturnValue(null));
 jest.mock(`../tabs/tabs.jsx`, () => jest.fn().mockReturnValue(null));
 jest.mock(`../sort/sort.jsx`, () => jest.fn().mockReturnValue(null));
 jest.mock(`../places-list/places-list.jsx`, () => jest.fn().mockReturnValue(null));

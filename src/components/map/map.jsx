@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import leaflet from "leaflet";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import Constants from "./constants";
+import Constants from "../../constants";
 
 const MapConfig = {
   ZOOM: 12,
