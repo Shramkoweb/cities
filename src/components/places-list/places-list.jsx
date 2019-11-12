@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import PlaceCard from "../place-card/place-card";
 
-export default class PlacesList extends React.PureComponent {
+export class PlacesList extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -39,3 +40,12 @@ PlacesList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
+const mapStateToProps = (state) => ({
+  offers: state.offers.filter((offer) => {
+    return offer.city === state.city;
+  })
+});
+
+
+export {mapStateToProps};
+export default connect(mapStateToProps)(PlacesList);

@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import MainPage from "../main-page/main-page";
-
 
 const App = (props) => {
   const {offers} = props;
-  const citiesCoordinates = offers.map((it) => it.coordinates);
 
   return (
     <MainPage
       offers={offers}
-      citiesCoordinates={citiesCoordinates}
     />
   );
 };
@@ -19,4 +17,9 @@ App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => Object.assign({}, {
+  city: state.city,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

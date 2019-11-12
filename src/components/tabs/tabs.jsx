@@ -1,44 +1,40 @@
 import React from "react";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import {ActionCreator} from "../../reducer/reducer";
+import TabsLink from "../tabs-link/tabs-link";
 
-const Tabs = () => {
+const Tabs = (props) => {
+  const {cities, changeCurrentCity} = props;
+
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Paris</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Cologne</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Brussels</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item tabs__item--active">
-              <span>Amsterdam</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Hamburg</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Dusseldorf</span>
-            </a>
-          </li>
+          {cities.map((city, index) =>
+            <TabsLink
+              key={index + city}
+              city={city}
+              changeCity={changeCurrentCity}
+            />)}
         </ul>
       </section>
     </div>
   );
 };
 
-export default Tabs;
+Tabs.propTypes = {
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  changeCurrentCity: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  cities: [...new Set(state.offers.map((element) => element.city))]
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  changeCurrentCity: (city) => dispatch(ActionCreator.changeCity(city))
+});
+
+export {Tabs};
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

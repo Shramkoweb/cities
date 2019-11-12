@@ -1,5 +1,6 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import PlacesList from "../places-list/places-list";
 import CatalogEmpty from "../catalog-empty/catalog-empty";
 import Tabs from "../tabs/tabs";
@@ -7,7 +8,7 @@ import Sort from "../sort/sort";
 import Map from "../map/map";
 
 const Catalog = (props) => {
-  const {offers, citiesCoordinates} = props;
+  const {offers, currentCity} = props;
 
   return (
     <Fragment>
@@ -21,7 +22,7 @@ const Catalog = (props) => {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">312 places to stay in Amsterdam</b>
+                <b className="places__found">{offers.length} places to stay in {currentCity}</b>
 
                 <Sort/>
 
@@ -29,7 +30,7 @@ const Catalog = (props) => {
 
               </section>
               <div className="cities__right-section">
-                <Map citiesCoordinates={citiesCoordinates}/>
+                <Map/>
               </div>
             </div>
           </div>
@@ -42,7 +43,15 @@ const Catalog = (props) => {
 
 Catalog.propTypes = {
   offers: PropTypes.array.isRequired,
-  citiesCoordinates: PropTypes.array.isRequired
+  currentCity: PropTypes.string.isRequired
 };
 
-export default Catalog;
+const mapStateToProps = (state) => ({
+  currentCity: state.city,
+  offers: state.offers.filter((offer) => {
+    return offer.city === state.city;
+  })
+});
+
+export {Catalog};
+export default connect(mapStateToProps)(Catalog);

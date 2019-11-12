@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {convertFloatToPercentage} from "../../utils";
 
 const PlaceCard = (props) => {
   const onCardMouseEnter = () => {
@@ -10,6 +11,7 @@ const PlaceCard = (props) => {
   };
 
   const {id, previewPhoto, price, isPremium, rating, title, type} = props.offer;
+  const ratingPercentage = `${convertFloatToPercentage(rating)}%`;
 
   return (
     <article id={id} className="cities__place-card place-card" onMouseEnter={onCardMouseEnter}>
@@ -42,7 +44,7 @@ const PlaceCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}%`}}/>
+            <span style={{width: ratingPercentage}}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

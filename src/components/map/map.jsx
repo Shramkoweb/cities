@@ -1,6 +1,8 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import React, {PureComponent} from "react";
 import leaflet from "leaflet";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import Constants from "../../constants";
 
 const MapConfig = {
   ZOOM: 12,
@@ -11,38 +13,56 @@ const MapConfig = {
   MAIN_CITY: [52.38333, 4.9]
 };
 
+const icon = leaflet.icon({
+  iconUrl: MapConfig.ICON_URL,
+  iconSize: MapConfig.ICON_SIZE
+});
+
 class Map extends PureComponent {
   componentDidMount() {
-    this._init();
+    this._initMap(MapConfig, this.props.currentCity, this.props.coordinates);
   }
 
-  _init() {
-    const markerCoordinates = this.props.citiesCoordinates;
-    const city = MapConfig.MAIN_CITY;
-    const icon = leaflet.icon({
-      iconUrl: MapConfig.ICON_URL,
-      iconSize: MapConfig.ICON_SIZE
-    });
+  componentDidUpdate() {
+    this._markerGroup.clearLayers();
+    this._setMapView(this._map, this.props.currentCity, MapConfig.ZOOM);
+    this._renderMarkers(this.props.coordinates, this._markerGroup);
+  }
 
-    const map = leaflet.map(`map`, {
-      center: city,
-      zoom: MapConfig.ZOOM,
+  _renderMarkers(coordinates, markerGroup) {
+    coordinates.forEach((coordinate) => {
+      leaflet
+        .marker(coordinate, {icon})
+        .addTo(markerGroup);
+    });
+  }
+
+  _createMarkersGroup(map, coordinates) {
+    this._markerGroup = leaflet.layerGroup().addTo(map);
+    this._renderMarkers(coordinates, this._markerGroup);
+  }
+
+  _setMapView(map, currentCity, zoom) {
+    map.setView(Constants.CITIES_COORDINATES.get(currentCity), zoom);
+  }
+
+  _initMap(mapConfig, currentCity, coordinates) {
+    this._map = leaflet.map(`map`, {
+      center: mapConfig.MAIN_CITY,
+      zoom: mapConfig.ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    map.setView(city, MapConfig.ZOOM);
-    leaflet
-      .tileLayer(MapConfig.TILE_LAYER, {
-        attribution: MapConfig.TILE_ATTRIBUTE
-      })
-      .addTo(map);
+    this._setMapView(this._map, currentCity, mapConfig.ZOOM);
 
-    markerCoordinates.forEach((coordinate) => {
-      leaflet
-        .marker(coordinate, {icon})
-        .addTo(map);
-    });
+    leaflet
+      .tileLayer(mapConfig.TILE_LAYER, {
+        attribution: mapConfig.TILE_ATTRIBUTE
+      })
+      .addTo(this._map);
+
+    this._createMarkersGroup(this._map, coordinates);
   }
 
   render() {
@@ -51,7 +71,15 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  citiesCoordinates: PropTypes.array.isRequired
+  coordinates: PropTypes.array.isRequired,
+  currentCity: PropTypes.string.isRequired
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  currentCity: state.city,
+  coordinates: state.offers
+    .filter((offer) => offer.city === state.city)
+    .map((element) => element.coordinates)
+});
+
+export default connect(mapStateToProps)(Map);

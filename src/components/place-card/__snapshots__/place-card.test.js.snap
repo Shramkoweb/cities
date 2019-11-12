@@ -78,7 +78,7 @@ exports[`PlaceCard component render correct 1`] = `
         <span
           style={
             Object {
-              "width": "43%",
+              "width": "860%",
             }
           }
         />
