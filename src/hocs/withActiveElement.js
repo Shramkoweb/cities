@@ -4,14 +4,14 @@ const withActiveElement = (Component) => {
   class WithActiveElement extends React.PureComponent {
     constructor(props) {
       super(props);
-      this.state = {active: `Amsterdam`};
+      this.state = {active: null};
 
       this.elementSelectHandler = this.elementSelectHandler.bind(this);
     }
 
-    elementSelectHandler(index) {
+    elementSelectHandler(id) {
       this.setState({
-        active: index
+        active: id
       });
     }
 
