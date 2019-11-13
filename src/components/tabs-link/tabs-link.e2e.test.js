@@ -14,8 +14,6 @@ it(`Should call callback on click to the link`, () => {
       <TabsLink
         currentCity={currentCity}
         city={city}
-        active={`Paris`}
-        onSelect={jest.fn()}
         changeCity={handleClick}
       />
   );

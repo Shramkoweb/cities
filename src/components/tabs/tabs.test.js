@@ -9,9 +9,8 @@ it(`Tabs component render correct`, () => {
   const tabsTemplate = renderer.create(
       <Tabs
         cities={Constants.CITIES}
+        currentCity={`Paris`}
         changeCurrentCity={jest.fn()}
-        active={`Paris`}
-        onSelect={jest.fn()}
       />
   ).toJSON();
 

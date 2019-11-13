@@ -11,8 +11,6 @@ it(`Tab-link component render correct`, () => {
       <TabsLink
         currentCity={currentCity}
         city={city}
-        active={`Paris`}
-        onSelect={jest.fn()}
         changeCity={handleClick}
       />
   ).toJSON();
