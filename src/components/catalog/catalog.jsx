@@ -10,7 +10,6 @@ import Map from "../map/map";
 
 const PlacesListWrapped = withActiveElement(PlacesList);
 
-
 const Catalog = (props) => {
   const {offers, currentCity} = props;
 
@@ -51,9 +50,9 @@ Catalog.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentCity: state.city,
+  currentCity: state.currentCity,
   offers: state.offers.filter((offer) => {
-    return offer.city === state.city;
+    return offer.city === state.currentCity;
   })
 });
 

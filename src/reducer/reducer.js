@@ -1,11 +1,11 @@
 import {OFFERS as offers} from "../mocks/offers";
 
-const citiesList = [...new Set(offers.map((item) => item.city))].sort();
+const cities = [...new Set(offers.map((item) => item.city))].sort();
 
 
 const initialState = {
-  city: `Amsterdam`,
-  citiesList,
+  currentCity: `Amsterdam`,
+  cities,
   offers
 };
 
@@ -16,7 +16,7 @@ const Action = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Action.CHANGE_CITY:
-      return Object.assign({}, state, {city: action.payload});
+      return Object.assign({}, state, {currentCity: action.payload});
   }
 
   return state;

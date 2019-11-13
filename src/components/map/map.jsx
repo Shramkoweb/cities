@@ -75,9 +75,9 @@ Map.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentCity: state.city,
+  currentCity: state.currentCity,
   coordinates: state.offers
-    .filter((offer) => offer.city === state.city)
+    .filter((offer) => offer.city === state.currentCity)
     .map((element) => element.coordinates)
 });
 

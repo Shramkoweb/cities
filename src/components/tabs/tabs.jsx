@@ -31,8 +31,8 @@ Tabs.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  cities: state.citiesList,
-  currentCity: state.city
+  cities: state.cities,
+  currentCity: state.currentCity
 });
 
 const mapDispatchToProps = (dispatch) => ({

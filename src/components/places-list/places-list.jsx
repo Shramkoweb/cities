@@ -44,7 +44,7 @@ PlacesList.propTypes = {
 
 const mapStateToProps = (state) => ({
   offers: state.offers.filter((offer) => {
-    return offer.city === state.city;
+    return offer.city === state.currentCity;
   })
 });
 
