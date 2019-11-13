@@ -7,7 +7,6 @@ const withActiveElement = (Component) => {
       this.state = {active: `Amsterdam`};
 
       this.elementSelectHandler = this.elementSelectHandler.bind(this);
-      this.elementUnselectHandler = this.elementUnselectHandler.bind(this);
     }
 
     elementSelectHandler(index) {
@@ -18,14 +17,11 @@ const withActiveElement = (Component) => {
 
     render() {
       return (
-        <>
-          <Component
-            {...this.props}
-            active={this.state.active}
-            onSelect={this.elementSelectHandler}
-          />
-          <div>Active element: {this.state.active}</div>
-        </>
+        <Component
+          {...this.props}
+          active={this.state.active}
+          onSelect={this.elementSelectHandler}
+        />
       );
     }
   }
