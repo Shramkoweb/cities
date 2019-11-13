@@ -10,6 +10,8 @@ it(`Tabs component render correct`, () => {
       <Tabs
         cities={Constants.CITIES}
         changeCurrentCity={jest.fn()}
+        active={`Paris`}
+        onSelect={jest.fn()}
       />
   ).toJSON();
 

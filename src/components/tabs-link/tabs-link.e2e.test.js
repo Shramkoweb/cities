@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {TabsLink} from "./tabs-link";
+import TabsLink from "./tabs-link";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -14,6 +14,8 @@ it(`Should call callback on click to the link`, () => {
       <TabsLink
         currentCity={currentCity}
         city={city}
+        active={`Paris`}
+        onSelect={jest.fn()}
         changeCity={handleClick}
       />
   );

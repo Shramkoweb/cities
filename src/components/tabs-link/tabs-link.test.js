@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {TabsLink} from "./tabs-link";
+import TabsLink from "./tabs-link";
 
 const city = `Paris`;
 const currentCity = `Moscow`;
@@ -11,6 +11,8 @@ it(`Tab-link component render correct`, () => {
       <TabsLink
         currentCity={currentCity}
         city={city}
+        active={`Paris`}
+        onSelect={jest.fn()}
         changeCity={handleClick}
       />
   ).toJSON();
