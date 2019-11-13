@@ -5,7 +5,10 @@ import PlacesList from "../places-list/places-list";
 import CatalogEmpty from "../catalog-empty/catalog-empty";
 import Tabs from "../tabs/tabs";
 import Sort from "../sort/sort";
+import withActiveElement from "../../hocs/withActiveElement";
 import Map from "../map/map";
+
+const TabsWrapped = withActiveElement(Tabs);
 
 const Catalog = (props) => {
   const {offers, currentCity} = props;
@@ -16,7 +19,7 @@ const Catalog = (props) => {
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
 
-          <Tabs/>
+          <TabsWrapped/>
 
           <div className="cities">
             <div className="cities__places-container container">
