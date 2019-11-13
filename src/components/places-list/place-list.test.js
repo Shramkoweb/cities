@@ -8,6 +8,7 @@ it(`PlacesList component render correct`, () => {
     .create(
         <PlacesList
           offers={OFFERS}
+          onSelect={jest.fn()}
         />)
     .toJSON();
 

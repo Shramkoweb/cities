@@ -30,6 +30,9 @@ exports[`Catalog component render correct 1`] = `
            places to stay in 
           NY
         </b>
+        <div>
+          Active
+        </div>
       </section>
       <div
         className="cities__right-section"

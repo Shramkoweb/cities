@@ -21,6 +21,7 @@ it(`check hover on PlaceCard & called with correct argument`, () => {
   const placeCardComponent = shallow(
       <PlaceCard
         offer={offer}
+        onSelect={jest.fn()}
         onCardHover={onPlaceCardHover}
       />
   );

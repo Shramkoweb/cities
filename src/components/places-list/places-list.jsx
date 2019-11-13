@@ -21,7 +21,7 @@ export class PlacesList extends React.PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, onSelect} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
@@ -29,6 +29,7 @@ export class PlacesList extends React.PureComponent {
           <PlaceCard
             key={offer.id}
             offer={offer}
+            onSelect={onSelect}
             onCardHover={this.handleCardHover}
           />)}
       </div>
@@ -37,7 +38,8 @@ export class PlacesList extends React.PureComponent {
 }
 
 PlacesList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired
+  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
