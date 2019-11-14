@@ -17,14 +17,11 @@ const withActiveElement = (Component) => {
 
     render() {
       return (
-        <>
-          <Component
-            {...this.props}
-            activeElement={this.state.activeElement}
-            onSelect={this.elementSelectHandler}
-          />
-          <div>Active: {this.state.activeElement}</div>
-        </>
+        <Component
+          {...this.props}
+          activeElement={this.state.activeElement}
+          onSelect={this.elementSelectHandler}
+        />
       );
     }
   }
