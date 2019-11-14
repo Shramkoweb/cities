@@ -12,9 +12,11 @@ const handleClick = jest.fn();
 it(`Should call callback on click to the link`, () => {
   const tabElement = shallow(
       <TabsLink
-        currentCity={currentCity}
         city={city}
-        changeCity={handleClick}
+        changeCurrentCity={handleClick}
+        onSelect={handleClick}
+        activeElement={currentCity}
+        id={`o-Paris`}
       />
   );
 
