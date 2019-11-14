@@ -5,7 +5,7 @@ import {ActionCreator} from "../../reducer/reducer";
 import TabsLink from "../tabs-link/tabs-link";
 
 const Tabs = (props) => {
-  const {cities, changeCurrentCity, currentCity} = props;
+  const {cities, changeCurrentCity, onSelect, activeElement} = props;
 
   return (
     <div className="tabs">
@@ -14,9 +14,11 @@ const Tabs = (props) => {
           {cities.map((city, index) =>
             <TabsLink
               key={`${index}-${city}`}
+              id={`${index}-${city}`}
               city={city}
-              currentCity={currentCity}
-              changeCity={changeCurrentCity}
+              onSelect={onSelect}
+              activeElement={activeElement || `0-Amsterdam`} // TODO возможно стоит придумать что-то лучше
+              changeCurrentCity={changeCurrentCity}
             />)}
         </ul>
       </section>
@@ -27,12 +29,15 @@ const Tabs = (props) => {
 Tabs.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   changeCurrentCity: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired
+  activeElement: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]),
+  onSelect: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  cities: state.cities,
-  currentCity: state.currentCity
+  cities: state.cities
 });
 
 const mapDispatchToProps = (dispatch) => ({

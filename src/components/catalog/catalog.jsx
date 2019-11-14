@@ -9,6 +9,7 @@ import withActiveElement from "../../hocs/withActiveElement";
 import Map from "../map/map";
 
 const PlacesListWrapped = withActiveElement(PlacesList);
+const TabsWrapped = withActiveElement(Tabs);
 
 const Catalog = (props) => {
   const {offers, currentCity} = props;
@@ -19,7 +20,7 @@ const Catalog = (props) => {
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
 
-          <Tabs/>
+          <TabsWrapped/>
 
           <div className="cities">
             <div className="cities__places-container container">
