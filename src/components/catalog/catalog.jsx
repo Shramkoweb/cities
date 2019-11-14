@@ -8,7 +8,6 @@ import Sort from "../sort/sort";
 import withActiveElement from "../../hocs/withActiveElement";
 import Map from "../map/map";
 
-const PlacesListWrapped = withActiveElement(PlacesList);
 const TabsWrapped = withActiveElement(Tabs);
 
 const Catalog = (props) => {
@@ -30,7 +29,7 @@ const Catalog = (props) => {
 
                 <Sort/>
 
-                <PlacesListWrapped offers={offers}/>
+                <PlacesList offers={offers}/>
 
               </section>
               <div className="cities__right-section">

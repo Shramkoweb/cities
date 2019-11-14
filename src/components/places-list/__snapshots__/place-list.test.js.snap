@@ -7,7 +7,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={1}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -105,7 +104,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={2}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -203,7 +201,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={3}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -301,7 +298,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={4}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -406,7 +402,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={5}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -511,7 +506,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={6}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -609,7 +603,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={7}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -714,7 +707,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={8}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -812,7 +804,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={9}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div
@@ -910,7 +901,6 @@ exports[`PlacesList component render correct 1`] = `
   <article
     className="cities__place-card place-card"
     id={10}
-    onClick={[Function]}
     onMouseEnter={[Function]}
   >
     <div

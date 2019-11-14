@@ -17,7 +17,6 @@ it(`PlaceCard component render correct`, () => {
   const placeCardComponent = renderer
     .create(<PlaceCard
       offer={offerData}
-      onSelect={jest.fn()}
       onCardHover={jest.fn()}/>)
     .toJSON();
 
