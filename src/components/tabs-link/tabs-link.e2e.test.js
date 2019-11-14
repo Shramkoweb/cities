@@ -9,22 +9,24 @@ const city = `Paris`;
 const currentCity = `Moscow`;
 const handleClick = jest.fn();
 
-it(`Should call callback on click to the link`, () => {
-  const tabElement = shallow(
-      <TabsLink
-        city={city}
-        changeCurrentCity={handleClick}
-        onSelect={handleClick}
-        activeElement={currentCity}
-        id={`o-Paris`}
-      />
-  );
+describe(`TabsLink callbacks are called correct`, () => {
+  it(`call callback on click to the link`, () => {
+    const tabElement = shallow(
+        <TabsLink
+          city={city}
+          changeCurrentCity={handleClick}
+          onSelect={handleClick}
+          activeElement={currentCity}
+          id={`o-Paris`}
+        />
+    );
 
-  const link = tabElement.find(`.locations__item-link`);
-  link.simulate(`click`, {
-    preventDefault() {}
+    const link = tabElement.find(`.locations__item-link`);
+    link.simulate(`click`, {
+      preventDefault() {}
+    });
+
+    expect(handleClick).toHaveBeenCalled();
+    expect(handleClick).toHaveBeenCalledWith(city);
   });
-
-  expect(handleClick).toHaveBeenCalled();
-  expect(handleClick).toHaveBeenCalledWith(city);
 });
