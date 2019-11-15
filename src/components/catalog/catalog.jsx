@@ -5,7 +5,7 @@ import PlacesList from "../places-list/places-list";
 import CatalogEmpty from "../catalog-empty/catalog-empty";
 import Tabs from "../tabs/tabs";
 import Sort from "../sort/sort";
-import withActiveElement from "../../hocs/withActiveElement";
+import withActiveElement from "../../hocs/with-active-element";
 import Map from "../map/map";
 
 const TabsWrapped = withActiveElement(Tabs);
