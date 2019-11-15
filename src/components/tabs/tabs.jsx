@@ -29,10 +29,7 @@ const Tabs = (props) => {
 Tabs.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   changeCurrentCity: PropTypes.func.isRequired,
-  activeElement: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string
-  ]),
+  activeElement: PropTypes.string,
   onSelect: PropTypes.func.isRequired
 };
 
