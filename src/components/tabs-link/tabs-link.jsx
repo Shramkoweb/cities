@@ -2,7 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const TabsLink = (props) => {
-  const {city, changeCurrentCity, onSelect, activeElement, id} = props;
+  const {
+    activeElement,
+    changeCurrentCity,
+    city,
+    id,
+    onSelect,
+  } = props;
+
   const activeClassName = activeElement === id ? `tabs__item--active` : ``;
 
   const onTabClick = (evt) => {
@@ -27,11 +34,11 @@ const TabsLink = (props) => {
 };
 
 TabsLink.propTypes = {
-  city: PropTypes.string.isRequired,
-  changeCurrentCity: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired,
   activeElement: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired
+  changeCurrentCity: PropTypes.func.isRequired,
+  city: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default TabsLink;

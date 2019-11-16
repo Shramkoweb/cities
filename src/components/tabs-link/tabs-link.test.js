@@ -9,11 +9,11 @@ const handleClick = jest.fn();
 it(`Tab-link component render correct`, () => {
   const tabsTemplate = renderer.create(
       <TabsLink
-        city={city}
-        changeCurrentCity={handleClick}
-        onSelect={handleClick}
         activeElement={currentCity}
+        changeCurrentCity={handleClick}
+        city={city}
         id={`o-Paris`}
+        onSelect={handleClick}
       />
   ).toJSON();
 

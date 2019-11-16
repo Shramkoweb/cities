@@ -11,7 +11,10 @@ import Map from "../map/map";
 const TabsWrapped = withActiveElement(Tabs);
 
 const Catalog = (props) => {
-  const {offers, currentCity} = props;
+  const {
+    currentCity,
+    offers,
+  } = props;
 
   return (
     <Fragment>
@@ -45,8 +48,8 @@ const Catalog = (props) => {
 };
 
 Catalog.propTypes = {
+  currentCity: PropTypes.string.isRequired,
   offers: PropTypes.array.isRequired,
-  currentCity: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({

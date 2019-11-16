@@ -5,7 +5,12 @@ import {ActionCreator} from "../../reducer/reducer";
 import TabsLink from "../tabs-link/tabs-link";
 
 const Tabs = (props) => {
-  const {cities, changeCurrentCity, onSelect, activeElement} = props;
+  const {
+    activeElement,
+    changeCurrentCity,
+    cities,
+    onSelect,
+  } = props;
 
   return (
     <div className="tabs">
@@ -27,10 +32,10 @@ const Tabs = (props) => {
 };
 
 Tabs.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  changeCurrentCity: PropTypes.func.isRequired,
   activeElement: PropTypes.string,
-  onSelect: PropTypes.func.isRequired
+  changeCurrentCity: PropTypes.func.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -13,11 +13,11 @@ describe(`TabsLink callbacks are called correct`, () => {
   it(`call callback on click to the link`, () => {
     const tabElement = shallow(
         <TabsLink
-          city={city}
-          changeCurrentCity={handleClick}
-          onSelect={handleClick}
           activeElement={currentCity}
+          changeCurrentCity={handleClick}
+          city={city}
           id={`o-Paris`}
+          onSelect={handleClick}
         />
     );
 

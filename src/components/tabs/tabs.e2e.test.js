@@ -13,10 +13,10 @@ describe(`Tabs component work correct`, () => {
 
   const tabsComponent = mount(
       <Tabs
-        cities={cities}
-        onSelect={onSelect}
         activeElement={`Paris`}
         changeCurrentCity={changeCurrentCity}
+        cities={cities}
+        onSelect={onSelect}
       />
   );
 

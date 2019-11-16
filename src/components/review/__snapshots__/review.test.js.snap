@@ -62,5 +62,3 @@ exports[`Review component render correct 1`] = `
   </div>
 </li>
 `;
-
-exports[`review renders correctly 1`] = `ShallowWrapper {}`;

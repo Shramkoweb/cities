@@ -4,13 +4,13 @@ import PlaceCard from "./place-card";
 
 const offerData = {
   id: 834576,
-  title: `Beautiful & luxurious apartment at great location`,
-  previewPhoto: `img/apartment-01.jpg`,
-  isPremium: true,
   isFavorite: true,
+  isPremium: true,
+  previewPhoto: `img/apartment-01.jpg`,
   price: 120,
   rating: 43,
-  type: `Apartment`
+  title: `Beautiful & luxurious apartment at great location`,
+  type: `Apartment`,
 };
 
 it(`PlaceCard component render correct`, () => {

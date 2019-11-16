@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Header = (props) => {
-  const {user} = props;
-
+const Header = ({user}) => {
   return (
     <header className="header">
       <div className="container">
