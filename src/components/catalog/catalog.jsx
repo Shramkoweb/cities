@@ -32,7 +32,7 @@ const Catalog = (props) => {
 
                 <Sort/>
 
-                <PlacesList offers={offers}/>
+                <PlacesList/>
 
               </section>
               <div className="cities__right-section">
@@ -54,9 +54,7 @@ Catalog.propTypes = {
 
 const mapStateToProps = (state) => ({
   currentCity: state.currentCity,
-  offers: state.offers.filter((offer) => {
-    return offer.city === state.currentCity;
-  })
+  offers: state.offersByCity
 });
 
 export {Catalog};
