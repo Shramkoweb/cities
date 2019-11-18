@@ -16,6 +16,7 @@ describe(`Tabs component work correct`, () => {
         activeElement={`Paris`}
         changeCurrentCity={changeCurrentCity}
         cities={cities}
+        currentCity={`Paris`}
         onSelect={onSelect}
       />
   );

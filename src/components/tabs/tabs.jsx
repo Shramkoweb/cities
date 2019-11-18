@@ -6,6 +6,7 @@ import TabsLink from "../tabs-link/tabs-link";
 
 const Tabs = (props) => {
   const {
+    currentCity,
     activeElement,
     changeCurrentCity,
     cities,
@@ -19,10 +20,9 @@ const Tabs = (props) => {
           {cities.map((city, index) =>
             <TabsLink
               key={`${index}-${city}`}
-              id={`${index}-${city}`}
               city={city}
               onSelect={onSelect}
-              activeElement={activeElement || `0-Amsterdam`} // TODO возможно стоит придумать что-то лучше
+              activeElement={activeElement || currentCity}
               changeCurrentCity={changeCurrentCity}
             />)}
         </ul>
@@ -35,6 +35,7 @@ Tabs.propTypes = {
   activeElement: PropTypes.string,
   changeCurrentCity: PropTypes.func.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentCity: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
 

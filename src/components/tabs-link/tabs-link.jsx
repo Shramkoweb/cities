@@ -6,16 +6,16 @@ const TabsLink = (props) => {
     activeElement,
     changeCurrentCity,
     city,
-    id,
     onSelect,
   } = props;
 
-  const activeClassName = activeElement === id ? `tabs__item--active` : ``;
+
+  const activeClassName = activeElement === city ? `tabs__item--active` : ``;
 
   const onTabClick = (evt) => {
     evt.preventDefault();
 
-    onSelect(id);
+    onSelect(city);
     changeCurrentCity(city);
   };
 
@@ -25,7 +25,6 @@ const TabsLink = (props) => {
         onClick={onTabClick}
         className={`locations__item-link tabs__item ${activeClassName}`}
         href="#"
-        id={id}
       >
         <span>{city}</span>
       </a>
@@ -37,7 +36,6 @@ TabsLink.propTypes = {
   activeElement: PropTypes.string.isRequired,
   changeCurrentCity: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
 

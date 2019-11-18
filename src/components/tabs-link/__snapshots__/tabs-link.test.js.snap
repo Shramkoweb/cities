@@ -7,7 +7,6 @@ exports[`Tab-link component render correct 1`] = `
   <a
     className="locations__item-link tabs__item "
     href="#"
-    id="o-Paris"
     onClick={[Function]}
   >
     <span>
