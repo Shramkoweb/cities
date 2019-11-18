@@ -2,11 +2,6 @@ import {OFFERS as offers} from "../mocks/offers";
 
 const cities = [...new Set(offers.map((item) => item.city))].sort();
 
-const getOffersByCity = (cityOffers, city) => {
-  return cityOffers.filter((item) => item.city === city);
-};
-
-
 const initialState = {
   currentCity: `Amsterdam`,
   cities,
