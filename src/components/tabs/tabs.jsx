@@ -43,10 +43,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeCurrentCity: (city) => {
-    dispatch(ActionCreator.changeCity(city));
-    dispatch(ActionCreator.getOffersByCity(city));
-  }
+  changeCurrentCity: (city) => dispatch(ActionCreator.changeCity(city))
 });
 
 export {Tabs};
