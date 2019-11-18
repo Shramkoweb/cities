@@ -11,7 +11,7 @@ const PlaceCard = (props) => {
   const {
     id,
     isPremium,
-    previewPhoto,
+    preview_image,
     price,
     rating,
     title,
@@ -37,7 +37,7 @@ const PlaceCard = (props) => {
         <a href="#">
           <img
             className="place-card__image"
-            src={previewPhoto}
+            src={preview_image}
             width="260"
             height="200"
             alt="Place image"
