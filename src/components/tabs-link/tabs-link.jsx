@@ -1,15 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
 
 const TabsLink = (props) => {
-  const {city, currentCity, changeCity} = props;
-  const activeClassName = currentCity === city ? `tabs__item--active` : ``;
+  const {
+    activeElement,
+    changeCurrentCity,
+    city,
+    onSelect,
+  } = props;
+
+
+  const activeClassName = activeElement === city ? `tabs__item--active` : ``;
 
   const onTabClick = (evt) => {
     evt.preventDefault();
 
-    changeCity(city);
+    onSelect(city);
+    changeCurrentCity(city);
   };
 
   return (
@@ -26,14 +33,10 @@ const TabsLink = (props) => {
 };
 
 TabsLink.propTypes = {
+  activeElement: PropTypes.string.isRequired,
+  changeCurrentCity: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
-  currentCity: PropTypes.string.isRequired,
-  changeCity: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currentCity: state.city
-});
-
-export {TabsLink};
-export default connect(mapStateToProps)(TabsLink);
+export default TabsLink;

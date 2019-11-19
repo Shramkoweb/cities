@@ -208,10 +208,10 @@ const Property = ({isPremium, title, rating, price}) => {
 };
 
 Property.propTypes = {
+  isPremium: PropTypes.bool.isRequired,
+  price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  isPremium: PropTypes.bool.isRequired,
-  price: PropTypes.number.isRequired
 };
 
 export default Property;

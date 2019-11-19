@@ -5,10 +5,16 @@ import PlacesList from "../places-list/places-list";
 import CatalogEmpty from "../catalog-empty/catalog-empty";
 import Tabs from "../tabs/tabs";
 import Sort from "../sort/sort";
+import withActiveElement from "../../hocs/with-active-element";
 import Map from "../map/map";
 
+const TabsWrapped = withActiveElement(Tabs);
+
 const Catalog = (props) => {
-  const {offers, currentCity} = props;
+  const {
+    currentCity,
+    offers,
+  } = props;
 
   return (
     <Fragment>
@@ -16,7 +22,7 @@ const Catalog = (props) => {
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
 
-          <Tabs/>
+          <TabsWrapped currentCity={currentCity}/>
 
           <div className="cities">
             <div className="cities__places-container container">
@@ -26,7 +32,7 @@ const Catalog = (props) => {
 
                 <Sort/>
 
-                <PlacesList offers={offers}/>
+                <PlacesList/>
 
               </section>
               <div className="cities__right-section">
@@ -42,14 +48,14 @@ const Catalog = (props) => {
 };
 
 Catalog.propTypes = {
+  currentCity: PropTypes.string.isRequired,
   offers: PropTypes.array.isRequired,
-  currentCity: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  currentCity: state.city,
+  currentCity: state.currentCity,
   offers: state.offers.filter((offer) => {
-    return offer.city === state.city;
+    return offer.city === state.currentCity;
   })
 });
 

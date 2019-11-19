@@ -8,8 +8,11 @@ jest.mock(`../tabs-link/tabs-link.jsx`, () => jest.fn().mockReturnValue(null));
 it(`Tabs component render correct`, () => {
   const tabsTemplate = renderer.create(
       <Tabs
-        cities={Constants.CITIES}
+        activeElement={`Paris`}
         changeCurrentCity={jest.fn()}
+        cities={Constants.CITIES}
+        currentCity={`Paris`}
+        onSelect={jest.fn()}
       />
   ).toJSON();
 

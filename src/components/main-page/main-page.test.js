@@ -11,8 +11,8 @@ it(`MainPage component render correct`, () => {
   const app = renderer
     .create(
         <MainPage
-          offers={OFFERS}
           citiesCoordinates={citiesCoordinates}
+          offers={OFFERS}
         />)
     .toJSON();
 

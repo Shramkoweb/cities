@@ -5,29 +5,39 @@ import PlaceCard from "./place-card";
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`check hover on PlaceCard & called with correct argument`, () => {
+describe(`PlaceCard callbacks are called correct`, () => {
   const onPlaceCardHover = jest.fn();
   const offer = {
     id: 834576,
-    title: `Beautiful & luxurious apartment at great location`,
-    previewPhoto: `img/apartment-01.jpg`,
-    isPremium: true,
     isFavorite: true,
+    isPremium: true,
+    previewPhoto: `img/apartment-01.jpg`,
     price: 120,
     rating: 43,
-    type: `Apartment`
+    title: `Beautiful & luxurious apartment at great location`,
+    type: `Apartment`,
   };
-
   const placeCardComponent = shallow(
       <PlaceCard
         offer={offer}
+        onSelect={jest.fn()}
         onCardHover={onPlaceCardHover}
       />
   );
-
   const placeCard = placeCardComponent.find(`.cities__place-card`);
-  placeCard.simulate(`mouseEnter`);
 
-  expect(onPlaceCardHover).toHaveBeenCalled();
-  expect(onPlaceCardHover).toHaveBeenCalledWith(offer.id);
+  it(`сallbacks are called 3 times`, () => {
+    placeCard.simulate(`mouseEnter`);
+    placeCard.simulate(`mouseEnter`);
+    placeCard.simulate(`mouseEnter`);
+
+    expect(onPlaceCardHover).toHaveBeenCalledTimes(3);
+  });
+
+  it(`check hover on PlaceCard & called with correct argument`, () => {
+    placeCard.simulate(`mouseEnter`);
+
+    expect(onPlaceCardHover).toHaveBeenCalled();
+    expect(onPlaceCardHover).toHaveBeenCalledWith(offer.id);
+  });
 });

@@ -37,12 +37,13 @@ export class PlacesList extends React.PureComponent {
 }
 
 PlacesList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired
+  offers: PropTypes
+    .arrayOf(PropTypes.object).isRequired
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers.filter((offer) => {
-    return offer.city === state.city;
+    return offer.city === state.currentCity;
   })
 });
 

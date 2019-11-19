@@ -6,9 +6,9 @@ it(`Property render is correct`, () => {
   const propertyComponent = renderer
     .create(
         <Property
-          rating={3.4}
           isPremium={true}
           price={123}
+          rating={3.4}
           title={`Some title`}
         />
     )

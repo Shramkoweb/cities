@@ -3,18 +3,33 @@ import PropTypes from "prop-types";
 import {convertFloatToPercentage} from "../../utils";
 
 const PlaceCard = (props) => {
-  const onCardMouseEnter = () => {
-    const {offer, onCardHover} = props;
-    const {id} = offer;
+  const {
+    offer,
+    onCardHover,
+  } = props;
 
+  const {
+    id,
+    isPremium,
+    previewPhoto,
+    price,
+    rating,
+    title,
+    type,
+  } = offer;
+
+  const onCardMouseEnter = () => {
     onCardHover(id);
   };
 
-  const {id, previewPhoto, price, isPremium, rating, title, type} = props.offer;
   const ratingPercentage = `${convertFloatToPercentage(rating)}%`;
 
   return (
-    <article id={id} className="cities__place-card place-card" onMouseEnter={onCardMouseEnter}>
+    <article
+      id={id}
+      className="cities__place-card place-card"
+      onMouseEnter={onCardMouseEnter}
+    >
 
       {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
 
@@ -60,12 +75,12 @@ const PlaceCard = (props) => {
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    previewPhoto: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
+    previewPhoto: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   }),
   onCardHover: PropTypes.func.isRequired
 };
