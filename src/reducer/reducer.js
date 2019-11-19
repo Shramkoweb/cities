@@ -3,7 +3,7 @@ import {OFFERS as offers} from "../mocks/offers";
 const cities = [...new Set(offers.map((item) => item.city))].sort();
 
 const initialState = {
-  currentCity: `Amsterdam`,
+  currentCity: cities[0],
   cities,
   offers,
 };
