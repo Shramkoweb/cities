@@ -34,6 +34,7 @@ const Operation = {
     return api.get(`hotels`)
       .then(({data}) => {
         dispatch(ActionCreator.loadOffers(data));
+        dispatch(ActionCreator.loadCities(data));
       });
   },
 

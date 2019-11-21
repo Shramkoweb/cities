@@ -4,9 +4,10 @@ import {applyMiddleware, createStore} from "redux";
 import thunk from 'redux-thunk';
 import {compose} from "recompose";
 import {Provider} from "react-redux";
-import {Operation, reducer} from "./reducer/reducer";
 import App from "./components/app/app";
 import createAPI from "./api";
+import reducer from "./reducer/index";
+import {Operation} from "./reducer/data/data";
 
 const rootElement = document.querySelector(`#root`);
 
@@ -22,7 +23,6 @@ const init = () => {
 
 
   store.dispatch(Operation.loadOffers());
-  store.dispatch(Operation.loadCities());
 
   ReactDOM.render(
       <Provider store={store}>

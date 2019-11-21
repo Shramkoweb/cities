@@ -53,9 +53,9 @@ Catalog.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentCity: state.currentCity,
-  offers: state.offers.filter((offer) => {
-    return offer.city === state.currentCity;
+  currentCity: state.data.currentCity,
+  offers: state.data.offers.filter((offer) => {
+    return offer.city === state.data.currentCity;
   })
 });
 
