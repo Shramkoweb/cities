@@ -8,7 +8,14 @@ const Constants = {
     [`Dusseldorf`, [51.225402, 6.776314]],
     [`Amsterdam`, [52.37454, 4.897976]],
     [`Hamburg`, [53.550341, 10.000654]],
-  ])
+  ]),
+  BASE_URL: `https://htmlacademy-react-2.appspot.com/six-cities`,
+  LOGIN_PATH: `/login`,
+  FAVORITE_PATH: `/favorite`,
+  ROOM_PATH: `/offer`,
+  ACCESS_DENIED: 403,
+  STATUS_OK: 200,
+  TIMEOUT: 5000,
 };
 
 export default Constants;

@@ -1,16 +1,17 @@
 import axios from 'axios';
 import {ActionCreator} from "./reducer/reducer";
+import Constants from "./constants";
 
 export const createAPI = (dispatch) => {
   const api = axios.create({
-    baseURL: `https://htmlacademy-react-2.appspot.com/six-cities`,
-    timeout: 5000, // 5sec
+    baseURL: Constants.BASE_URL,
+    timeout: Constants.TIMEOUT, // 5sec
     withCredentials: true,
   });
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.response.status === 403) {
+    if (err.response.status === Constants.ACCESS_DENIED) {
       dispatch(ActionCreator.requireAuthorization(true));
     }
 
