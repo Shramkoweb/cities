@@ -1,4 +1,4 @@
-import {reducer} from "./reducer";
+import {reducer} from "./index";
 
 it(`reducer should correct change city`, () => {
   const reducerDone = reducer(
