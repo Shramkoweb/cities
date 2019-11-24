@@ -13,6 +13,7 @@ const Constants = {
   LOGIN_PATH: `/login`,
   FAVORITE_PATH: `/favorite`,
   ROOM_PATH: `/offer`,
+  HOTELS_PATH: `/hotels`,
   ACCESS_DENIED: 403,
   STATUS_OK: 200,
   TIMEOUT: 5000,
