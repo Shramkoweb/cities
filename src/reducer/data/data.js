@@ -1,7 +1,6 @@
 const initialState = {
   currentCity: null,
   offers: [],
-  cities: [],
 };
 
 const Action = {
@@ -20,13 +19,6 @@ const ActionCreator = {
     type: Action.LOAD_OFFERS,
     payload: offers
   }),
-
-  loadCities: (offers) => {
-    return {
-      type: Action.GET_CITIES,
-      payload: [...new Set(offers.map((item) => item.city.name))].sort()
-    };
-  },
 };
 
 const Operation = {
@@ -34,16 +26,9 @@ const Operation = {
     return api.get(`hotels`)
       .then(({data}) => {
         dispatch(ActionCreator.loadOffers(data));
-        dispatch(ActionCreator.loadCities(data));
+        dispatch(ActionCreator.changeCity(data[0].city.name));
       });
   },
-
-  loadCities: () => (dispatch, _, api) => {
-    return api.get(`hotels`)
-      .then(({data}) => {
-        dispatch(ActionCreator.loadCities(data));
-      });
-  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -52,8 +37,6 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {currentCity: action.payload});
     case Action.LOAD_OFFERS:
       return Object.assign({}, state, {offers: action.payload});
-    case Action.GET_CITIES:
-      return Object.assign({}, state, {cities: action.payload});
   }
 
   return state;
