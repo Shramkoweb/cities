@@ -7,7 +7,7 @@ import Tabs from "../tabs/tabs";
 import Sort from "../sort/sort";
 import withActiveElement from "../../hocs/with-active-element";
 import Map from "../map/map";
-import {getActiveCity, getFilteredOffers, getOffers} from "../../reducer/data/selector";
+import {getActiveCity, getFilteredOffers} from "../../reducer/data/selector";
 
 const TabsWrapped = withActiveElement(Tabs);
 

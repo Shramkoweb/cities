@@ -18,8 +18,6 @@ const PlaceCard = (props) => {
     type,
   } = offer;
 
-  console.log(props.offer)
-
   const onCardMouseEnter = () => {
     onCardHover(id);
   };
@@ -78,7 +76,7 @@ PlaceCard.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
-    previewPhoto: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

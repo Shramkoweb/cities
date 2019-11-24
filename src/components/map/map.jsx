@@ -3,7 +3,6 @@ import Leaflet from "leaflet";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Constants from "../../constants";
-import PlaceCardAdapter from "../../adapters/place-card-adapter";
 
 const MapConfig = {
   ZOOM: 12,
