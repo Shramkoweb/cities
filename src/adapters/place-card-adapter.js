@@ -25,11 +25,15 @@ class PlaceCardAdapter {
         avatar: offer.host[`avatar_url`]
       },
       description: offer.description,
+      location: {
+        coordinates: [offer.location.latitude, offer.location.longitude],
+        zoom: offer.location.zoom
+      }
     };
   }
 
   static parseOffers(offers) {
-    offers.map(PlaceCardAdapter.parseOffer);
+    return offers.map(PlaceCardAdapter.parseOffer);
   }
 }
 
