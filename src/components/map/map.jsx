@@ -3,6 +3,7 @@ import Leaflet from "leaflet";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Constants from "../../constants";
+import PlaceCardAdapter from "../../adapters/place-card-adapter";
 
 const MapConfig = {
   ZOOM: 12,
@@ -75,10 +76,10 @@ Map.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentCity: state.currentCity,
-  coordinates: state.offers
-    .filter((offer) => offer.city === state.currentCity)
-    .map((element) => element.coordinates)
+  currentCity: state.DATA.currentCity,
+  coordinates: state.DATA.offers
+    .filter((offer) => offer.city.name === state.DATA.currentCity)
+    .map((element) => element.location.coordinates)
 });
 
 export default connect(mapStateToProps)(Map);

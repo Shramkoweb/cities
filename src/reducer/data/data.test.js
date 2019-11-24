@@ -13,7 +13,7 @@ describe(`Data reducer work correct`, () => {
     expect(reducerDone).toEqual({currentCity: `Amsterdam`, offers: []});
   });
 
-  it(`Should make a correct API call to /questions`, function () {
+  it(`Should make a correct API call to /hotels`, function () {
     const dispatch = jest.fn();
     const api = createApi(dispatch);
     const apiMock = new MockAdapter(api);

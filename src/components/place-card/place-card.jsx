@@ -11,12 +11,14 @@ const PlaceCard = (props) => {
   const {
     id,
     isPremium,
-    preview_image,
+    previewImage,
     price,
     rating,
     title,
     type,
   } = offer;
+
+  console.log(props.offer)
 
   const onCardMouseEnter = () => {
     onCardHover(id);
@@ -37,7 +39,7 @@ const PlaceCard = (props) => {
         <a href="#">
           <img
             className="place-card__image"
-            src={preview_image}
+            src={previewImage}
             width="260"
             height="200"
             alt="Place image"
