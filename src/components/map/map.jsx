@@ -3,6 +3,7 @@ import Leaflet from "leaflet";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Constants from "../../constants";
+import {getActiveCity, getFilteredOffers} from "../../reducer/data/selector";
 
 const MapConfig = {
   ZOOM: 12,
@@ -75,10 +76,9 @@ Map.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentCity: state.DATA.currentCity,
-  coordinates: state.DATA.offers
-    .filter((offer) => offer.city.name === state.DATA.currentCity)
-    .map((element) => element.location.coordinates)
+  currentCity: getActiveCity(state),
+  coordinates: getFilteredOffers(state)
+    .map((element) => element.location.coordinates) // TODO нужно ли тут тоже создавать селектор именно на координаты?
 });
 
 export default connect(mapStateToProps)(Map);
