@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs";
+import withActiveElement from "../../hocs/with-active-element";
+
+const TabsWrapped = withActiveElement(Tabs);
 
 const CatalogEmpty = (props) => {
   const {currentCity} = props;
@@ -9,7 +12,7 @@ const CatalogEmpty = (props) => {
     <main className="page__main page__main--index page__main--index-empty">
       <h1 className="visually-hidden">Cities</h1>
 
-      <Tabs currentCity={currentCity}/>
+      <TabsWrapped currentCity={currentCity}/>
 
       <div className="cities">
         <div className="cities__places-container cities__places-container--empty container">

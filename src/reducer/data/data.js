@@ -8,7 +8,7 @@ const initialState = {
 
 const Action = {
   CHANGE_CITY: `CHANGE_CITY`,
-  LOAD_OFFERS: `LOAD_OFFERS`,
+  CHANGE_OFFERS: `CHANGE_OFFERS`,
 };
 
 const ActionCreator = {
@@ -18,7 +18,7 @@ const ActionCreator = {
   }),
 
   loadOffers: (offers) => ({
-    type: Action.LOAD_OFFERS,
+    type: Action.CHANGE_OFFERS,
     payload: offers
   }),
 };
@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Action.CHANGE_CITY:
       return Object.assign({}, state, {currentCity: action.payload});
-    case Action.LOAD_OFFERS:
+    case Action.CHANGE_OFFERS:
       const parsedOffers = PlaceCardAdapter.parseOffers(action.payload);
       return Object.assign({}, state, {offers: parsedOffers});
   }

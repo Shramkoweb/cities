@@ -5,11 +5,14 @@ import Constants from "./constants";
 export const createAPI = (dispatch) => {
   const api = axios.create({
     baseURL: Constants.BASE_URL,
-    timeout: Constants.TIMEOUT, // 5sec
+    timeout: Constants.TIMEOUT,
     withCredentials: true,
   });
 
-  const onSuccess = (response) => response;
+  const onSuccess = (response) => {
+    return response;
+  };
+
   const onFail = (err) => {
     if (err.response.status === Constants.ACCESS_DENIED) {
       dispatch(ActionCreator.requireAuthorization(true));

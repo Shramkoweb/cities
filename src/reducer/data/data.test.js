@@ -44,7 +44,7 @@ describe(`Data reducer work correct`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Action.LOAD_OFFERS,
+          type: Action.CHANGE_OFFERS,
           payload: mockOffers,
         });
       });

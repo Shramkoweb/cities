@@ -8,13 +8,20 @@ const getActiveCity = (state) => {
   return state[NAME_SPACE].currentCity;
 };
 
-const getCities = (state) => {
-  return [...new Set(state[NAME_SPACE].offers.map((item) => item.city.name))].sort();
-};
+const getCoordinates = createSelector(
+    (state) => getFilteredOffers(state).map((element) => element.location.coordinates),
+    (coordinates) => coordinates
+);
 
 const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
+
+const getCities = createSelector(
+    getOffers,
+    (offers) => [...new Set(offers.map((item) => item.city.name))].sort()
+);
+
 
 const getFilteredOffers = createSelector(
     getOffers,
@@ -24,6 +31,7 @@ const getFilteredOffers = createSelector(
 
 export {
   getActiveCity,
+  getCoordinates,
   getCities,
   getFilteredOffers,
   getOffers,

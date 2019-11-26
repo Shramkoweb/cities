@@ -3,7 +3,7 @@ import Leaflet from "leaflet";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Constants from "../../constants";
-import {getActiveCity, getFilteredOffers} from "../../reducer/data/selector";
+import {getActiveCity, getCoordinates} from "../../reducer/data/selector";
 
 const MapConfig = {
   ZOOM: 12,
@@ -20,7 +20,7 @@ const icon = Leaflet.icon({
 });
 
 const setMapView = (map, currentCity, zoom) => {
-  map.setView(Constants.CITIES_COORDINATES.get(currentCity), zoom);
+  map.setView(Constants.CITIES_COORDINATES.get(currentCity), zoom); // TODO убрать константы
 };
 
 const renderMarkers = (leaflet, coordinates, markerGroup) => {
@@ -77,8 +77,7 @@ Map.propTypes = {
 
 const mapStateToProps = (state) => ({
   currentCity: getActiveCity(state),
-  coordinates: getFilteredOffers(state)
-    .map((element) => element.location.coordinates) // TODO нужно ли тут тоже создавать селектор именно на координаты?
+  coordinates: getCoordinates(state)
 });
 
 export default connect(mapStateToProps)(Map);
