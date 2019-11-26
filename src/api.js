@@ -1,11 +1,11 @@
 import axios from 'axios';
 import {ActionCreator} from "./reducer/user/user";
-import Constants from "./constants";
+import Constants, {REQUEST_STATUS_CODE} from "./constants";
 
 export const createAPI = (dispatch) => {
   const api = axios.create({
     baseURL: Constants.BASE_URL,
-    timeout: Constants.TIMEOUT,
+    timeout: Constants.REQUEST_TIMEOUT,
     withCredentials: true,
   });
 
@@ -14,7 +14,7 @@ export const createAPI = (dispatch) => {
   };
 
   const onFail = (err) => {
-    if (err.response.status === Constants.ACCESS_DENIED) {
+    if (err.response.status === REQUEST_STATUS_CODE.DENIED) {
       dispatch(ActionCreator.requireAuthorization(true));
     }
 

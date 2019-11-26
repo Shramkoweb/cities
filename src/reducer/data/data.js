@@ -1,5 +1,5 @@
 import PlaceCardAdapter from "../../adapters/place-card-adapter";
-import Constants from "../../constants";
+import {REQUEST_URL} from "../../constants";
 
 const initialState = {
   currentCity: null,
@@ -25,7 +25,7 @@ const ActionCreator = {
 
 const Operation = {
   loadOffers: () => (dispatch, _, api) => {
-    return api.get(Constants.HOTELS_PATH)
+    return api.get(REQUEST_URL.HOTELS)
       .then(({data}) => {
         dispatch(ActionCreator.loadOffers(data));
         dispatch(ActionCreator.changeCity(data[0].city.name));

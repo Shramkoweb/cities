@@ -10,13 +10,24 @@ const Constants = {
     [`Hamburg`, [53.550341, 10.000654]],
   ]),
   BASE_URL: `https://htmlacademy-react-2.appspot.com/six-cities`,
-  LOGIN_PATH: `/login`,
-  FAVORITE_PATH: `/favorite`,
-  ROOM_PATH: `/offer`,
-  HOTELS_PATH: `/hotels`,
-  ACCESS_DENIED: 403,
-  STATUS_OK: 200,
   TIMEOUT: 5000,
+};
+
+const REQUEST_STATUS_CODE = {
+  SUCCESS: 200,
+  DENIED: 403,
+};
+
+const REQUEST_URL = {
+  LOGIN: `/login`,
+  FAVORITE: `/favorite`,
+  ROOM: `/offer`,
+  HOTELS: `/hotels`,
+};
+
+export {
+  REQUEST_URL,
+  REQUEST_STATUS_CODE
 };
 
 export default Constants;
