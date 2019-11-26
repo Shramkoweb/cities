@@ -3,14 +3,26 @@ import PageLayout from "../page-layout/page-layout";
 import Catalog from "../catalog/catalog";
 import Header from "../header/header";
 import {USER_DATA} from "../../mocks/user-data";
+import Sign from "../sign/sign";
+import {getActiveCity, getFilteredOffers} from "../../reducer/data/selector";
+import {connect} from "react-redux";
+import {getAuthorizationStatus} from "../../reducer/user/selector";
 
-const MainPage = () => {
+const MainPage = (props) => {
+  const {isAuthorizationRequired} = props;
+
   return (
     <PageLayout pageClasses={[`page`, `page--gray`, `page--main`]}>
       <Header user={USER_DATA}/>
-      <Catalog/>
+
+      {isAuthorizationRequired ? <Catalog/> : <Sign/>}
     </PageLayout>
   );
 };
 
-export default MainPage;
+const mapStateToProps = (state) => ({
+  isAuthorizationRequired: getAuthorizationStatus(state),
+});
+
+export {MainPage};
+export default connect(mapStateToProps)(MainPage);
