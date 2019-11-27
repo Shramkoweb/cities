@@ -9,8 +9,8 @@ const getActiveCity = (state) => {
 };
 
 const getCoordinates = createSelector(
-    (state) => getFilteredOffers(state).map((element) => element.location.coordinates),
-    (coordinates) => coordinates
+    (state) => getFilteredOffers(state),
+    (coordinates) => coordinates.map((element) => element.location.coordinates)
 );
 
 const getOffers = (state) => {
