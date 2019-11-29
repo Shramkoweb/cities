@@ -36,7 +36,25 @@ export class PlacesList extends React.PureComponent {
 }
 
 PlacesList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      location: PropTypes.arrayOf(PropTypes.number).isRequired,
+      zoom: PropTypes.number.isRequired
+    }),
+    location: PropTypes.shape({
+      coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+      zoom: PropTypes.number.isRequired
+    }),
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  })).isRequired
 };
 
 export default PlacesList;
