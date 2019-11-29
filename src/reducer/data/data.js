@@ -17,7 +17,7 @@ const ActionCreator = {
     payload: city
   }),
 
-  loadOffers: (offers) => ({
+  changeOffers: (offers) => ({
     type: Action.CHANGE_OFFERS,
     payload: offers
   }),
@@ -27,7 +27,7 @@ const Operation = {
   loadOffers: () => (dispatch, _, api) => {
     return api.get(REQUEST_URL.HOTELS)
       .then(({data}) => {
-        dispatch(ActionCreator.loadOffers(data));
+        dispatch(ActionCreator.changeOffers(data));
         dispatch(ActionCreator.changeCity(data[0].city.name));
       });
   },
