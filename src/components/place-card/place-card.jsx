@@ -11,7 +11,7 @@ const PlaceCard = (props) => {
   const {
     id,
     isPremium,
-    previewPhoto,
+    previewImage,
     price,
     rating,
     title,
@@ -37,7 +37,7 @@ const PlaceCard = (props) => {
         <a href="#">
           <img
             className="place-card__image"
-            src={previewPhoto}
+            src={previewImage}
             width="260"
             height="200"
             alt="Place image"
@@ -76,7 +76,7 @@ PlaceCard.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
-    previewPhoto: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

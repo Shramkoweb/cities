@@ -9,7 +9,6 @@ const TabsLink = (props) => {
     onSelect,
   } = props;
 
-
   const activeClassName = activeElement === city ? `tabs__item--active` : ``;
 
   const onTabClick = (evt) => {

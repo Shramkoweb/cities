@@ -7,6 +7,7 @@ import Tabs from "../tabs/tabs";
 import Sort from "../sort/sort";
 import withActiveElement from "../../hocs/with-active-element";
 import Map from "../map/map";
+import {getActiveCity, getFilteredOffers} from "../../reducer/data/selector";
 
 const TabsWrapped = withActiveElement(Tabs);
 
@@ -32,7 +33,7 @@ const Catalog = (props) => {
 
                 <Sort/>
 
-                <PlacesList/>
+                <PlacesList offers={offers}/>
 
               </section>
               <div className="cities__right-section">
@@ -41,22 +42,20 @@ const Catalog = (props) => {
             </div>
           </div>
         </main>
-        : <CatalogEmpty/>
+        : <CatalogEmpty currentCity={currentCity}/>
       }
     </Fragment>
   );
 };
 
 Catalog.propTypes = {
-  currentCity: PropTypes.string.isRequired,
-  offers: PropTypes.array.isRequired,
+  currentCity: PropTypes.string,
+  offers: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
-  currentCity: state.currentCity,
-  offers: state.offers.filter((offer) => {
-    return offer.city === state.currentCity;
-  })
+  currentCity: getActiveCity(state),
+  offers: getFilteredOffers(state),
 });
 
 export {Catalog};

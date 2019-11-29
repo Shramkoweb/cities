@@ -11,7 +11,7 @@ describe(`PlaceCard callbacks are called correct`, () => {
     id: 834576,
     isFavorite: true,
     isPremium: true,
-    previewPhoto: `img/apartment-01.jpg`,
+    previewImage: `img/apartment-01.jpg`,
     price: 120,
     rating: 43,
     title: `Beautiful & luxurious apartment at great location`,

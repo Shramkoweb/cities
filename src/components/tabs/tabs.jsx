@@ -1,8 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {ActionCreator} from "../../reducer/reducer";
+import {ActionCreator} from "../../reducer/data/data";
 import TabsLink from "../tabs-link/tabs-link";
+import {getCities} from "../../reducer/data/selector";
 
 const Tabs = (props) => {
   const {
@@ -40,7 +41,7 @@ Tabs.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  cities: state.cities
+  cities: getCities(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
