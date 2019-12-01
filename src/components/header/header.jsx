@@ -22,7 +22,7 @@ const Header = ({isAuthorizationRequired, userData}) => {
                 <a className="header__nav-link header__nav-link--profile" href="#">
                   <div
                     className="header__avatar-wrapper user__avatar-wrapper"
-                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${REQUEST_URL.BASE}${userData.avatar_url})`}}
+                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${REQUEST_URL.BASE}${userData.avatar})`}}
                   >
                   </div>
                   <span className="header__user-name user__name">

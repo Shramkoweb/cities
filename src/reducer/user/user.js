@@ -1,4 +1,5 @@
 import {REQUEST_URL} from "../../constants";
+import userDataAdapter from "../../adapters/user-data-adapter";
 
 const initialState = {
   isAuthorizationRequired: true,
@@ -15,6 +16,7 @@ const ActionCreator = {
     type: Action.REQUIRED_AUTHORIZATION,
     payload: status
   }),
+
   authorization: (userData) => ({
     type: Action.AUTHORIZATION,
     payload: userData
@@ -25,7 +27,7 @@ const Operation = {
   fetchAuthData: (authData) => (dispatch, _, api) => {
     return api.post(REQUEST_URL.LOGIN, authData)
       .then(({data}) => {
-        dispatch(ActionCreator.authorization(data));
+        dispatch(ActionCreator.authorization(userDataAdapter(data)));
         dispatch(ActionCreator.requireAuthorization(false));
       });
   }

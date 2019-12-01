@@ -8,7 +8,7 @@ it(`PageLayout component render correct`, () => {
 
   const layout = renderer
     .create(
-        <PageLayout pageClasses={[`page`, `page--gray`, `page--main`]}>
+        <PageLayout pageClasses={[`page--gray`, `page--main`]}>
           {children}
         </PageLayout>
     );
