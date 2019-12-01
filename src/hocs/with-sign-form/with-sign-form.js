@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 
-export const witSignForm = (Component) => {
+export const withSignForm = (Component) => {
   class WithSignForm extends PureComponent {
     constructor(props) {
       super(props);
@@ -37,3 +37,5 @@ export const witSignForm = (Component) => {
 
   return WithSignForm;
 };
+
+export default withSignForm;
