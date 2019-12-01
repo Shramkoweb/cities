@@ -23,8 +23,8 @@ const parseLocation = (data = {}) => {
 const parseCity = (data = {}) => {
   return {
     name: data[`name`] || ``,
-    location: [data[`latitude`], data[`longitude`]] || [],
-    zoom: data[`zoom`] || ``
+    location: [data[`location`][`latitude`], data[`location`][`longitude`]] || [],
+    zoom: data[`location`][`zoom`] || ``
   };
 };
 
