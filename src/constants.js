@@ -9,8 +9,7 @@ const Constants = {
     [`Amsterdam`, [52.37454, 4.897976]],
     [`Hamburg`, [53.550341, 10.000654]],
   ]),
-  BASE_URL: `https://htmlacademy-react-2.appspot.com/six-cities`,
-  TIMEOUT: 5000,
+  REQUEST_TIMEOUT: 5000,
 };
 
 const REQUEST_STATUS_CODE = {
@@ -19,10 +18,11 @@ const REQUEST_STATUS_CODE = {
 };
 
 const REQUEST_URL = {
-  LOGIN: `/login`,
+  BASE: `https://htmlacademy-react-2.appspot.com/six-cities`,
   FAVORITE: `/favorite`,
-  ROOM: `/offer`,
   HOTELS: `/hotels`,
+  LOGIN: `/login`,
+  ROOM: `/offer`,
 };
 
 export {
