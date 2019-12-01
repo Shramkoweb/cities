@@ -1,23 +1,27 @@
 import React from "react";
 import {connect} from "react-redux";
-
+import PropTypes from "prop-types";
 import {Operation} from "../../reducer/user/user";
 
 const SignForm = (props) => {
-  const {onChangeEmail, onChangePassword, emailValue, passwordValue} = props;
+  const {onChangeEmail, onChangePassword, emailValue, passwordValue, onFetchLoginData} = props;
 
   const handleSubmitForm = (evt) => {
-    evt.preventDefault()
+    evt.preventDefault();
 
-    const {onLogIn} = props;
-    onLogIn({
+    onFetchLoginData({
       email: emailValue,
       password: passwordValue
     });
   };
 
   return (
-    <form onSubmit={handleSubmitForm} className="login__form form" action="#" method="post">
+    <form
+      onSubmit={handleSubmitForm}
+      className="login__form form"
+      action="#"
+      method="post"
+    >
       <div className="login__input-wrapper form__input-wrapper">
         <label className="visually-hidden">E-mail</label>
         <input
@@ -48,8 +52,16 @@ const SignForm = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onLogIn: (data) => dispatch(Operation.fetchAuthData(data))
+  onFetchLoginData: (data) => dispatch(Operation.fetchAuthData(data))
 });
+
+SignForm.propTypes = {
+  onChangeEmail: PropTypes.func.isRequired,
+  onChangePassword: PropTypes.func.isRequired,
+  emailValue: PropTypes.string.isRequired,
+  passwordValue: PropTypes.string.isRequired,
+  onFetchLoginData: PropTypes.func.isRequired
+};
 
 
 export {SignForm};

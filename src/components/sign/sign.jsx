@@ -7,10 +7,10 @@ import {witSignForm} from "../../hocs/with-sign-form/wit-sign-form";
 const SignFormWrapped = witSignForm(SignForm);
 
 const Sign = () => {
-
   return (
     <PageLayout pageClasses={[`page--gray`, `page--login`]}>
-      <Header user={`ddadas`}/>
+
+      <Header/>
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">
