@@ -9,13 +9,11 @@ Enzyme.configure({adapter: new Adapter()});
 
 describe(`PlacesListWrapped works correct`, () => {
   const TabsWrapped = withActiveElement(Tabs);
-  const onSelect = jest.fn();
   const changeCurrentCity = jest.fn();
   const cities = [`Paris`, `Kyiv`];
 
   const wrappedComponent = mount(
       <TabsWrapped
-        onSelect={onSelect}
         changeCurrentCity={changeCurrentCity}
         cities={cities}
         currentCity={`Amsterdam`}

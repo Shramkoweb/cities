@@ -10,7 +10,6 @@ exports[`PlacesListWrapped works correct PlacesListWrapped should render correct
     ]
   }
   currentCity="Amsterdam"
-  onSelect={[MockFunction]}
 >
   <Tabs
     activeElement={null}

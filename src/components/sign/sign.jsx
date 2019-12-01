@@ -2,9 +2,9 @@ import React from "react";
 import SignForm from "../sign-form/sign-form";
 import PageLayout from "../page-layout/page-layout";
 import Header from "../header/header";
-import {witSignForm} from "../../hocs/with-sign-form/wit-sign-form";
+import withSignForm from "../../hocs/with-sign-form/with-sign-form";
 
-const SignFormWrapped = witSignForm(SignForm);
+const SignFormWrapped = withSignForm(SignForm);
 
 const Sign = () => {
   return (
