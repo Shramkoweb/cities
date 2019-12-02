@@ -4,8 +4,6 @@ import {connect} from "react-redux";
 import {getAuthorizationStatus, getUserData} from "../../reducer/user/selector";
 import {REQUEST_URL} from "../../constants";
 
-// TODO Адаптер для данных пользователя
-
 const Header = ({isAuthorizationRequired, userData}) => {
   return (
     <header className="header">

@@ -24,7 +24,7 @@ const ActionCreator = {
 };
 
 const Operation = {
-  fetchAuthData: (authData) => (dispatch, _, api) => {
+  sendAuthData: (authData) => (dispatch, _, api) => {
     return api.post(REQUEST_URL.LOGIN, authData)
       .then(({data}) => {
         dispatch(ActionCreator.authorization(userDataAdapter(data)));
