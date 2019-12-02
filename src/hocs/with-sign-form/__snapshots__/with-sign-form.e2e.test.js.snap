@@ -2,14 +2,11 @@
 
 exports[`WithSignForm wrapper work correct should render correctly 1`] = `
 <WithSignForm
-  onFetchLoginData={[MockFunction]}
+  sendAuthData={[MockFunction]}
 >
   <SignForm
-    emailValue=""
-    onChangeEmail={[Function]}
-    onChangePassword={[Function]}
-    onFetchLoginData={[MockFunction]}
-    passwordValue=""
+    onInputChange={[Function]}
+    sendAuthData={[MockFunction]}
   >
     <form
       action="#"

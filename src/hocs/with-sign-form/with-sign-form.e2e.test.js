@@ -12,7 +12,7 @@ describe(`WithSignForm wrapper work correct`, () => {
 
   const wrappedComponent = mount(
       <FormWrapped
-        onFetchLoginData={jest.fn()}
+        sendAuthData={jest.fn()}
       />
   );
 
@@ -23,20 +23,14 @@ describe(`WithSignForm wrapper work correct`, () => {
     expect(toJson(wrappedComponent)).toMatchSnapshot();
   });
 
-
-  it(`correct initial state`, () => {
-    expect(wrappedComponent.state().email).toEqual(``);
-    expect(wrappedComponent.state().password).toEqual(``);
-  });
-
   it(`change state email on input change`, () => {
-    emailInput.simulate(`change`, {target: {value: `shramko.web@yahoo.com`}});
+    emailInput.simulate(`change`, {target: {value: `shramko.web@yahoo.com`, name: `email`}});
 
     expect(wrappedComponent.state().email).toEqual(`shramko.web@yahoo.com`);
   });
 
   it(`change state password on input change`, () => {
-    passwordInput.simulate(`change`, {target: {value: `qwerty`}});
+    passwordInput.simulate(`change`, {target: {value: `qwerty`, name: `password`}});
 
     expect(wrappedComponent.state().password).toEqual(`qwerty`);
   });
