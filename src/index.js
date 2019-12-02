@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {applyMiddleware, createStore} from "redux";
-import thunk from 'redux-thunk';
+import thunk from "redux-thunk";
+import {BrowserRouter as Router} from "react-router-dom";
 import {compose} from "recompose";
 import {Provider} from "react-redux";
 import App from "./components/app/app";
@@ -25,9 +26,11 @@ const init = () => {
   store.dispatch(Operation.loadOffers());
 
   ReactDOM.render(
-      <Provider store={store}>
-        <App/>,
-      </Provider>,
+      <Router>
+        <Provider store={store}>
+          <App/>,
+        </Provider>,
+      </Router>,
       rootElement
   );
 };

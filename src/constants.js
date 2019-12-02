@@ -14,7 +14,7 @@ const Constants = {
 
 const REQUEST_STATUS_CODE = {
   SUCCESS: 200,
-  DENIED: 403,
+  DENIED: 401,
 };
 
 const REQUEST_URL = {

@@ -1,17 +1,21 @@
 import React from "react";
 import {connect} from "react-redux";
+import {Route, Switch, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import MainPage from "../main-page/main-page";
-import Sign from "../sign/sign";
 import {getAuthorizationStatus} from "../../reducer/user/selector";
+import Sign from "../sign/sign";
+import {REQUEST_URL as Page} from "../../constants";
 
 const App = (props) => {
   const {isAuthorizationRequired} = props;
 
   return (
-    <>
-      {!isAuthorizationRequired ? <MainPage/> : <Sign/>};
-    </>
+    <Switch>
+      <Route path="/" exact component={MainPage}/>
+      <Route path={Page.LOGIN} exact component={Sign}/>
+      <Redirect from='*' to='/'/>
+    </Switch>
   );
 };
 

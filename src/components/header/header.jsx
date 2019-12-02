@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {getAuthorizationStatus, getUserData} from "../../reducer/user/selector";
-import {REQUEST_URL} from "../../constants";
+import {REQUEST_URL as Page} from "../../constants";
 
 const Header = ({isAuthorizationRequired, userData}) => {
   return (
@@ -10,23 +11,24 @@ const Header = ({isAuthorizationRequired, userData}) => {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link" href="main.html">
+            <Link to="/" className="header__logo-link header__logo-link--active">
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-            </a>
+            </Link>
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" href="#">
+                <Link
+                  to={isAuthorizationRequired ? Page.LOGIN : Page.FAVORITE}
+                  className="header__nav-link header__nav-link--profile"
+                >
                   <div
                     className="header__avatar-wrapper user__avatar-wrapper"
-                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${REQUEST_URL.BASE}${userData.avatar})`}}
-                  >
+                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${Page.BASE}${userData.avatar})`}}>
                   </div>
-                  <span className="header__user-name user__name">
-                    {isAuthorizationRequired ? `Sign In` : userData.email}
-                  </span>
-                </a>
+                  <span
+                    className="header__user-name user__name">{isAuthorizationRequired ? `Sign In` : userData.email}</span>
+                </Link>
               </li>
             </ul>
           </nav>
