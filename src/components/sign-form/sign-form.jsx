@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import {Operation} from "../../reducer/user/user";
 
 const SignForm = (props) => {
-  const {onChangeEmail, onChangePassword, emailValue, passwordValue, onFetchLoginData} = props;
+  const {onInputChange, sendAuthData, email, password} = props;
 
   const handleSubmitForm = (evt) => {
     evt.preventDefault();
 
-    onFetchLoginData({
-      email: emailValue,
-      password: passwordValue
+    sendAuthData({
+      email,
+      password
     });
   };
 
@@ -25,8 +25,8 @@ const SignForm = (props) => {
       <div className="login__input-wrapper form__input-wrapper">
         <label className="visually-hidden">E-mail</label>
         <input
-          onChange={onChangeEmail}
-          value={emailValue}
+          onChange={onInputChange}
+          value={email || ``}
           className="login__input form__input"
           name="email"
           placeholder="Email"
@@ -37,9 +37,9 @@ const SignForm = (props) => {
       <div className="login__input-wrapper form__input-wrapper">
         <label className="visually-hidden">Password</label>
         <input
-          onChange={onChangePassword}
-          value={passwordValue}
+          onChange={onInputChange}
           className="login__input form__input"
+          value={password || ``}
           name="password"
           placeholder="Password"
           type="password"
@@ -52,17 +52,16 @@ const SignForm = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onFetchLoginData: (data) => dispatch(Operation.fetchAuthData(data))
+  sendAuthData: (data) => dispatch(Operation.sendAuthData(data))
 });
 
+// email & password убрал isRequired так как изначально они undefined - так как их нет в стейте ХОК-а
 SignForm.propTypes = {
-  onChangeEmail: PropTypes.func.isRequired,
-  onChangePassword: PropTypes.func.isRequired,
-  emailValue: PropTypes.string.isRequired,
-  passwordValue: PropTypes.string.isRequired,
-  onFetchLoginData: PropTypes.func.isRequired
+  onInputChange: PropTypes.func.isRequired,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  sendAuthData: PropTypes.func.isRequired
 };
-
 
 export {SignForm};
 export default connect(null, mapDispatchToProps)(SignForm);

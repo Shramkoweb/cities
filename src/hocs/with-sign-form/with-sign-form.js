@@ -5,31 +5,19 @@ export const withSignForm = (Component) => {
     constructor(props) {
       super(props);
 
-      this.state = {
-        email: ``,
-        password: ``,
-      };
-
-      this._handleChangeEmail = this._handleChangeEmail.bind(this);
-      this._handleChangePassword = this._handleChangePassword.bind(this);
+      this._handleInputChange = this._handleInputChange.bind(this);
     }
 
-    _handleChangeEmail(evt) {
-      this.setState({email: evt.target.value});
-    }
-
-    _handleChangePassword(evt) {
-      this.setState({password: evt.target.value});
+    _handleInputChange(evt) {
+      this.setState({[evt.target.name]: evt.target.value});
     }
 
     render() {
       return (
         <Component
           {...this.props}
-          onChangeEmail={this._handleChangeEmail}
-          onChangePassword={this._handleChangePassword}
-          emailValue={this.state.email}
-          passwordValue={this.state.password}
+          {...this.state}
+          onInputChange={this._handleInputChange}
         />
       );
     }
