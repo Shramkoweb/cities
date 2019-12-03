@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`WithSignForm wrapper work correct should render correctly 1`] = `
-<WithSignForm
+<WithInputsChange
   sendAuthData={[MockFunction]}
 >
   <SignForm
@@ -58,5 +58,5 @@ exports[`WithSignForm wrapper work correct should render correctly 1`] = `
       </button>
     </form>
   </SignForm>
-</WithSignForm>
+</WithInputsChange>
 `;

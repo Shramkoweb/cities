@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 
-export const withSignForm = (Component) => {
-  class WithSignForm extends PureComponent {
+export const withInputsChange = (Component) => {
+  class WithInputsChange extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -23,7 +23,7 @@ export const withSignForm = (Component) => {
     }
   }
 
-  return WithSignForm;
+  return WithInputsChange;
 };
 
-export default withSignForm;
+export default withInputsChange;

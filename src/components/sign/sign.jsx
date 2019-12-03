@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import SignForm from "../sign-form/sign-form";
 import PageLayout from "../page-layout/page-layout";
 import Header from "../header/header";
-import withSignForm from "../../hocs/with-sign-form/with-sign-form";
+import withInputsChange from "../../hocs/with-form-state/with-inputs-change";
 import {getActiveCity} from "../../reducer/data/selector";
 
-const SignFormWrapped = withSignForm(SignForm);
+const SignFormWrapped = withInputsChange(SignForm);
 
 const Sign = (props) => {
   const {currentCity} = props;
