@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import SignForm from "../sign-form/sign-form";
 import PageLayout from "../page-layout/page-layout";
@@ -27,9 +28,9 @@ const Sign = (props) => {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link to="/" className="locations__item-link">
                 <span>{currentCity}</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
