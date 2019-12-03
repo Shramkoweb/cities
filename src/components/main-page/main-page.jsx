@@ -3,9 +3,7 @@ import PageLayout from "../page-layout/page-layout";
 import Catalog from "../catalog/catalog";
 import Header from "../header/header";
 
-const MainPage = (props) => {
-
-  console.log(props);
+const MainPage = () => {
   return (
     <PageLayout pageClasses={[`page--gray`, `page--main`]}>
       <Header/>

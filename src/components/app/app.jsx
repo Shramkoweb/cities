@@ -7,9 +7,7 @@ import {getAuthorizationStatus} from "../../reducer/user/selector";
 import Sign from "../sign/sign";
 import {REQUEST_URL as Page} from "../../constants";
 
-const App = (props) => {
-  const {isAuthorizationRequired} = props;
-
+const App = () => {
   return (
     <Switch>
       <Route path="/" exact component={MainPage}/>

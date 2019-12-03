@@ -12,7 +12,6 @@ import reducer from "./reducer/index";
 import {Operation} from "./reducer/data/data";
 
 const rootElement = document.querySelector(`#root`);
-
 const history = createBrowserHistory();
 
 const init = () => {

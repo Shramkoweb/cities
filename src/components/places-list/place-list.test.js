@@ -2,6 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {PlacesList} from "./places-list";
 
+jest.mock(`../place-card/place-card.jsx`, () => jest.fn().mockReturnValue(null));
+
 it(`PlacesList component render correct`, () => {
   const OFFERS = [
     {

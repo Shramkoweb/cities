@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PlaceCard from "./place-card";
+import {PlaceCard} from "./place-card";
 
 const offerData = {
   id: 834576,
@@ -17,6 +17,8 @@ it(`PlaceCard component render correct`, () => {
   const placeCardComponent = renderer
     .create(<PlaceCard
       offer={offerData}
+      onAddFavorite={jest.fn()}
+      onRemoveFavorite={jest.fn()}
       onCardHover={jest.fn()}/>)
     .toJSON();
 

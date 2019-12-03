@@ -9,7 +9,8 @@ const initialState = {
 const Action = {
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_OFFERS: `CHANGE_OFFERS`,
-  ADD_TO_FAVORITE: `ADD_TO_FAVORITE`
+  ADD_TO_FAVORITE: `ADD_TO_FAVORITE`,
+  REMOVE_FROM_FAVORITE: `REMOVE_FROM_FAVORITE`
 };
 
 const ActionCreator = {
@@ -37,8 +38,16 @@ const Operation = {
         dispatch(ActionCreator.changeCity(data[0].city.name));
       });
   },
+
   addToFavorites: (id) => (dispatch, _, api) => {
     return api.post(`${REQUEST_URL.FAVORITE}/${id}/1`)
+      .then(({data}) => {
+        dispatch(ActionCreator.addToFavorites(PlaceCardAdapter.parseOffer(data)));
+      });
+  },
+
+  removeFromFavorite: (id) => (dispatch, _, api) => {
+    return api.post(`${REQUEST_URL.FAVORITE}/${id}/0`)
       .then(({data}) => {
         dispatch(ActionCreator.addToFavorites(PlaceCardAdapter.parseOffer(data)));
       });
@@ -59,6 +68,9 @@ const reducer = (state = initialState, action) => {
       const parsedOffers = PlaceCardAdapter.parseOffers(action.payload);
       return Object.assign({}, state, {offers: parsedOffers});
     case Action.ADD_TO_FAVORITE:
+      return Object
+        .assign({}, state, {offers: replaceOffer(state.offers, action.payload)});
+    case Action.REMOVE_FROM_FAVORITE:
       return Object
         .assign({}, state, {offers: replaceOffer(state.offers, action.payload)});
   }
