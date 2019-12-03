@@ -8,7 +8,8 @@ const PlaceCard = (props) => {
   const {
     offer,
     onCardHover,
-    onAddFavorite
+    onAddFavorite,
+    onRemoveFavorite
   } = props;
 
   const {
@@ -27,7 +28,11 @@ const PlaceCard = (props) => {
   };
 
   const onFavoriteButtonClick = () => {
-    onAddFavorite(id);
+    if (isFavorite) {
+      onRemoveFavorite(id);
+    } else {
+      onAddFavorite(id);
+    }
   };
 
   const ratingPercentage = `${convertFloatToPercentage(rating)}%`;
@@ -58,7 +63,9 @@ const PlaceCard = (props) => {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`} type="button" onClick={onFavoriteButtonClick}>
+          <button
+            className={`place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`}
+            type="button" onClick={onFavoriteButtonClick}>
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"/>
             </svg>
@@ -84,17 +91,21 @@ PlaceCard.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }),
-  onCardHover: PropTypes.func.isRequired
+  onCardHover: PropTypes.func.isRequired,
+  onAddFavorite: PropTypes.func.isRequired,
+  onRemoveFavorite: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddFavorite: (id) => dispatch(Operation.addToFavorites(id))
+  onAddFavorite: (id) => dispatch(Operation.addToFavorites(id)),
+  onRemoveFavorite: (id) => dispatch(Operation.removeFromFavorite(id))
 });
 
 export {PlaceCard};
