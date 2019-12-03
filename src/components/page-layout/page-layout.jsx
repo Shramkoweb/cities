@@ -8,7 +8,7 @@ const PageLayout = (props) => {
   } = props;
 
   return (
-    <div className={`${pageClasses && pageClasses.join(` `)}`}>
+    <div className={`page ${pageClasses && pageClasses.join(` `)}`}>
       {children}
     </div>
   );

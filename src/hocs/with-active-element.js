@@ -1,5 +1,7 @@
 import React from "react";
 
+// TODO перенести этот HOC в отдельную паку, по аналогии с другним
+
 const withActiveElement = (Component) => {
   class WithActiveElement extends React.PureComponent {
     constructor(props) {

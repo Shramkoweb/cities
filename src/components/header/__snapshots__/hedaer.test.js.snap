@@ -41,11 +41,16 @@ exports[`Header component render correct 1`] = `
             >
               <div
                 className="header__avatar-wrapper user__avatar-wrapper"
+                style={
+                  Object {
+                    "backgroundImage": "url(https://htmlacademy-react-2.appspot.com/six-citiesstatic/avatar/10.jpg)",
+                  }
+                }
               />
               <span
                 className="header__user-name user__name"
               >
-                shramko.serhii@gmail.com
+                Shramko.web@yahoo.com
               </span>
             </a>
           </li>

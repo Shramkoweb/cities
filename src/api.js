@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {ActionCreator} from "./reducer/user/user";
-import Constants, {REQUEST_STATUS_CODE} from "./constants";
+import Constants, {REQUEST_STATUS_CODE, REQUEST_URL} from "./constants";
 
 export const createAPI = (dispatch) => {
   const api = axios.create({
-    baseURL: Constants.BASE_URL,
+    baseURL: REQUEST_URL.BASE,
     timeout: Constants.REQUEST_TIMEOUT,
     withCredentials: true,
   });
