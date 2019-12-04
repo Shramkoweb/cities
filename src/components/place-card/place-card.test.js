@@ -2,6 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {PlaceCard} from "./place-card";
 
+jest.mock(`react-router-dom`);
+
 const offerData = {
   id: 834576,
   isFavorite: true,

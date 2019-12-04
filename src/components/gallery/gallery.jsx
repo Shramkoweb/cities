@@ -1,7 +1,10 @@
 import React from "react";
 import Proptypes from "prop-types";
+import Constants from "../../constants";
 
-const Gallery = ({photos}) => {
+const Gallery = (props) => {
+  const photos = props.photos.slice(0, Constants.MAX_GALLERY_PHOTOS);
+
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">

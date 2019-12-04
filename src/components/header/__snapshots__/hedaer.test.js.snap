@@ -21,7 +21,7 @@ exports[`Header component should render is correctly if user already authorizati
             alt="6 cities logo"
             className="header__logo"
             height="41"
-            src="img/logo.svg"
+            src="/img/logo.svg"
             width="81"
           />
         </Link>
@@ -82,7 +82,7 @@ exports[`Header component should render is correctly if user require authorizati
             alt="6 cities logo"
             className="header__logo"
             height="41"
-            src="img/logo.svg"
+            src="/img/logo.svg"
             width="81"
           />
         </Link>

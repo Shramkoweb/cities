@@ -28,10 +28,17 @@ const getFilteredOffers = createSelector(
     (offers, city) => offers.filter((offer) => offer.city.name === city)
 );
 
+const getSpecificOffer = (state, id) => {
+  const offers = getOffers(state);
+
+  return offers.find((offer) => offer.id === Number(id));
+};
+
 export {
   getActiveCity,
   getCoordinates,
   getCities,
   getFilteredOffers,
+  getSpecificOffer,
   getOffers,
 };

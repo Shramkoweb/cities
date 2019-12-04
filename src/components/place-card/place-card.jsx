@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {convertFloatToPercentage} from "../../utils";
 import {Operation} from "../../reducer/data/data";
+import {REQUEST_URL as Page} from "../../constants";
 
 const PlaceCard = (props) => {
   const {
@@ -79,7 +81,9 @@ const PlaceCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${Page.ROOM}/${id}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
