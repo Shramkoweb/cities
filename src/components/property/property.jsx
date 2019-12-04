@@ -30,8 +30,6 @@ const Property = (props) => {
     description,
   } = currentOffer;
 
-  console.log(currentOffer);
-
   return (
     <PageLayout pageClasses={[`page__main`, `page__main--property`]}>
       <Header/>

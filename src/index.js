@@ -30,8 +30,8 @@ const init = () => {
   ReactDOM.render(
       <Router history={history}>
         <Provider store={store}>
-          <App/>,
-        </Provider>,
+          <App/>
+        </Provider>
       </Router>,
       rootElement
   );
