@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {convertFloatToPercentage} from "../../utils";
 import {Operation} from "../../reducer/data/data";
-import {REQUEST_URL as Page} from "../../constants";
+import {URL_ADDRESS} from "../../constants";
 
 const PlaceCard = (props) => {
   const {
@@ -67,7 +67,9 @@ const PlaceCard = (props) => {
           </div>
           <button
             className={`place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`}
-            type="button" onClick={onFavoriteButtonClick}>
+            type="button"
+            onClick={onFavoriteButtonClick}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"/>
             </svg>
@@ -81,7 +83,7 @@ const PlaceCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${Page.ROOM}/${id}`}>
+          <Link to={`${URL_ADDRESS.OFFER}/${id}`}>
             {title}
           </Link>
         </h2>

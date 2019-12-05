@@ -9,6 +9,7 @@ import PageLayout from "../page-layout/page-layout";
 import Header from "../header/header";
 
 const Property = (props) => {
+  console.log(props)
 
   const {id, currentOffer} = props;
   const {
@@ -47,7 +48,7 @@ const Property = (props) => {
               <h1 className="property__name">
                 {title}
               </h1>
-              <button className={`property__bookmark-button button ${isFavorite && `property__bookmark-button--active`}`}  type="button">
+              <button className={`property__bookmark-button button ${isFavorite && `property__bookmark-button--active`}`} type="button">
                 <svg className="property__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"/>
                 </svg>

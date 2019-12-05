@@ -36,7 +36,7 @@ exports[`Property render is correct 1`] = `
             Waterfront with extraordinary view
           </h1>
           <button
-            className="property__bookmark-button button"
+            className="property__bookmark-button button false"
             type="button"
           >
             <svg

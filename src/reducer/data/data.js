@@ -8,11 +8,13 @@ export const REQUEST_URL = {
 const initialState = {
   currentCity: null,
   offers: [],
+  isLoading: true
 };
 
 const Action = {
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_OFFERS: `CHANGE_OFFERS`,
+  CHANGE_LOAD_STATUS: `CHANGE_LOAD_STATUS`,
   CHANGE_OFFER_FAVORITE_STATUS: `CHANGE_OFFER_FAVORITE_STATUS`
 };
 
@@ -30,7 +32,12 @@ const ActionCreator = {
   changeOfferFavoriteStatus: (offer) => ({
     type: Action.CHANGE_OFFER_FAVORITE_STATUS,
     payload: offer
-  })
+  }),
+
+  changeLoadStatus: () => ({
+    type: Action.CHANGE_LOAD_STATUS,
+    payload: false
+  }),
 };
 
 const Operation = {
@@ -39,6 +46,7 @@ const Operation = {
       .then(({data}) => {
         dispatch(ActionCreator.changeOffers(data));
         dispatch(ActionCreator.changeCity(data[0].city.name));
+        dispatch(ActionCreator.changeLoadStatus());
       });
   },
 
@@ -67,6 +75,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Action.CHANGE_CITY:
       return Object.assign({}, state, {currentCity: action.payload});
+    case Action.CHANGE_LOAD_STATUS:
+      return Object.assign({}, state, {isLoading: action.payload});
     case Action.CHANGE_OFFERS:
       const parsedOffers = PlaceCardAdapter.parseOffers(action.payload);
       return Object.assign({}, state, {offers: parsedOffers});
