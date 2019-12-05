@@ -9,8 +9,7 @@ const initialState = {
 const Action = {
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_OFFERS: `CHANGE_OFFERS`,
-  ADD_TO_FAVORITE: `ADD_TO_FAVORITE`,
-  REMOVE_FROM_FAVORITE: `REMOVE_FROM_FAVORITE`
+  CHANGE_OFFER_STATUS: `ADD_TO_FAVORITE`
 };
 
 const ActionCreator = {
@@ -24,8 +23,8 @@ const ActionCreator = {
     payload: offers
   }),
 
-  addToFavorites: (offer) => ({
-    type: Action.ADD_TO_FAVORITE,
+  changeOfferStatus: (offer) => ({
+    type: Action.CHANGE_OFFER_STATUS,
     payload: offer
   })
 };
@@ -42,21 +41,21 @@ const Operation = {
   addToFavorites: (id) => (dispatch, _, api) => {
     return api.post(`${REQUEST_URL.FAVORITE}/${id}/1`)
       .then(({data}) => {
-        dispatch(ActionCreator.addToFavorites(PlaceCardAdapter.parseOffer(data)));
+        dispatch(ActionCreator.changeOfferStatus(PlaceCardAdapter.parseOffer(data)));
       });
   },
 
   removeFromFavorite: (id) => (dispatch, _, api) => {
     return api.post(`${REQUEST_URL.FAVORITE}/${id}/0`)
       .then(({data}) => {
-        dispatch(ActionCreator.addToFavorites(PlaceCardAdapter.parseOffer(data)));
+        dispatch(ActionCreator.changeOfferStatus(PlaceCardAdapter.parseOffer(data)));
       });
   }
 };
 
-const replaceOffer = (offers, offer) => {
-  return offers.map((item) => {
-    return item.id === offer.id ? Object.assign({}, item, offer) : item;
+const getOffersWithReplacedFavorite = (offers, favorite) => {
+  return offers.map((element) => {
+    return element.id === favorite.id ? Object.assign({}, element, favorite) : element;
   });
 };
 
@@ -67,12 +66,9 @@ const reducer = (state = initialState, action) => {
     case Action.CHANGE_OFFERS:
       const parsedOffers = PlaceCardAdapter.parseOffers(action.payload);
       return Object.assign({}, state, {offers: parsedOffers});
-    case Action.ADD_TO_FAVORITE:
+    case Action.CHANGE_OFFER_STATUS:
       return Object
-        .assign({}, state, {offers: replaceOffer(state.offers, action.payload)});
-    case Action.REMOVE_FROM_FAVORITE:
-      return Object
-        .assign({}, state, {offers: replaceOffer(state.offers, action.payload)});
+        .assign({}, state, {offers: getOffersWithReplacedFavorite(state.offers, action.payload)});
   }
 
   return state;

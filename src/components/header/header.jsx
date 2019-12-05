@@ -24,10 +24,12 @@ const Header = ({isAuthorizationRequired, userData}) => {
                 >
                   <div
                     className="header__avatar-wrapper user__avatar-wrapper"
-                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${Page.BASE}${userData.avatar})`}}>
+                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${Page.BASE}${userData.avatar})`}}
+                  >
                   </div>
-                  <span
-                    className="header__user-name user__name">{isAuthorizationRequired ? `Sign In` : userData.email}</span>
+                  <span className="header__user-name user__name">
+                    {isAuthorizationRequired ? `Sign In` : userData.email}
+                  </span>
                 </Link>
               </li>
             </ul>
