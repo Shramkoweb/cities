@@ -5,14 +5,14 @@ import PropTypes from "prop-types";
 import MainPage from "../main-page/main-page";
 import {getAuthorizationStatus} from "../../reducer/user/selector";
 import Sign from "../sign/sign";
-import {REQUEST_URL as Page} from "../../constants";
+import {URL_ADDRESS} from "../../constants";
 
 const App = () => {
   return (
     <Switch>
-      <Route path="/" exact component={MainPage}/>
-      <Route path={Page.LOGIN} exact component={Sign}/>
-      <Redirect from='*' to='/'/>
+      <Route path={URL_ADDRESS.MAIN} exact component={MainPage}/>
+      <Route path={URL_ADDRESS.LOGIN} exact component={Sign}/>
+      <Redirect from='*' to={URL_ADDRESS.MAIN} />
     </Switch>
   );
 };

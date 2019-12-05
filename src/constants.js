@@ -13,21 +13,22 @@ const Constants = {
 };
 
 const REQUEST_STATUS_CODE = {
-  SUCCESS: 200,
   DENIED: 401,
+  SUCCESS: 200,
 };
 
-const REQUEST_URL = {
+const URL_ADDRESS = {
   BASE: `https://htmlacademy-react-2.appspot.com/six-cities`,
   FAVORITE: `/favorite`,
   HOTELS: `/hotels`,
   LOGIN: `/login`,
-  ROOM: `/offer`,
+  MAIN: `/`,
+  OFFER: `/offer`,
 };
 
 export {
-  REQUEST_URL,
-  REQUEST_STATUS_CODE
+  REQUEST_STATUS_CODE,
+  URL_ADDRESS,
 };
 
 export default Constants;

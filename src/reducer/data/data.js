@@ -1,5 +1,5 @@
 import PlaceCardAdapter from "../../adapters/place-card-adapter";
-import {REQUEST_URL} from "../../constants";
+import {URL_ADDRESS} from "../../constants";
 
 const initialState = {
   currentCity: null,
@@ -31,7 +31,7 @@ const ActionCreator = {
 
 const Operation = {
   loadOffers: () => (dispatch, _, api) => {
-    return api.get(REQUEST_URL.HOTELS)
+    return api.get(URL_ADDRESS.HOTELS)
       .then(({data}) => {
         dispatch(ActionCreator.changeOffers(data));
         dispatch(ActionCreator.changeCity(data[0].city.name));
@@ -39,14 +39,14 @@ const Operation = {
   },
 
   addToFavorites: (id) => (dispatch, _, api) => {
-    return api.post(`${REQUEST_URL.FAVORITE}/${id}/1`)
+    return api.post(`${URL_ADDRESS.FAVORITE}/${id}/1`)
       .then(({data}) => {
         dispatch(ActionCreator.changeOfferStatus(PlaceCardAdapter.parseOffer(data)));
       });
   },
 
   removeFromFavorite: (id) => (dispatch, _, api) => {
-    return api.post(`${REQUEST_URL.FAVORITE}/${id}/0`)
+    return api.post(`${URL_ADDRESS.FAVORITE}/${id}/0`)
       .then(({data}) => {
         dispatch(ActionCreator.changeOfferStatus(PlaceCardAdapter.parseOffer(data)));
       });

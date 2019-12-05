@@ -1,9 +1,9 @@
 import axios from 'axios';
-import Constants, {REQUEST_STATUS_CODE, REQUEST_URL} from "./constants";
+import Constants, {REQUEST_STATUS_CODE, URL_ADDRESS} from "./constants";
 
 export const createAPI = (onLoginFail) => {
   const api = axios.create({
-    baseURL: REQUEST_URL.BASE,
+    baseURL: URL_ADDRESS.BASE,
     timeout: Constants.REQUEST_TIMEOUT,
     withCredentials: true,
   });
