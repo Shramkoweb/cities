@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {getAuthorizationStatus, getUserData} from "../../reducer/user/selector";
-import {URL_ADDRESS} from "../../constants";
+import {PAGE_ADDRESS, REQUEST} from "../../constants";
 
 const Header = ({isAuthorizationRequired, userData}) => {
   return (
@@ -19,12 +19,12 @@ const Header = ({isAuthorizationRequired, userData}) => {
             <ul className="header__nav-list">
               <li className="header__nav-item user">
                 <Link
-                  to={isAuthorizationRequired ? URL_ADDRESS.LOGIN : URL_ADDRESS.FAVORITE}
+                  to={isAuthorizationRequired ? PAGE_ADDRESS.LOGIN : PAGE_ADDRESS.FAVORITE}
                   className="header__nav-link header__nav-link--profile"
                 >
                   <div
                     className="header__avatar-wrapper user__avatar-wrapper"
-                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${URL_ADDRESS.BASE}${userData.avatar})`}}
+                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${REQUEST.BASE_URL}${userData.avatar})`}}
                   >
                   </div>
                   <span className="header__user-name user__name">

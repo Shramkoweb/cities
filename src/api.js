@@ -1,10 +1,10 @@
 import axios from 'axios';
-import Constants, {REQUEST_STATUS_CODE, URL_ADDRESS} from "./constants";
+import {REQUEST} from "./constants";
 
 export const createAPI = (onLoginFail) => {
   const api = axios.create({
-    baseURL: URL_ADDRESS.BASE,
-    timeout: Constants.REQUEST_TIMEOUT,
+    baseURL: REQUEST.BASE_URL,
+    timeout: REQUEST.TIMEOUT,
     withCredentials: true,
   });
 
@@ -13,7 +13,7 @@ export const createAPI = (onLoginFail) => {
   };
 
   const onFail = (err) => {
-    if (err.response.status === REQUEST_STATUS_CODE.DENIED) {
+    if (err.response.status === REQUEST.STATUS_CODE.DENIED) {
       onLoginFail();
       return;
     }

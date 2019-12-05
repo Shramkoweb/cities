@@ -1,4 +1,3 @@
-import {URL_ADDRESS} from "../../constants";
 import userDataAdapter from "../../adapters/user-data-adapter";
 
 const initialState = {
@@ -25,7 +24,7 @@ const ActionCreator = {
 
 const Operation = {
   sendAuthData: (authData) => (dispatch, _, api) => {
-    return api.post(URL_ADDRESS.LOGIN, authData)
+    return api.post(`/login`, authData)
       .then(({data}) => {
         dispatch(ActionCreator.authorization(userDataAdapter(data)));
         dispatch(ActionCreator.requireAuthorization(false));
