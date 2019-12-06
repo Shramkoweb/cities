@@ -1,6 +1,6 @@
 import PlaceCardAdapter from "../../adapters/place-card-adapter";
 
-export const REQUEST_URL = {
+export const RequestUrl = {
   FAVORITE: `/favorite`,
   HOTELS: `/hotels`,
 };
@@ -42,7 +42,7 @@ const ActionCreator = {
 
 const Operation = {
   loadOffers: () => (dispatch, _, api) => {
-    return api.get(REQUEST_URL.HOTELS)
+    return api.get(RequestUrl.HOTELS)
       .then(({data}) => {
         dispatch(ActionCreator.changeOffers(data));
         dispatch(ActionCreator.changeCity(data[0].city.name));
@@ -51,14 +51,14 @@ const Operation = {
   },
 
   addToFavorites: (id) => (dispatch, _, api) => {
-    return api.post(`${REQUEST_URL.FAVORITE}/${id}/1`)
+    return api.post(`${RequestUrl.FAVORITE}/${id}/1`)
       .then(({data}) => {
         dispatch(ActionCreator.changeOfferFavoriteStatus(PlaceCardAdapter.parseOffer(data)));
       });
   },
 
   removeFromFavorite: (id) => (dispatch, _, api) => {
-    return api.post(`${REQUEST_URL.FAVORITE}/${id}/0`)
+    return api.post(`${RequestUrl.FAVORITE}/${id}/0`)
       .then(({data}) => {
         dispatch(ActionCreator.changeOfferFavoriteStatus(PlaceCardAdapter.parseOffer(data)));
       });

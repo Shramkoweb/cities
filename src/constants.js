@@ -21,7 +21,7 @@ const REQUEST = {
   }
 };
 
-const PAGE_ADDRESS = {
+const PageAddress = {
   FAVORITE: `/favorite`,
   HOTELS: `/hotels`,
   LOGIN: `/login`,
@@ -31,7 +31,7 @@ const PAGE_ADDRESS = {
 
 export {
   REQUEST,
-  PAGE_ADDRESS,
+  PageAddress,
 };
 
 export default Constants;

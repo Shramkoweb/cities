@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {convertFloatToPercentage} from "../../utils";
 import {Operation} from "../../reducer/data/data";
-import {URL_ADDRESS} from "../../constants";
+import {PageAddress} from "../../constants";
 
 const PlaceCard = (props) => {
   const {
@@ -83,7 +83,7 @@ const PlaceCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${URL_ADDRESS.OFFER}/${id}`}>
+          <Link to={`${PageAddress.OFFER}/${id}`}>
             {title}
           </Link>
         </h2>

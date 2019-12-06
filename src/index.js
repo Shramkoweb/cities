@@ -10,13 +10,13 @@ import App from "./components/app/app";
 import createAPI from "./api";
 import reducer from "./reducer/index";
 import {Operation} from "./reducer/data/data";
-import {URL_ADDRESS} from "./constants";
+import {PageAddress} from "./constants";
 
 const rootElement = document.querySelector(`#root`);
 const history = createBrowserHistory();
 
 const init = () => {
-  const api = createAPI(() => history.push(URL_ADDRESS.LOGIN));
+  const api = createAPI(() => history.push(PageAddress.LOGIN));
   const store = createStore(
       reducer,
       compose(

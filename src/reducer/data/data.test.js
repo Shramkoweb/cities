@@ -1,6 +1,6 @@
 import MockAdapter from "axios-mock-adapter";
 import createApi from "./../../api";
-import {Action, Operation, reducer, REQUEST_URL} from "./data";
+import {Action, Operation, reducer, RequestUrl} from "./data";
 import {REQUEST} from "../../constants";
 
 describe(`Data reducer work correct`, () => {
@@ -37,7 +37,7 @@ describe(`Data reducer work correct`, () => {
     ];
 
     apiMock
-      .onGet(REQUEST_URL.HOTELS)
+      .onGet(RequestUrl.HOTELS)
       .reply(REQUEST.STATUS_CODE.SUCCESS, mockOffers);
 
     return offersLoader(dispatch, jest.fn(), api)
