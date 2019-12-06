@@ -22,7 +22,6 @@ const getCities = createSelector(
     (offers) => [...new Set(offers.map((item) => item.city.name))].sort()
 );
 
-
 const getFilteredOffers = createSelector(
     getOffers,
     getActiveCity,

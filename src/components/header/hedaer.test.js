@@ -1,19 +1,32 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import {shallow, configure} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import {Header} from "./header";
+// TODO сделать общий конфиг для тестов
+configure({adapter: new Adapter()});
 
-it(`Header component render correct`, () => {
-  const userMock = {
-    avatar: `static/avatar/10.jpg`,
-    email: `Shramko.web@yahoo.com`,
-    id: 13,
-    isPro: false,
-    name: `Shramko.web`,
-  };
+describe(`Header component should render is correctly`, () => {
+  it(`if user require authorization`, () => {
+    const header = shallow(<Header
+      isAuthorizationRequired={true}
+      userData={{}}
+    />);
 
-  const header = renderer
-    .create(<Header userData={userMock} isAuthorizationRequired={false}/>)
-    .toJSON();
+    expect(header).toMatchSnapshot();
+  });
 
-  expect(header).toMatchSnapshot();
+  it(`if user already authorization`, () => {
+    const header = shallow(<Header
+      isAuthorizationRequired={false}
+      userData={{
+        avatar: `static/avatar/10.jpg`,
+        email: `Shramko.web@yahoo.com`,
+        id: 13,
+        isPro: false,
+        name: `Shramko.web`,
+      }}
+    />);
+
+    expect(header).toMatchSnapshot();
+  });
 });

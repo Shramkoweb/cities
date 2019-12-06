@@ -1,11 +1,10 @@
 import axios from 'axios';
-import {ActionCreator} from "./reducer/user/user";
-import Constants, {REQUEST_STATUS_CODE, REQUEST_URL} from "./constants";
+import {REQUEST} from "./constants";
 
-export const createAPI = (dispatch) => {
+export const createAPI = (onLoginFail) => {
   const api = axios.create({
-    baseURL: REQUEST_URL.BASE,
-    timeout: Constants.REQUEST_TIMEOUT,
+    baseURL: REQUEST.BASE_URL,
+    timeout: REQUEST.TIMEOUT,
     withCredentials: true,
   });
 
@@ -14,11 +13,12 @@ export const createAPI = (dispatch) => {
   };
 
   const onFail = (err) => {
-    if (err.response.status === REQUEST_STATUS_CODE.DENIED) {
-      dispatch(ActionCreator.requireAuthorization(true));
+    if (err.response.status === REQUEST.STATUS_CODE.DENIED) {
+      onLoginFail();
+      return;
     }
 
-    return err;
+    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);

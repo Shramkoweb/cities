@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {applyMiddleware, createStore} from "redux";
-import thunk from 'redux-thunk';
+import thunk from "redux-thunk";
+import {createBrowserHistory} from "history";
+import {Router} from "react-router-dom";
 import {compose} from "recompose";
 import {Provider} from "react-redux";
 import App from "./components/app/app";
@@ -10,9 +12,10 @@ import reducer from "./reducer/index";
 import {Operation} from "./reducer/data/data";
 
 const rootElement = document.querySelector(`#root`);
+const history = createBrowserHistory();
 
 const init = () => {
-  const api = createAPI((...args) => store.dispatch(...args));
+  const api = createAPI(() => history.push(`/login`));
   const store = createStore(
       reducer,
       compose(
@@ -25,9 +28,11 @@ const init = () => {
   store.dispatch(Operation.loadOffers());
 
   ReactDOM.render(
-      <Provider store={store}>
-        <App/>,
-      </Provider>,
+      <Router history={history}>
+        <Provider store={store}>
+          <App/>,
+        </Provider>,
+      </Router>,
       rootElement
   );
 };

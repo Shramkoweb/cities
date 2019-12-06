@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import PlaceCard from "./place-card";
+import {PlaceCard} from "./place-card";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -21,6 +21,8 @@ describe(`PlaceCard callbacks are called correct`, () => {
       <PlaceCard
         offer={offer}
         onSelect={jest.fn()}
+        onAddFavorite={jest.fn()}
+        onRemoveFavorite={jest.fn()}
         onCardHover={onPlaceCardHover}
       />
   );
