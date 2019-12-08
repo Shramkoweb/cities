@@ -8,6 +8,7 @@ import Sign from "../sign/sign";
 import {PageAddress} from "../../constants";
 import Loader from "../loader/loader";
 import Property from "../property/property";
+import {getLoadingStatus} from "../../reducer/data/selector";
 
 const App = (props) => {
   const {isLoading} = props;
@@ -29,12 +30,13 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  isAuthorizationRequired: PropTypes.bool.isRequired
+  isAuthorizationRequired: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
   isAuthorizationRequired: getAuthorizationStatus(state),
-  isLoading: state.DATA.isLoading
+  isLoading: getLoadingStatus(state),
 });
 
 export {App};

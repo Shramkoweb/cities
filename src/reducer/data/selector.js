@@ -8,6 +8,10 @@ const getActiveCity = (state) => {
   return state[NAME_SPACE].currentCity;
 };
 
+const getLoadingStatus = (state) => {
+  return state[NAME_SPACE].isLoading;
+};
+
 const getCoordinates = createSelector(
     (state) => getFilteredOffers(state),
     (coordinates) => coordinates.map((element) => element.location.coordinates)
@@ -36,9 +40,10 @@ const getSpecificOffer = (state, id) => {
 
 export {
   getActiveCity,
-  getCoordinates,
   getCities,
+  getCoordinates,
   getFilteredOffers,
-  getSpecificOffer,
+  getLoadingStatus,
   getOffers,
+  getSpecificOffer,
 };
