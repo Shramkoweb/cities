@@ -21,6 +21,11 @@ const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
+const getReviews = (state, id) => {
+  console.log(state[NAME_SPACE].reviews[id]);
+  return state[NAME_SPACE].reviews;
+};
+
 const getCities = createSelector(
     getOffers,
     (offers) => [...new Set(offers.map((item) => item.city.name))].sort()
@@ -44,6 +49,7 @@ export {
   getCoordinates,
   getFilteredOffers,
   getLoadingStatus,
-  getOffers,
   getOfferById,
+  getOffers,
+  getReviews,
 };

@@ -1,21 +1,25 @@
 import PlaceCardAdapter from "../../adapters/place-card-adapter";
+import ReviewAdapter from "../../adapters/review-adapter";
 
 export const RequestUrl = {
   FAVORITE: `/favorite`,
   HOTELS: `/hotels`,
+  COMMENTS: `/comments`,
 };
 
 const initialState = {
   currentCity: null,
   offers: [],
-  isLoading: true
+  isLoading: true,
+  reviews: []
 };
 
 const Action = {
   CHANGE_CITY: `CHANGE_CITY`,
-  CHANGE_OFFERS: `CHANGE_OFFERS`,
   CHANGE_LOAD_STATUS: `CHANGE_LOAD_STATUS`,
-  CHANGE_OFFER_FAVORITE_STATUS: `CHANGE_OFFER_FAVORITE_STATUS`
+  CHANGE_OFFER_FAVORITE_STATUS: `CHANGE_OFFER_FAVORITE_STATUS`,
+  CHANGE_OFFERS: `CHANGE_OFFERS`,
+  GET_REVIEWS: `GET_REVIEWS`,
 };
 
 const ActionCreator = {
@@ -37,6 +41,11 @@ const ActionCreator = {
   changeLoadStatus: () => ({
     type: Action.CHANGE_LOAD_STATUS,
     payload: false
+  }),
+
+  getReviews: (reviews) => ({
+    type: Action.GET_REVIEWS,
+    payload: reviews
   }),
 };
 
@@ -62,7 +71,16 @@ const Operation = {
       .then(({data}) => {
         dispatch(ActionCreator.changeOfferFavoriteStatus(PlaceCardAdapter.parseOffer(data)));
       });
-  }
+  },
+
+  loadReviews: (id) => {
+    return (dispatch, _, api) => {
+      return api.get(`${RequestUrl.COMMENTS}/${id}`)
+        .then(({data}) => {
+          dispatch(ActionCreator.getReviews(ReviewAdapter.parseReviews(data, id)));
+        });
+    };
+  },
 };
 
 const getOffersWithReplacedFavorite = (offers, favorite) => {
@@ -80,6 +98,8 @@ const reducer = (state = initialState, action) => {
     case Action.CHANGE_OFFERS:
       const parsedOffers = PlaceCardAdapter.parseOffers(action.payload);
       return Object.assign({}, state, {offers: parsedOffers});
+    case Action.GET_REVIEWS:
+      return Object.assign({}, state, {reviews: action.payload});
     case Action.CHANGE_OFFER_FAVORITE_STATUS:
       return Object
         .assign({}, state, {offers: getOffersWithReplacedFavorite(state.offers, action.payload)});
