@@ -1,6 +1,6 @@
 import PlaceCardAdapter from "../../adapters/place-card-adapter";
 
-export const REQUEST_URL = {
+export const RequestUrl = {
   FAVORITE: `/favorite`,
   HOTELS: `/hotels`,
 };
@@ -8,11 +8,13 @@ export const REQUEST_URL = {
 const initialState = {
   currentCity: null,
   offers: [],
+  isLoading: true
 };
 
 const Action = {
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_OFFERS: `CHANGE_OFFERS`,
+  CHANGE_LOAD_STATUS: `CHANGE_LOAD_STATUS`,
   CHANGE_OFFER_FAVORITE_STATUS: `CHANGE_OFFER_FAVORITE_STATUS`
 };
 
@@ -30,27 +32,33 @@ const ActionCreator = {
   changeOfferFavoriteStatus: (offer) => ({
     type: Action.CHANGE_OFFER_FAVORITE_STATUS,
     payload: offer
-  })
+  }),
+
+  changeLoadStatus: () => ({
+    type: Action.CHANGE_LOAD_STATUS,
+    payload: false
+  }),
 };
 
 const Operation = {
   loadOffers: () => (dispatch, _, api) => {
-    return api.get(REQUEST_URL.HOTELS)
+    return api.get(RequestUrl.HOTELS)
       .then(({data}) => {
         dispatch(ActionCreator.changeOffers(data));
         dispatch(ActionCreator.changeCity(data[0].city.name));
+        dispatch(ActionCreator.changeLoadStatus());
       });
   },
 
   addToFavorites: (id) => (dispatch, _, api) => {
-    return api.post(`${REQUEST_URL.FAVORITE}/${id}/1`)
+    return api.post(`${RequestUrl.FAVORITE}/${id}/1`)
       .then(({data}) => {
         dispatch(ActionCreator.changeOfferFavoriteStatus(PlaceCardAdapter.parseOffer(data)));
       });
   },
 
   removeFromFavorite: (id) => (dispatch, _, api) => {
-    return api.post(`${REQUEST_URL.FAVORITE}/${id}/0`)
+    return api.post(`${RequestUrl.FAVORITE}/${id}/0`)
       .then(({data}) => {
         dispatch(ActionCreator.changeOfferFavoriteStatus(PlaceCardAdapter.parseOffer(data)));
       });
@@ -67,6 +75,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Action.CHANGE_CITY:
       return Object.assign({}, state, {currentCity: action.payload});
+    case Action.CHANGE_LOAD_STATUS:
+      return Object.assign({}, state, {isLoading: action.payload});
     case Action.CHANGE_OFFERS:
       const parsedOffers = PlaceCardAdapter.parseOffers(action.payload);
       return Object.assign({}, state, {offers: parsedOffers});

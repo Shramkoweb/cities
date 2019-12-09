@@ -8,6 +8,10 @@ const getActiveCity = (state) => {
   return state[NAME_SPACE].currentCity;
 };
 
+const getLoadingStatus = (state) => {
+  return state[NAME_SPACE].isLoading;
+};
+
 const getCoordinates = createSelector(
     (state) => getFilteredOffers(state),
     (coordinates) => coordinates.map((element) => element.location.coordinates)
@@ -28,10 +32,18 @@ const getFilteredOffers = createSelector(
     (offers, city) => offers.filter((offer) => offer.city.name === city)
 );
 
+const getOfferById = (state, id) => {
+  const offers = getOffers(state);
+
+  return offers.find((offer) => offer.id === id);
+};
+
 export {
   getActiveCity,
-  getCoordinates,
   getCities,
+  getCoordinates,
   getFilteredOffers,
+  getLoadingStatus,
   getOffers,
+  getOfferById,
 };

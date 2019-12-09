@@ -92,13 +92,7 @@ exports[`PlaceCard component render correct 1`] = `
     </div>
     <h2
       className="place-card__name"
-    >
-      <a
-        href="#"
-      >
-        Beautiful & luxurious apartment at great location
-      </a>
-    </h2>
+    />
     <p
       className="place-card__type"
     >

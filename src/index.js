@@ -10,12 +10,13 @@ import App from "./components/app/app";
 import createAPI from "./api";
 import reducer from "./reducer/index";
 import {Operation} from "./reducer/data/data";
+import {PageAddress} from "./constants";
 
 const rootElement = document.querySelector(`#root`);
 const history = createBrowserHistory();
 
 const init = () => {
-  const api = createAPI(() => history.push(`/login`));
+  const api = createAPI(() => history.push(PageAddress.LOGIN));
   const store = createStore(
       reducer,
       compose(
@@ -30,11 +31,13 @@ const init = () => {
   ReactDOM.render(
       <Router history={history}>
         <Provider store={store}>
-          <App/>,
-        </Provider>,
+          <App/>
+        </Provider>
       </Router>,
       rootElement
   );
 };
 
 init();
+
+export {history};

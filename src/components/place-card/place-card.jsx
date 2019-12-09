@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {convertFloatToPercentage} from "../../utils";
 import {Operation} from "../../reducer/data/data";
+import {PageAddress} from "../../constants";
 
 const PlaceCard = (props) => {
   const {
@@ -65,7 +67,9 @@ const PlaceCard = (props) => {
           </div>
           <button
             className={`place-card__bookmark-button button ${isFavorite ? `place-card__bookmark-button--active` : ``}`}
-            type="button" onClick={onFavoriteButtonClick}>
+            type="button"
+            onClick={onFavoriteButtonClick}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"/>
             </svg>
@@ -79,7 +83,9 @@ const PlaceCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${PageAddress.OFFER}/${id}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

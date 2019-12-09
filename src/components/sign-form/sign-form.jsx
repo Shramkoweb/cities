@@ -2,6 +2,8 @@ import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {Operation} from "../../reducer/user/user";
+import {history} from "../../index";
+import {PageAddress} from "../../constants";
 
 const SignForm = (props) => {
   const {onInputChange, sendAuthData, email, password} = props;
@@ -13,6 +15,7 @@ const SignForm = (props) => {
       email,
       password
     });
+    history.push(PageAddress.MAIN);
   };
 
   return (
