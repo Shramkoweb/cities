@@ -32,10 +32,10 @@ const getFilteredOffers = createSelector(
     (offers, city) => offers.filter((offer) => offer.city.name === city)
 );
 
-const getSpecificOffer = (state, id) => {
+const getOfferById = (state, id) => {
   const offers = getOffers(state);
 
-  return offers.find((offer) => offer.id === Number(id));
+  return offers.find((offer) => offer.id === id);
 };
 
 export {
@@ -45,5 +45,5 @@ export {
   getFilteredOffers,
   getLoadingStatus,
   getOffers,
-  getSpecificOffer,
+  getOfferById,
 };

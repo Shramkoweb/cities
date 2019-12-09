@@ -2,32 +2,31 @@ import React from "react";
 import {connect} from "react-redux";
 import {convertFloatToPercentage} from "../../utils";
 import PropTypes from "prop-types";
-import {getSpecificOffer} from "../../reducer/data/selector";
+import {getOfferById} from "../../reducer/data/selector";
 import Gallery from "../gallery/gallery";
 import Goods from "../goods/goods";
 import PageLayout from "../page-layout/page-layout";
 import Header from "../header/header";
 
 const Property = (props) => {
-  console.log(props)
-
   const {id, currentOffer} = props;
+
   const {
-    isPremium,
-    isFavorite,
-    title,
-    rating,
-    price,
-    images,
-    goods,
     bedrooms,
-    type,
-    maxAdults,
+    goods,
     host: {
-      name,
+      avatar,
       isPro,
-      avatar
+      name,
     },
+    images,
+    isFavorite,
+    isPremium,
+    maxAdults,
+    price,
+    rating,
+    title,
+    type,
     description,
   } = currentOffer;
 
@@ -48,7 +47,9 @@ const Property = (props) => {
               <h1 className="property__name">
                 {title}
               </h1>
-              <button className={`property__bookmark-button button ${isFavorite && `property__bookmark-button--active`}`} type="button">
+              <button
+                className={`property__bookmark-button button ${isFavorite && `property__bookmark-button--active`}`}
+                type="button">
                 <svg className="property__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"/>
                 </svg>
@@ -189,7 +190,7 @@ Property.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  currentOffer: getSpecificOffer(state, ownProps.id)
+  currentOffer: getOfferById(state, ownProps.id)
 });
 
 
