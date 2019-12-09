@@ -5,7 +5,10 @@ import toJson from 'enzyme-to-json';
 import withInputsChange from "./with-inputs-change";
 import {SignForm} from "../../components/sign-form/sign-form";
 
-Enzyme.configure({adapter: new Adapter()});
+jest.mock(`../../index.js`, () => jest.fn().mockReturnValue(null));
+jest.mock(`../../constants.js`, () => jest.fn().mockReturnValue(null));
+
+Enzyme.configure({adapter: new Adapter()}); // TODO переименовать папку
 
 describe(`WithSignForm wrapper work correct`, () => {
   const FormWrapped = withInputsChange(SignForm);

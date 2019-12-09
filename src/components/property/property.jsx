@@ -9,7 +9,7 @@ import PageLayout from "../page-layout/page-layout";
 import Header from "../header/header";
 
 const Property = (props) => {
-  const {id, currentOffer} = props;
+  const {currentOffer} = props;
 
   const {
     bedrooms,

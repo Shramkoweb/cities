@@ -42,7 +42,7 @@ describe(`Data reducer work correct`, () => {
 
     return offersLoader(dispatch, jest.fn(), api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: Action.CHANGE_OFFERS,
           payload: mockOffers,
