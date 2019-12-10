@@ -58,7 +58,6 @@ const mapDispatchToProps = (dispatch) => ({
   sendAuthData: (data) => dispatch(Operation.sendAuthData(data))
 });
 
-// email & password убрал isRequired так как изначально они undefined - так как их нет в стейте ХОК-а
 SignForm.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   email: PropTypes.string,

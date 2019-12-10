@@ -40,5 +40,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 const ReviewListWrapped = withLoadData(ReviewList);
-
+export {ReviewList};
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewListWrapped);

@@ -58,7 +58,6 @@ exports[`Review component render correct 1`] = `
     >
       11 April
     </time>
-    // TODO вариант для dateTime придумать
   </div>
 </li>
 `;
