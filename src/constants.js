@@ -30,9 +30,17 @@ const PageAddress = {
   OFFER: `/offer`,
 };
 
+const SortType = {
+  POPULAR: `POPULAR`,
+  TO_HIGH: `TO_HIGH`,
+  TO_LOW: `TO_LOW`,
+  TOP_RATED: `TOP_RATED`,
+};
+
 export {
   REQUEST,
   PageAddress,
+  SortType,
 };
 
 export default Constants;
