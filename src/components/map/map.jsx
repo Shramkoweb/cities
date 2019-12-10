@@ -1,13 +1,11 @@
 import React, {PureComponent} from "react";
 import Leaflet from "leaflet";
-import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Constants from "../../constants";
-import {getActiveCity, getCoordinates} from "../../reducer/data/selector";
 
 const MapConfig = {
   ZOOM: 12,
-  ICON_URL: `img/pin.svg`,
+  ICON_URL: `/img/pin.svg`,
   ICON_SIZE: [30, 30],
   TILE_LAYER: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
   TILE_ATTRIBUTE: `&copy; <a href="htps://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`,
@@ -66,7 +64,7 @@ class Map extends PureComponent {
   }
 
   render() {
-    return <div className="cities__map map" id="map"/>;
+    return <div id="map" style={{height: `100%`}}/>;
   }
 }
 
@@ -75,9 +73,4 @@ Map.propTypes = {
   currentCity: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  currentCity: getActiveCity(state),
-  coordinates: getCoordinates(state)
-});
-
-export default connect(mapStateToProps)(Map);
+export default Map;

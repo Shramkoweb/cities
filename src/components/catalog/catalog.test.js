@@ -17,6 +17,7 @@ it(`Catalog component render correct`, () => {
           citiesCoordinates={citiesCoordinates}
           currentCity={`NY`}
           offers={OFFERS}
+          mapCoordinates={[]}
         />)
     .toJSON();
 
