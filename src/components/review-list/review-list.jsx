@@ -31,7 +31,7 @@ const mapStateToProps = (state, ownProps) => {
   const reviews = getReviews(state, ownProps.id);
   return {
     reviews,
-    isRequiredDataLoad: reviews.length === 0,
+    isRequiredDataLoad: Boolean(!reviews),
   };
 };
 

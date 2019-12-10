@@ -22,8 +22,7 @@ const getOffers = (state) => {
 };
 
 const getReviews = (state, id) => {
-  console.log(state[NAME_SPACE].reviews[id]);
-  return state[NAME_SPACE].reviews;
+  return state[NAME_SPACE].reviews[id];
 };
 
 const getCities = createSelector(

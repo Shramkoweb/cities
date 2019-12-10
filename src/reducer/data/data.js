@@ -11,7 +11,7 @@ const initialState = {
   currentCity: null,
   offers: [],
   isLoading: true,
-  reviews: []
+  reviews: {}
 };
 
 const Action = {
