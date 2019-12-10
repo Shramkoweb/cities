@@ -1,5 +1,5 @@
 import {createSelector} from "reselect";
-
+import Constants from "../../constants";
 import NameSpace from "../name-spaces";
 
 const NAME_SPACE = NameSpace.DATA;
@@ -36,6 +36,13 @@ const getFilteredOffers = createSelector(
     (offers, city) => offers.filter((offer) => offer.city.name === city)
 );
 
+// TODO возможно сделать расчет растояния и брать ближайщие
+const getNearbyOffers = createSelector(
+    getOffers,
+    getFilteredOffers,
+    (offers, filteredOffers) => filteredOffers.slice(0, Constants.MAX_MAP_MARKERS)
+);
+
 const getOfferById = (state, id) => {
   const offers = getOffers(state);
 
@@ -48,6 +55,7 @@ export {
   getCoordinates,
   getFilteredOffers,
   getLoadingStatus,
+  getNearbyOffers,
   getOfferById,
   getOffers,
   getReviews,

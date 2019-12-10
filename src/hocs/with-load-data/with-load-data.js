@@ -4,6 +4,14 @@ import PropType from "prop-types";
 const withLoadData = (Component) => {
   class WithLoadData extends PureComponent {
     componentDidMount() {
+      this._onRequiredLoadData();
+    }
+
+    componentDidUpdate() {
+      this._onRequiredLoadData();
+    }
+
+    _onRequiredLoadData() {
       const {isRequiredDataLoad, onLoadData} = this.props;
 
       if (isRequiredDataLoad) {

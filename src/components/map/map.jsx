@@ -5,7 +5,7 @@ import Constants from "../../constants";
 
 const MapConfig = {
   ZOOM: 12,
-  ICON_URL: `img/pin.svg`,
+  ICON_URL: `/img/pin.svg`,
   ICON_SIZE: [30, 30],
   TILE_LAYER: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
   TILE_ATTRIBUTE: `&copy; <a href="htps://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`,
