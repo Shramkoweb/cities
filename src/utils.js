@@ -13,6 +13,12 @@ const parseHost = (data = {}) => {
   };
 };
 
+const convertIsoDateToString = (date) => {
+  const options = {year: `numeric`, month: `long`, day: `numeric`};
+
+  return new Intl.DateTimeFormat(`en-US`, options).format(new Date(date));
+};
+
 const parseLocation = (data = {}) => {
   return {
     coordinates: [data[`latitude`], data[`longitude`]] || [],
@@ -31,6 +37,7 @@ const parseCity = (data = {}) => {
 export {
   parseHost,
   parseCity,
+  convertIsoDateToString,
   parseLocation,
   convertFloatToPercentage
 };

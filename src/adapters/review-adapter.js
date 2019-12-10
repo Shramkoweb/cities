@@ -1,3 +1,5 @@
+import {convertIsoDateToString} from "../utils";
+
 class ReviewAdapter {
   static parseReviews(reviews, id) {
     return {
@@ -9,6 +11,7 @@ class ReviewAdapter {
           userName: review[`user`][`name`],
           avatarUrl: review[`user`][`avatar_url`],
           isPro: review[`user`][`is_pro`],
+          date: convertIsoDateToString(review[`date`]),
         };
       })
     };
