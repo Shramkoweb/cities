@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {Property} from "./property";
 
 jest.mock(`../header/header.jsx`, () => jest.fn().mockReturnValue(null));
+jest.mock(`../review-list/review-list.jsx`, () => jest.fn().mockReturnValue(null));
 
 
 it(`Property render is correct`, () => {

@@ -33,7 +33,11 @@ exports[`Catalog component render correct 1`] = `
       </section>
       <div
         className="cities__right-section"
-      />
+      >
+        <section
+          className="cities__map"
+        />
+      </div>
     </div>
   </div>
 </main>
