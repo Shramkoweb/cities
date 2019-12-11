@@ -37,8 +37,32 @@ const SortType = {
   TOP_RATED: `TOP_RATED`,
 };
 
+const SortOptions = [
+  {
+    name: `Popular`,
+    sortType: SortType.POPULAR,
+    selected: true,
+  },
+  {
+    name: `Price: low to high`,
+    sortType: SortType.TO_HIGH,
+    selected: false,
+  },
+  {
+    name: `Price: high to low`,
+    sortType: SortType.TO_LOW,
+    selected: false,
+  },
+  {
+    name: `Top rated first`,
+    sortType: SortType.TOP_RATED,
+    selected: false,
+  }
+];
+
 export {
   REQUEST,
+  SortOptions,
   PageAddress,
   SortType,
 };
