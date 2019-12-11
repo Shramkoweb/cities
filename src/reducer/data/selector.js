@@ -30,6 +30,10 @@ const getCities = createSelector(
     (offers) => [...new Set(offers.map((item) => item.city.name))].sort()
 );
 
+const getTypeSort = (state) => {
+  return state[NAME_SPACE].typeSort;
+};
+
 const getFilteredOffers = createSelector(
     getOffers,
     getActiveCity,
@@ -59,4 +63,5 @@ export {
   getOfferById,
   getOffers,
   getReviews,
+  getTypeSort,
 };

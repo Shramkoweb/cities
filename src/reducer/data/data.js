@@ -1,5 +1,6 @@
 import PlaceCardAdapter from "../../adapters/place-card-adapter";
 import ReviewAdapter from "../../adapters/review-adapter";
+import {SortType} from "../../constants";
 
 export const RequestUrl = {
   FAVORITE: `/favorite`,
@@ -9,9 +10,10 @@ export const RequestUrl = {
 
 const initialState = {
   currentCity: null,
-  offers: [],
   isLoading: true,
-  reviews: {}
+  offers: [],
+  reviews: {},
+  typeSort: SortType.POPULAR,
 };
 
 const Action = {
@@ -20,12 +22,18 @@ const Action = {
   CHANGE_OFFER_FAVORITE_STATUS: `CHANGE_OFFER_FAVORITE_STATUS`,
   CHANGE_OFFERS: `CHANGE_OFFERS`,
   GET_REVIEWS: `GET_REVIEWS`,
+  SET_SORT_TYPE: `SET_SORT_TYPE`,
 };
 
 const ActionCreator = {
   changeCity: (city) => ({
     type: Action.CHANGE_CITY,
     payload: city
+  }),
+
+  setSortType: (type) => ({
+    type: Action.SET_SORT_TYPE,
+    payload: type
   }),
 
   changeOffers: (offers) => ({
@@ -100,6 +108,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {offers: parsedOffers});
     case Action.GET_REVIEWS:
       return Object.assign({}, state, {reviews: action.payload});
+    case Action.SET_SORT_TYPE:
+      return Object.assign({}, state, {typeSort: action.payload});
     case Action.CHANGE_OFFER_FAVORITE_STATUS:
       return Object
         .assign({}, state, {offers: getOffersWithReplacedFavorite(state.offers, action.payload)});
