@@ -1,5 +1,5 @@
 import {createSelector} from "reselect";
-import Constants from "../../constants";
+import Constants, {SortType} from "../../constants";
 import NameSpace from "../name-spaces";
 
 const NAME_SPACE = NameSpace.DATA;
@@ -39,6 +39,24 @@ const getFilteredOffers = createSelector(
     getActiveCity,
     (offers, city) => offers.filter((offer) => offer.city.name === city)
 );
+// offers.slice() добавил так как почему то нехотело перерисовывать без него, а точнее надо было навести на карточку
+// тогда менялся state в catalog и происходил ререндер
+const getSortedOffers = createSelector(
+    getFilteredOffers,
+    getTypeSort,
+    (offers, sortType) => {
+      switch (sortType) {
+        case (SortType.TO_HIGH):
+          return offers.slice().sort((current, next) => current.price - next.price);
+        case (SortType.TO_LOW):
+          return offers.slice().sort((current, next) => next.price - current.price);
+        case (SortType.TOP_RATED):
+          return offers.slice().sort((current, next) => next.rating - current.rating);
+        default:
+          return offers;
+      }
+    }
+);
 
 // TODO возможно сделать расчет растояния и брать ближайщие
 const getNearbyOffers = createSelector(
@@ -61,6 +79,7 @@ export {
   getLoadingStatus,
   getNearbyOffers,
   getOfferById,
+  getSortedOffers,
   getOffers,
   getReviews,
   getTypeSort,
