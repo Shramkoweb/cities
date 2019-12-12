@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {convertFloatToPercentage} from "../../utils";
 import PropTypes from "prop-types";
-import {getActiveCity, getNearbyOffers, getOfferById} from "../../reducer/data/selector";
+import {getActiveCity, getHoveredOffer, getNearbyOffers, getOfferById} from "../../reducer/data/selector";
 import Gallery from "../gallery/gallery";
 import Goods from "../goods/goods";
 import PageLayout from "../page-layout/page-layout";
@@ -13,15 +13,17 @@ import PlacesList from "../places-list/places-list";
 
 const Property = (props) => {
   const {
+    activeOffer,
+    currentCity,
     currentOffer,
     id,
-    currentCity,
+    nearbyOffers,
     nearbyOffersCoordinates,
-    nearbyOffers
   } = props;
 
   const {
     bedrooms,
+    description,
     goods,
     host: {
       avatar,
@@ -36,7 +38,6 @@ const Property = (props) => {
     rating,
     title,
     type,
-    description,
   } = currentOffer;
 
   return (
@@ -117,7 +118,7 @@ const Property = (props) => {
           </div>
         </div>
         <section className="property__map map">
-          <Map currentCity={currentCity} coordinates={nearbyOffersCoordinates}/>
+          <Map currentCity={currentCity} coordinates={nearbyOffersCoordinates} activeOffer={activeOffer}/>
         </section>
 
         <div className="container">
@@ -134,24 +135,43 @@ const Property = (props) => {
 };
 
 Property.propTypes = {
-  id: PropTypes.number.isRequired,
-  currentOffer: PropTypes.object.isRequired,
+  activeOffer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      location: PropTypes.arrayOf(PropTypes.number).isRequired,
+      zoom: PropTypes.number.isRequired
+    }),
+    location: PropTypes.shape({
+      coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+      zoom: PropTypes.number.isRequired
+    }),
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  }),
   currentCity: PropTypes.string.isRequired,
+  currentOffer: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
   nearbyOffers: PropTypes.array.isRequired,
-  nearbyOffersCoordinates: PropTypes.array.isRequired
+  nearbyOffersCoordinates: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
   const nearbyOffers = getNearbyOffers(state);
 
   return {
-    currentOffer: getOfferById(state, ownProps.id),
+    activeOffer: getHoveredOffer(state),
     currentCity: getActiveCity(state),
-    nearbyOffersCoordinates: nearbyOffers.map((offer) => offer.location.coordinates),
+    currentOffer: getOfferById(state, ownProps.id),
     nearbyOffers: nearbyOffers || [],
+    nearbyOffersCoordinates: nearbyOffers.map((offer) => offer.location.coordinates),
   };
 };
-
 
 export {Property};
 export default connect(mapStateToProps)(Property);
