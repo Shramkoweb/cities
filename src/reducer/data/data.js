@@ -9,6 +9,7 @@ export const RequestUrl = {
 };
 
 const initialState = {
+  activeOffer: null,
   currentCity: null,
   isLoading: true,
   offers: [],
@@ -17,6 +18,7 @@ const initialState = {
 };
 
 const Action = {
+  CHANGE_ACTIVE_OFFER: `CHANGE_ACTIVE_OFFER`,
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_LOAD_STATUS: `CHANGE_LOAD_STATUS`,
   CHANGE_OFFER_FAVORITE_STATUS: `CHANGE_OFFER_FAVORITE_STATUS`,
@@ -29,6 +31,11 @@ const ActionCreator = {
   changeCity: (city) => ({
     type: Action.CHANGE_CITY,
     payload: city
+  }),
+
+  changeActiveOffer: (id) => ({
+    type: Action.CHANGE_ACTIVE_OFFER,
+    payload: id
   }),
 
   setSortType: (type) => ({
@@ -101,6 +108,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Action.CHANGE_CITY:
       return Object.assign({}, state, {currentCity: action.payload});
+    case Action.CHANGE_ACTIVE_OFFER:
+      return Object.assign({}, state, {activeOffer: action.payload});
     case Action.CHANGE_LOAD_STATUS:
       return Object.assign({}, state, {isLoading: action.payload});
     case Action.CHANGE_OFFERS:

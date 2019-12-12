@@ -12,6 +12,10 @@ const getLoadingStatus = (state) => {
   return state[NAME_SPACE].isLoading;
 };
 
+const getHoveredOfferId = (state) => {
+  return state[NAME_SPACE].activeOffer;
+};
+
 const getCoordinates = createSelector(
     (state) => getFilteredOffers(state),
     (coordinates) => coordinates.map((element) => element.location.coordinates)
@@ -71,16 +75,23 @@ const getOfferById = (state, id) => {
   return offers.find((offer) => offer.id === id);
 };
 
+const getHoveredOffer = createSelector(
+    getOffers,
+    getHoveredOfferId,
+    (offers, id) => offers.find((item) => item.id === id)
+);
+
 export {
   getActiveCity,
   getCities,
   getCoordinates,
   getFilteredOffers,
+  getHoveredOffer,
   getLoadingStatus,
   getNearbyOffers,
   getOfferById,
-  getSortedOffers,
   getOffers,
   getReviews,
+  getSortedOffers,
   getTypeSort,
 };
