@@ -43,8 +43,7 @@ const getFilteredOffers = createSelector(
     getActiveCity,
     (offers, city) => offers.filter((offer) => offer.city.name === city)
 );
-// offers.slice() добавил так как почему то нехотело перерисовывать без него, а точнее надо было навести на карточку
-// тогда менялся state в catalog и происходил ререндер
+
 const getSortedOffers = createSelector(
     getFilteredOffers,
     getTypeSort,

@@ -14,7 +14,7 @@ const parseHost = (data = {}) => {
 };
 
 const convertIsoDateToString = (date) => {
-  const options = {year: `numeric`, month: `long`, day: `numeric`};
+  const options = {year: `numeric`, month: `long`};
 
   return new Intl.DateTimeFormat(`en-US`, options).format(new Date(date));
 };
