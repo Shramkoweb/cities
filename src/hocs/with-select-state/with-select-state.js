@@ -1,5 +1,5 @@
 import React from "react";
-import {SortType} from "../../constants";
+import {SortOptions, SortType} from "../../constants";
 
 const witSelectState = (Component) => {
   class WithSelectState extends React.PureComponent {
@@ -9,7 +9,7 @@ const witSelectState = (Component) => {
       this.state = {
         currentSortType: SortType.POPULAR,
         isOpen: false,
-        labelName: `Popular`,
+        labelName: SortOptions.find((item) => item.selected).name,
       };
 
       this._handleSortClick = this._handleSortClick.bind(this);

@@ -11,7 +11,6 @@ class PlacesList extends React.PureComponent {
 
   render() {
     const {offers, changeActiveOffer} = this.props;
-    console.log(this.props);
 
     return (
       <div className="cities__places-list places__list tabs__content">
@@ -45,7 +44,8 @@ PlacesList.propTypes = {
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
-  })).isRequired
+  })).isRequired,
+  changeActiveOffer: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({

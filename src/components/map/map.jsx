@@ -34,7 +34,6 @@ const renderMarkers = (leaflet, coordinates, markerGroup, activeOffer) => {
       .addTo(markerGroup);
   });
 
-  // пока лучше не придумал как не каршится, в исходном состоянии, когда активный оффер == null
   if (activeOffer) {
     leaflet.marker(activeOffer.location.coordinates, {icon: activeIcon}).addTo(markerGroup);
   }
