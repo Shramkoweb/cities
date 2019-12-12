@@ -1,5 +1,6 @@
 import PlaceCardAdapter from "../../adapters/place-card-adapter";
 import ReviewAdapter from "../../adapters/review-adapter";
+import {SortType} from "../../constants";
 
 export const RequestUrl = {
   FAVORITE: `/favorite`,
@@ -8,24 +9,38 @@ export const RequestUrl = {
 };
 
 const initialState = {
+  activeOffer: null,
   currentCity: null,
-  offers: [],
   isLoading: true,
-  reviews: {}
+  offers: [],
+  reviews: {},
+  typeSort: SortType.POPULAR,
 };
 
 const Action = {
+  CHANGE_ACTIVE_OFFER: `CHANGE_ACTIVE_OFFER`,
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_LOAD_STATUS: `CHANGE_LOAD_STATUS`,
   CHANGE_OFFER_FAVORITE_STATUS: `CHANGE_OFFER_FAVORITE_STATUS`,
   CHANGE_OFFERS: `CHANGE_OFFERS`,
   GET_REVIEWS: `GET_REVIEWS`,
+  SET_SORT_TYPE: `SET_SORT_TYPE`,
 };
 
 const ActionCreator = {
   changeCity: (city) => ({
     type: Action.CHANGE_CITY,
     payload: city
+  }),
+
+  changeActiveOffer: (id) => ({
+    type: Action.CHANGE_ACTIVE_OFFER,
+    payload: id
+  }),
+
+  setSortType: (type) => ({
+    type: Action.SET_SORT_TYPE,
+    payload: type
   }),
 
   changeOffers: (offers) => ({
@@ -93,6 +108,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Action.CHANGE_CITY:
       return Object.assign({}, state, {currentCity: action.payload});
+    case Action.CHANGE_ACTIVE_OFFER:
+      return Object.assign({}, state, {activeOffer: action.payload});
     case Action.CHANGE_LOAD_STATUS:
       return Object.assign({}, state, {isLoading: action.payload});
     case Action.CHANGE_OFFERS:
@@ -100,6 +117,8 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {offers: parsedOffers});
     case Action.GET_REVIEWS:
       return Object.assign({}, state, {reviews: action.payload});
+    case Action.SET_SORT_TYPE:
+      return Object.assign({}, state, {typeSort: action.payload});
     case Action.CHANGE_OFFER_FAVORITE_STATUS:
       return Object
         .assign({}, state, {offers: getOffersWithReplacedFavorite(state.offers, action.payload)});

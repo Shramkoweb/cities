@@ -7,15 +7,18 @@ import Tabs from "../tabs/tabs";
 import Sort from "../sort/sort";
 import withActiveElement from "../../hocs/with-active-element";
 import Map from "../map/map";
-import {getActiveCity, getCoordinates, getFilteredOffers} from "../../reducer/data/selector";
+import {getActiveCity, getCoordinates, getHoveredOffer, getSortedOffers} from "../../reducer/data/selector";
+import witSelectState from "../../hocs/with-select-state/with-select-state";
 
 const TabsWrapped = withActiveElement(Tabs);
+const SortWrapped = witSelectState(Sort);
 
 const Catalog = (props) => {
   const {
     currentCity,
     offers,
     mapCoordinates,
+    activeOffer,
   } = props;
 
   return (
@@ -31,15 +34,19 @@ const Catalog = (props) => {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offers.length} places to stay in {currentCity}</b>
+                <form className="places__sorting" action="#" method="get">
+                  <span className="places__sorting-caption">Sort by </span>
 
-                <Sort/>
+                  <SortWrapped/>
+
+                </form>
 
                 <PlacesList offers={offers}/>
 
               </section>
               <div className="cities__right-section">
                 <section className="cities__map">
-                  <Map coordinates={mapCoordinates} currentCity={currentCity}/>
+                  <Map coordinates={mapCoordinates} currentCity={currentCity} activeOffer={activeOffer}/>
                 </section>
               </div>
             </div>
@@ -52,15 +59,35 @@ const Catalog = (props) => {
 };
 
 Catalog.propTypes = {
+  activeOffer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      location: PropTypes.arrayOf(PropTypes.number).isRequired,
+      zoom: PropTypes.number.isRequired
+    }),
+    location: PropTypes.shape({
+      coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+      zoom: PropTypes.number.isRequired
+    }),
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  }),
   currentCity: PropTypes.string,
+  mapCoordinates: PropTypes.array.isRequired,
   offers: PropTypes.array,
-  mapCoordinates: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
+  activeOffer: getHoveredOffer(state),
   currentCity: getActiveCity(state),
-  offers: getFilteredOffers(state),
   mapCoordinates: getCoordinates(state),
+  offers: getSortedOffers(state),
 });
 
 export {Catalog};

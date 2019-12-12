@@ -1,26 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import PlaceCard from "../place-card/place-card";
+import {ActionCreator} from "../../reducer/data/data";
 
-export class PlacesList extends React.PureComponent {
+class PlacesList extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      hoveredCard: null
-    };
-
-    this.handleCardHover = this.handleCardHover.bind(this);
-  }
-
-  handleCardHover(id) {
-    this.setState({
-      hoveredCard: id
-    });
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, changeActiveOffer} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
@@ -28,7 +18,7 @@ export class PlacesList extends React.PureComponent {
           <PlaceCard
             key={offer.id}
             offer={offer}
-            onCardHover={this.handleCardHover}
+            onCardHover={changeActiveOffer}
           />)}
       </div>
     );
@@ -54,7 +44,13 @@ PlacesList.propTypes = {
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
-  })).isRequired
+  })).isRequired,
+  changeActiveOffer: PropTypes.func.isRequired
 };
 
-export default PlacesList;
+const mapDispatchToProps = (dispatch) => ({
+  changeActiveOffer: (id) => dispatch(ActionCreator.changeActiveOffer(id))
+});
+
+export {PlacesList};
+export default connect(null, mapDispatchToProps)(PlacesList);

@@ -30,6 +30,17 @@ exports[`Catalog component render correct 1`] = `
            places to stay in 
           NY
         </b>
+        <form
+          action="#"
+          className="places__sorting"
+          method="get"
+        >
+          <span
+            className="places__sorting-caption"
+          >
+            Sort by 
+          </span>
+        </form>
       </section>
       <div
         className="cities__right-section"
