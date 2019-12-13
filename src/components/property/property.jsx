@@ -12,11 +12,10 @@ import Map from "../map/map";
 import PlacesList from "../places-list/places-list";
 import {getAuthorizationStatus} from "../../reducer/user/selector";
 import ReviewForm from "../review-form/review-form";
-import withInputsChange from "../../hocs/with-form-state/with-inputs-change";
 import {Operation} from "../../reducer/data/data";
 import withReviewSubmit from "../../hocs/with-review-submit/with-review-submit";
 
-const ReviewFormWrapped = withInputsChange(withReviewSubmit(ReviewForm));
+const ReviewFormWrapped = withReviewSubmit(ReviewForm);
 
 const Property = (props) => {
   const {
@@ -134,7 +133,7 @@ const Property = (props) => {
 
               <ReviewList id={id}/>
 
-              {isAuthorized && <ReviewFormWrapped  id={id}/>}
+              {isAuthorized && <ReviewFormWrapped id={id}/>}
             </section>
           </div>
         </div>
@@ -178,8 +177,11 @@ Property.propTypes = {
   currentCity: PropTypes.string.isRequired,
   currentOffer: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
   nearbyOffers: PropTypes.array.isRequired,
   nearbyOffersCoordinates: PropTypes.array.isRequired,
+  onAddFavorite: PropTypes.func.isRequired,
+  onRemoveFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {

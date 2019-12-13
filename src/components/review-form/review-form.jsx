@@ -1,19 +1,20 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data";
+import PropTypes from "prop-types";
 
 const ReviewForm = (props) => {
-  const {onInputChange, rating, review, id, onSendForm, onValidForm, isValid, onFormBlock, formRef} = props;
+  const {onInputChange, rating, review, id, onSendForm, onFormReset, isValid, formRef} = props;
 
   const sendFormData = (evt) => {
     evt.preventDefault();
 
-    onFormBlock();
     onSendForm(id, {rating: Number(rating), comment: review});
+    onFormReset();
   };
 
   return (
-    <form ref={formRef} className="reviews__form form" action="#" method="post" onSubmit={sendFormData} onChange={onValidForm}>
+    <form ref={formRef} className="reviews__form form" action="#" method="post" onSubmit={sendFormData}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         <input onChange={onInputChange} className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"/>
@@ -51,7 +52,7 @@ const ReviewForm = (props) => {
           </svg>
         </label>
       </div>
-      <textarea onChange={onInputChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"/>
+      <textarea value={review || ``} onChange={onInputChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"/>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay
@@ -65,6 +66,20 @@ const ReviewForm = (props) => {
       </div>
     </form>
   );
+};
+
+ReviewForm.propTypes = {
+  formRef: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
+  isValid: PropTypes.bool.isRequired,
+  onFormReset: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSendForm: PropTypes.func.isRequired,
+  rating: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  review: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({

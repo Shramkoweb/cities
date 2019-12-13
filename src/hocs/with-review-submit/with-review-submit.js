@@ -5,18 +5,23 @@ const withReviewSubmit = (Component) => {
     constructor(props) {
       super(props);
 
+      this._formRef = React.createRef();
+
       this.state = {
         isValid: false,
-        isBlocked: false,
-        formRef: React.createRef()
       };
 
       this._checkFormValidate = this._checkFormValidate.bind(this);
       this._resetForm = this._resetForm.bind(this);
+      this._handleInputChange = this._handleInputChange.bind(this);
+    }
+
+    componentDidUpdate() {
+      this._checkFormValidate();
     }
 
     _checkFormValidate() {
-      const {rating, review = ``} = this.props;
+      const {rating, review = ``} = this.state;
 
       if (rating && (review.length >= 50)) {
         this.setState({
@@ -25,19 +30,26 @@ const withReviewSubmit = (Component) => {
       }
     }
 
-    _resetForm() {
-      const {onResetState} = this.props;
+    _handleInputChange(evt) {
+      this.setState({[evt.target.name]: evt.target.value});
+    }
 
-      this.state.formRef.current.reset();
-      onResetState();
+    _resetForm() {
+      this.setState({
+        rating: ``,
+        review: ``,
+        isValid: false
+      });
+
+      this._formRef.current.reset();
     }
 
     render() {
       return (
         <Component
-          onValidForm={this._checkFormValidate}
-          formRef={this.state.formRef}
-          onFormBlock={this._resetForm}
+          onInputChange={this._handleInputChange}
+          onFormReset={this._resetForm}
+          formRef={this._formRef}
           {...this.props}
           {...this.state}
         />

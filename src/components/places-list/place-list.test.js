@@ -42,6 +42,7 @@ it(`PlacesList component render correct`, () => {
     .create(
         <PlacesList
           offers={OFFERS}
+          changeActiveOffer={jest.fn()}
           onSelect={jest.fn()}
         />)
     .toJSON();
