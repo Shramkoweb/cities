@@ -10,6 +10,12 @@ import Header from "../header/header";
 import ReviewList from "../review-list/review-list";
 import Map from "../map/map";
 import PlacesList from "../places-list/places-list";
+import {getAuthorizationStatus} from "../../reducer/user/selector";
+import ReviewForm from "../review-form/review-form";
+import {Operation} from "../../reducer/data/data";
+import withReviewSubmit from "../../hocs/with-review-submit/with-review-submit";
+
+const ReviewFormWrapped = withReviewSubmit(ReviewForm);
 
 const Property = (props) => {
   const {
@@ -19,6 +25,9 @@ const Property = (props) => {
     id,
     nearbyOffers,
     nearbyOffersCoordinates,
+    isAuthorized,
+    onAddFavorite,
+    onRemoveFavorite
   } = props;
 
   const {
@@ -40,6 +49,15 @@ const Property = (props) => {
     type,
   } = currentOffer;
 
+  // TODO если будет время вынести в отдельный компонент фаворитную кнопуку
+  const onFavoriteButtonClick = () => {
+    if (isFavorite) {
+      onRemoveFavorite(id);
+    } else {
+      onAddFavorite(id);
+    }
+  };
+
   return (
     <PageLayout pageClasses={[`page__main`, `page__main--property`]}>
       <Header/>
@@ -58,6 +76,7 @@ const Property = (props) => {
                 {title}
               </h1>
               <button
+                onClick={onFavoriteButtonClick}
                 className={`property__bookmark-button button ${isFavorite && `property__bookmark-button--active`}`}
                 type="button">
                 <svg className="property__bookmark-icon" width="31" height="33">
@@ -114,6 +133,7 @@ const Property = (props) => {
 
               <ReviewList id={id}/>
 
+              {isAuthorized && <ReviewFormWrapped id={id}/>}
             </section>
           </div>
         </div>
@@ -157,8 +177,11 @@ Property.propTypes = {
   currentCity: PropTypes.string.isRequired,
   currentOffer: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
   nearbyOffers: PropTypes.array.isRequired,
   nearbyOffersCoordinates: PropTypes.array.isRequired,
+  onAddFavorite: PropTypes.func.isRequired,
+  onRemoveFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -168,10 +191,16 @@ const mapStateToProps = (state, ownProps) => {
     activeOffer: getHoveredOffer(state),
     currentCity: getActiveCity(state),
     currentOffer: getOfferById(state, ownProps.id),
+    isAuthorized: !getAuthorizationStatus(state),
     nearbyOffers: nearbyOffers || [],
     nearbyOffersCoordinates: nearbyOffers.map((offer) => offer.location.coordinates),
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  onAddFavorite: (id) => dispatch(Operation.addToFavorites(id)),
+  onRemoveFavorite: (id) => dispatch(Operation.removeFromFavorite(id))
+});
+
 export {Property};
-export default connect(mapStateToProps)(Property);
+export default connect(mapStateToProps, mapDispatchToProps)(Property);

@@ -96,6 +96,13 @@ const Operation = {
         });
     };
   },
+
+  sendReview: (id, review) => (dispatch, _, api) => {
+    return api.post(`${RequestUrl.COMMENTS}/${id}`, review)
+      .then(({data}) => {
+        dispatch(ActionCreator.getReviews(ReviewAdapter.parseReviews(data, id)));
+      });
+  }
 };
 
 const getOffersWithReplacedFavorite = (offers, favorite) => {

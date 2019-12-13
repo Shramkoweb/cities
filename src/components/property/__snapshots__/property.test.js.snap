@@ -37,6 +37,7 @@ exports[`Property render is correct 1`] = `
           </h1>
           <button
             className="property__bookmark-button button false"
+            onClick={[Function]}
             type="button"
           >
             <svg
