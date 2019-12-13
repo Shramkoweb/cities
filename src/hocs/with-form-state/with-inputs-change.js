@@ -13,11 +13,17 @@ export const withInputsChange = (Component) => {
       this.setState({[evt.target.name]: evt.target.value});
     }
 
+    _resetState() {
+      const initialState = {};
+      this.setState({});
+    }
+
     render() {
       return (
         <Component
           {...this.props}
           {...this.state}
+          onResetState={this._resetState}
           onInputChange={this._handleInputChange}
         />
       );

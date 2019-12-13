@@ -14,8 +14,9 @@ import {getAuthorizationStatus} from "../../reducer/user/selector";
 import ReviewForm from "../review-form/review-form";
 import withInputsChange from "../../hocs/with-form-state/with-inputs-change";
 import {Operation} from "../../reducer/data/data";
+import withReviewSubmit from "../../hocs/with-review-submit/with-review-submit";
 
-const ReviewFormWrapped = withInputsChange(ReviewForm);
+const ReviewFormWrapped = withInputsChange(withReviewSubmit(ReviewForm));
 
 const Property = (props) => {
   const {
