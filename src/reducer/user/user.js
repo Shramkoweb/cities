@@ -1,4 +1,5 @@
 import userDataAdapter from "../../adapters/user-data-adapter";
+import {REQUEST} from "../../constants";
 
 const initialState = {
   isAuthorizationRequired: true,
@@ -29,7 +30,17 @@ const Operation = {
         dispatch(ActionCreator.authorization(userDataAdapter(data)));
         dispatch(ActionCreator.requireAuthorization(false));
       });
-  }
+  },
+
+  onCheckAuth: () => (dispatch, _, api) => {
+    return api.get(`/login`)
+      .then(({status, data}) => {
+        if (status === REQUEST.STATUS_CODE.SUCCESS) {
+          dispatch(ActionCreator.authorization(userDataAdapter(data)));
+          dispatch(ActionCreator.requireAuthorization(false));
+        }
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
