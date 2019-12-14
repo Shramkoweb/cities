@@ -9,9 +9,12 @@ import {PageAddress} from "../../constants";
 import Loader from "../loader/loader";
 import Property from "../property/property";
 import {getLoadingStatus} from "../../reducer/data/selector";
+import withPrivateRoute from "../../hocs/with-private-route/with-private-route";
+import FavoritesPage from "../favorites-page/favorites-page";
 
 const App = (props) => {
-  const {isLoading} = props;
+  const {isLoading, isAuthorizationRequired} = props;
+  const FavoritesPrivate = withPrivateRoute(isAuthorizationRequired, PageAddress.MAIN)(FavoritesPage);
 
   return (
     <>
@@ -22,6 +25,7 @@ const App = (props) => {
             <Route path={PageAddress.MAIN} exact component={MainPage}/>
             <Route path={PageAddress.LOGIN} exact component={Sign}/>
             <Route path={`${PageAddress.OFFER}/:id`} exact render={({match}) => <Property id={Number(match.params.id)}/> }/>
+            <Route path={PageAddress.FAVORITE} exact component={FavoritesPrivate} />
             <Redirect from='*' to={PageAddress.MAIN}/>
           </Switch>
       }

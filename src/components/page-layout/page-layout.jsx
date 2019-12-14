@@ -15,7 +15,7 @@ const PageLayout = (props) => {
 };
 
 PageLayout.propTypes = {
-  pageClasses: PropTypes.arrayOf(PropTypes.string).isRequired,
+  pageClasses: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,
