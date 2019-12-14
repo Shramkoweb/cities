@@ -19,7 +19,7 @@ class FavoritesPage extends PureComponent {
     const {favorites, cities} = this.props;
 
     return (
-      <PageLatout pageClasses={[`page--favorites-empty`]}>
+      <PageLatout pageClasses={cities.length === 0 ? [`page--favorites-empty`] : ``}>
         <Header/>
         {
           cities.length !== 0 ?

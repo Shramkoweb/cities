@@ -92,11 +92,12 @@ const getGroupingFavoritesByCities = createSelector(
         return false;
       }
 
-      const citiesKeys = [...new Set([...favoriteOffers.map((item) => item.city.name)])];
       const group = {};
-      citiesKeys.forEach((item) => {
-        group[item] = [];
+
+      favoriteOffers.forEach((item) => {
+        group[item.city.name] = [];
       });
+
       favoriteOffers.forEach((item) => {
         group[item.city.name].push(item);
       });
