@@ -24,7 +24,7 @@ const activeIcon = Leaflet.icon({
 });
 
 const setMapView = (map, currentCity, zoom) => {
-  map.setView(Constants.CITIES_COORDINATES.get(currentCity), zoom); // TODO убрать константы
+  map.setView(Constants.CITIES_COORDINATES.get(currentCity), zoom);
 };
 
 const renderMarkers = (leaflet, coordinates, markerGroup, activeOffer) => {

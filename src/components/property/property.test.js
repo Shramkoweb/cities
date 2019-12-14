@@ -31,8 +31,11 @@ it(`Property render is correct`, () => {
     .create(
         <Property
           id={1}
+          isAuthorized={false}
           currentCity={`Paris`}
+          onAddFavorite={jest.fn()}
           nearbyOffers={[]}
+          onRemoveFavorite={jest.fn()}
           nearbyOffersCoordinates={[]}
           currentOffer={mockOffer}
         />

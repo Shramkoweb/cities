@@ -11,6 +11,7 @@ const PlaceCard = (props) => {
     offer,
     onCardHover,
     onAddFavorite,
+    loadFavorites,
     onRemoveFavorite
   } = props;
 
@@ -32,6 +33,7 @@ const PlaceCard = (props) => {
   const onFavoriteButtonClick = () => {
     if (isFavorite) {
       onRemoveFavorite(id);
+      loadFavorites();
     } else {
       onAddFavorite(id);
     }
@@ -105,13 +107,15 @@ PlaceCard.propTypes = {
     type: PropTypes.string.isRequired,
   }),
   onCardHover: PropTypes.func.isRequired,
+  loadFavorites: PropTypes.func.isRequired,
   onAddFavorite: PropTypes.func.isRequired,
   onRemoveFavorite: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onAddFavorite: (id) => dispatch(Operation.addToFavorites(id)),
-  onRemoveFavorite: (id) => dispatch(Operation.removeFromFavorite(id))
+  onRemoveFavorite: (id) => dispatch(Operation.removeFromFavorite(id)),
+  loadFavorites: () => dispatch(Operation.loadFavorites()),
 });
 
 export {PlaceCard};

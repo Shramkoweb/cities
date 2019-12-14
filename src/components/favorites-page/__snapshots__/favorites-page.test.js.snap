@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavoritesPage should correctly render FavoritesPage empty page renders correctly 1`] = `
+<mockConstructor
+  pageClasses={
+    Array [
+      "page--favorites-empty",
+    ]
+  }
+>
+  <mockConstructor />
+  <main
+    className="page__main page__main--favorites page__main--favorites-empty"
+  >
+    <div
+      className="page__favorites-container container"
+    >
+      <section
+        className="favorites favorites--empty"
+      >
+        <h1
+          className="visually-hidden"
+        >
+          Favorites (empty)
+        </h1>
+        <div
+          className="favorites__status-wrapper"
+        >
+          <b
+            className="favorites__status"
+          >
+            Nothing yet saved.
+          </b>
+          <p
+            className="favorites__status-description"
+          >
+            Save properties to narrow down search or plan yor future trips.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer
+    className="footer container"
+  >
+    <Link
+      className="footer__logo-link"
+      to="/"
+    >
+      <img
+        alt="6 cities logo"
+        className="footer__logo"
+        height="33"
+        src="img/logo.svg"
+        width="64"
+      />
+    </Link>
+  </footer>
+</mockConstructor>
+`;
+
+exports[`FavoritesPage should correctly render FavoritesPage is renders correctly 1`] = `
+<mockConstructor
+  pageClasses={
+    Array [
+      "",
+    ]
+  }
+>
+  <mockConstructor />
+  <main
+    className="page__main page__main--favorites"
+  >
+    <div
+      className="page__favorites-container container"
+    >
+      <section
+        className="favorites"
+      >
+        <h1
+          className="favorites__title"
+        >
+          Saved listing
+        </h1>
+        <ul
+          className="favorites__list"
+        >
+          <withRouter(Connect(FavoritesList))
+            cities={
+              Array [
+                "Amsterdam",
+              ]
+            }
+            favorites={Object {}}
+          />
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer
+    className="footer container"
+  >
+    <Link
+      className="footer__logo-link"
+      to="/"
+    >
+      <img
+        alt="6 cities logo"
+        className="footer__logo"
+        height="33"
+        src="img/logo.svg"
+        width="64"
+      />
+    </Link>
+  </footer>
+</mockConstructor>
+`;

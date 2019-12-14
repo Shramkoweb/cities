@@ -1,5 +1,4 @@
 import React, {PureComponent} from "react";
-// TODO переименовать папку этого ХОК-а
 
 export const withInputsChange = (Component) => {
   class WithInputsChange extends PureComponent {

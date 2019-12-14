@@ -11,6 +11,7 @@ export const RequestUrl = {
 const initialState = {
   activeOffer: null,
   currentCity: null,
+  favorites: [],
   isLoading: true,
   offers: [],
   reviews: {},
@@ -25,6 +26,7 @@ const Action = {
   CHANGE_OFFERS: `CHANGE_OFFERS`,
   GET_REVIEWS: `GET_REVIEWS`,
   SET_SORT_TYPE: `SET_SORT_TYPE`,
+  CHANGE_FAVORITES: `CHANGE_FAVORITES`,
 };
 
 const ActionCreator = {
@@ -62,6 +64,11 @@ const ActionCreator = {
     type: Action.GET_REVIEWS,
     payload: reviews
   }),
+
+  changeFavorites: (list) => ({
+    type: Action.CHANGE_FAVORITES,
+    payload: list,
+  })
 };
 
 const Operation = {
@@ -71,6 +78,13 @@ const Operation = {
         dispatch(ActionCreator.changeOffers(data));
         dispatch(ActionCreator.changeCity(data[0].city.name));
         dispatch(ActionCreator.changeLoadStatus());
+      });
+  },
+
+  loadFavorites: () => (dispatch, _, api) => {
+    return api.get(RequestUrl.FAVORITE)
+      .then(({data}) => {
+        dispatch(ActionCreator.changeFavorites(data));
       });
   },
 
@@ -122,6 +136,8 @@ const reducer = (state = initialState, action) => {
     case Action.CHANGE_OFFERS:
       const parsedOffers = PlaceCardAdapter.parseOffers(action.payload);
       return Object.assign({}, state, {offers: parsedOffers});
+    case Action.CHANGE_FAVORITES:
+      return Object.assign({}, state, {favorites: PlaceCardAdapter.parseOffers(action.payload)});
     case Action.GET_REVIEWS:
       return Object.assign({}, state, {reviews: action.payload});
     case Action.SET_SORT_TYPE:

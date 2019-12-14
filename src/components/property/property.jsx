@@ -49,7 +49,6 @@ const Property = (props) => {
     type,
   } = currentOffer;
 
-  // TODO если будет время вынести в отдельный компонент фаворитную кнопуку
   const onFavoriteButtonClick = () => {
     if (isFavorite) {
       onRemoveFavorite(id);
