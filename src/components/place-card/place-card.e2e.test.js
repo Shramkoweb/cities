@@ -23,6 +23,7 @@ describe(`PlaceCard callbacks are called correct`, () => {
         onSelect={jest.fn()}
         onAddFavorite={jest.fn()}
         onRemoveFavorite={jest.fn()}
+        loadFavorites={jest.fn()}
         onCardHover={onPlaceCardHover}
       />
   );

@@ -21,7 +21,9 @@ it(`PlaceCard component render correct`, () => {
       offer={offerData}
       onAddFavorite={jest.fn()}
       onRemoveFavorite={jest.fn()}
-      onCardHover={jest.fn()}/>)
+      onCardHover={jest.fn()}
+      loadFavorites={jest.fn()}
+    />)
     .toJSON();
 
   expect(placeCardComponent).toMatchSnapshot();
