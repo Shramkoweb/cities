@@ -2,7 +2,7 @@ import React from "react";
 import {shallow, configure} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {Header} from "./header";
-// TODO сделать общий конфиг для тестов
+
 configure({adapter: new Adapter()});
 
 describe(`Header component should render is correctly`, () => {

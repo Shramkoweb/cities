@@ -66,7 +66,6 @@ const getSortedOffers = createSelector(
     }
 );
 
-// TODO возможно сделать расчет растояния и брать ближайщие
 const getNearbyOffers = createSelector(
     getOffers,
     getFilteredOffers,

@@ -8,7 +8,7 @@ import {SignForm} from "../../components/sign-form/sign-form";
 jest.mock(`../../index.js`, () => jest.fn().mockReturnValue(null));
 jest.mock(`../../constants.js`, () => jest.fn().mockReturnValue(null));
 
-Enzyme.configure({adapter: new Adapter()}); // TODO переименовать папку
+Enzyme.configure({adapter: new Adapter()});
 
 describe(`WithSignForm wrapper work correct`, () => {
   const FormWrapped = withInputsChange(SignForm);
