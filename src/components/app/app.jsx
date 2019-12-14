@@ -14,10 +14,6 @@ import FavoritesPage from "../favorites-page/favorites-page";
 import {Operation} from "../../reducer/user/user";
 
 class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const {onCheckAuth} = this.props;
 
@@ -29,8 +25,6 @@ class App extends React.PureComponent {
     const FavoritesPrivate = withPrivateRoute(isAuthorizationRequired, PageAddress.MAIN)(FavoritesPage);
 
     return (
-
-
       <>
         {
           isLoading ? <Loader/>

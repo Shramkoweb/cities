@@ -9,10 +9,6 @@ import FavoritesList from "./../favorites-list/favorites-list.jsx";
 import Header from "../header/header";
 
 class FavoritesPage extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const {onLoadFavorites} = this.props;
 
