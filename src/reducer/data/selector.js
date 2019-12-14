@@ -8,6 +8,11 @@ const getActiveCity = (state) => {
   return state[NAME_SPACE].currentCity;
 };
 
+const getFavorites = (state) => {
+  return state[NAME_SPACE].favorites;
+};
+
+
 const getLoadingStatus = (state) => {
   return state[NAME_SPACE].isLoading;
 };
@@ -80,9 +85,31 @@ const getHoveredOffer = createSelector(
     (offers, id) => offers.find((item) => item.id === id)
 );
 
+const getGroupingFavoritesByCities = createSelector(
+    getFavorites,
+    (favoriteOffers) => {
+      if (favoriteOffers.length === 0) {
+        return false;
+      }
+
+      const citiesKeys = [...new Set([...favoriteOffers.map((item) => item.city.name)])];
+      const group = {};
+      citiesKeys.forEach((item) => {
+        group[item] = [];
+      });
+      favoriteOffers.forEach((item) => {
+        group[item.city.name].push(item);
+      });
+
+      return group;
+    }
+);
+
 export {
   getActiveCity,
   getCities,
+  getFavorites,
+  getGroupingFavoritesByCities,
   getCoordinates,
   getFilteredOffers,
   getHoveredOffer,
