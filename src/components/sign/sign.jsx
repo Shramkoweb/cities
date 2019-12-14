@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import SignForm from "../sign-form/sign-form";
 import PageLayout from "../page-layout/page-layout";
 import Header from "../header/header";
-import withInputsChange from "../../hocs/with-form-state/with-inputs-change";
+import withInputsChange from "../../hocs/with-inputs-change/with-inputs-change";
 import {getActiveCity} from "../../reducer/data/selector";
 
 const SignFormWrapped = withInputsChange(SignForm);

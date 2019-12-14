@@ -3,7 +3,7 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import toJson from 'enzyme-to-json';
 import withActiveElement from "./with-active-element";
-import {Tabs} from "../components/tabs/tabs";
+import {Tabs} from "../../components/tabs/tabs";
 
 Enzyme.configure({adapter: new Adapter()});
 

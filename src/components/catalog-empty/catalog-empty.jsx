@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs";
-import withActiveElement from "../../hocs/with-active-element";
+import withActiveElement from "../../hocs/with-active-element/with-active-element";
 
 const TabsWrapped = withActiveElement(Tabs);
 

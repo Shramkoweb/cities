@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FavoritesPage should correctly render FavoritesPage empty page renders correctly 1`] = `
-<PageLayout
+<mockConstructor
   pageClasses={
     Array [
       "page--favorites-empty",
     ]
   }
 >
-  <Connect(Header) />
+  <mockConstructor />
   <main
     className="page__main page__main--favorites page__main--favorites-empty"
   >
@@ -56,18 +56,18 @@ exports[`FavoritesPage should correctly render FavoritesPage empty page renders 
       />
     </Link>
   </footer>
-</PageLayout>
+</mockConstructor>
 `;
 
 exports[`FavoritesPage should correctly render FavoritesPage is renders correctly 1`] = `
-<PageLayout
+<mockConstructor
   pageClasses={
     Array [
-      "page--favorites-empty",
+      "",
     ]
   }
 >
-  <Connect(Header) />
+  <mockConstructor />
   <main
     className="page__main page__main--favorites"
   >
@@ -113,5 +113,5 @@ exports[`FavoritesPage should correctly render FavoritesPage is renders correctl
       />
     </Link>
   </footer>
-</PageLayout>
+</mockConstructor>
 `;
