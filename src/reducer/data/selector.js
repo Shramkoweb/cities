@@ -94,10 +94,7 @@ const getGroupingFavoritesByCities = createSelector(
       const group = {};
 
       favoriteOffers.forEach((item) => {
-        group[item.city.name] = [];
-      });
-
-      favoriteOffers.forEach((item) => {
+        group[item.city.name] = group[item.city.name] || [];
         group[item.city.name].push(item);
       });
 
