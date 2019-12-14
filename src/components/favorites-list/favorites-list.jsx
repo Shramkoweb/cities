@@ -7,7 +7,7 @@ import {compose} from "recompose";
 import {ActionCreator} from "../../reducer/data/data";
 import CardPlace from "../place-card/place-card.jsx";
 
-class Favorites extends PureComponent {
+class FavoritesList extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -25,7 +25,6 @@ class Favorites extends PureComponent {
 
   render() {
     const {favorites, cities} = this.props;
-    console.log(this.props);
 
     return (
       <ul className="favorites__list" aria-live="polite" role="status">
@@ -61,7 +60,7 @@ class Favorites extends PureComponent {
   }
 }
 
-Favorites.propTypes = {
+FavoritesList.propTypes = {
   favorites: PropTypes.object.isRequired,
   cities: PropTypes.array.isRequired,
   history: PropTypes.object.isRequired,
@@ -73,9 +72,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const enhance = compose(
-  withRouter,
-  connect(null, mapDispatchToProps)
+    withRouter,
+    connect(null, mapDispatchToProps)
 );
 
-export {Favorites};
-export default enhance(Favorites);
+export {FavoritesList};
+export default enhance(FavoritesList);

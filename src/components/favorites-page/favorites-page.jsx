@@ -2,11 +2,10 @@ import React, {PureComponent} from "react";
 import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-
-import Layout from "../page-layout/page-layout.jsx";
+import PageLatout from "../page-layout/page-layout.jsx";
 import {Operation} from "../../reducer/data/data";
 import {getGroupingFavoritesByCities} from "../../reducer/data/selector";
-import Favorites from "./../favorites-list/favorites-list.jsx";
+import FavoritesList from "./../favorites-list/favorites-list.jsx";
 import Header from "../header/header";
 
 class FavoritesPage extends PureComponent {
@@ -24,7 +23,7 @@ class FavoritesPage extends PureComponent {
     const {favorites, cities} = this.props;
 
     return (
-      <Layout pageClasses={[`page--favorites-empty`]}>
+      <PageLatout pageClasses={[`page--favorites-empty`]}>
         <Header/>
         {
           cities.length !== 0 ?
@@ -33,7 +32,7 @@ class FavoritesPage extends PureComponent {
                 <section className="favorites">
                   <h1 className="favorites__title">Saved listing</h1>
                   <ul className="favorites__list">
-                    <Favorites favorites={favorites} cities={cities}/>
+                    <FavoritesList favorites={favorites} cities={cities}/>
                   </ul>
                 </section>
               </div>
@@ -56,7 +55,7 @@ class FavoritesPage extends PureComponent {
             <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
           </Link>
         </footer>
-      </Layout>
+      </PageLatout>
     );
   }
 }
