@@ -8,7 +8,7 @@ import {compose} from "recompose";
 import {Provider} from "react-redux";
 import App from "./components/app/app";
 import createAPI from "./api";
-import reducer from "./reducer/index";
+import reducer from "./reducer/reducer";
 import {Operation} from "./reducer/data/data";
 import {PageAddress} from "./constants";
 
