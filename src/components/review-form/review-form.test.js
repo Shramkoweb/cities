@@ -9,7 +9,7 @@ configure({adapter: new Adapter()});
 it(`Review form renders correctly`, () => {
   const reviewForm = shallow(<ReviewForm
     onInputChange={jest.fn()}
-    rating={5}
+    rating={`5`}
     review={`Some test`}
     id={5}
     onSendForm={jest.fn()}

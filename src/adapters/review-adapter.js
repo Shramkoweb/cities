@@ -16,7 +16,7 @@ class ReviewAdapter {
         };
       })
         .sort((current, next) => {
-          return (current.date) < (next.date) ? 1 : -1;
+          return new Date(current.date) < new Date(next.date) ? 1 : -1;
         })
         .slice(0, Constants.MAX_REVIEW_AMOUNT)
     };

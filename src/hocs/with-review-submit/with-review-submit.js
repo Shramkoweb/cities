@@ -16,10 +16,6 @@ const withReviewSubmit = (Component) => {
       this._handleInputChange = this._handleInputChange.bind(this);
     }
 
-    componentDidUpdate() {
-      this._checkFormValidate();
-    }
-
     _checkFormValidate() {
       const {rating, review = ``} = this.state;
 
@@ -31,17 +27,17 @@ const withReviewSubmit = (Component) => {
     }
 
     _handleInputChange(evt) {
-      this.setState({[evt.target.name]: evt.target.value});
+      this.setState({[evt.target.name]: evt.target.value}, () => this._checkFormValidate());
     }
 
     _resetForm() {
       this.setState({
-        rating: ``,
+        rating: 0,
         review: ``,
         isValid: false
       });
 
-      this._formRef.current.reset();
+      this._formRef.current.clear();
     }
 
     render() {
