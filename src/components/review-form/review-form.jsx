@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import StarRating from "../star-rating/star-rating";
 
 const ReviewForm = (props) => {
-  const {onInputChange, rating, review, id, onSendForm, onFormReset, isValid, formRef} = props;
+  const {onInputChange, rating, review, id, onSendForm, onFormReset, isValid  } = props;
 
   const sendFormData = (evt) => {
     evt.preventDefault();
@@ -15,7 +15,7 @@ const ReviewForm = (props) => {
   };
 
   return (
-    <form ref={formRef} className="reviews__form form" action="#" method="post" onSubmit={sendFormData}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={sendFormData}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
 
       <StarRating onInputChange={onInputChange} rating={rating}/>
@@ -37,7 +37,6 @@ const ReviewForm = (props) => {
 };
 
 ReviewForm.propTypes = {
-  formRef: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
   isValid: PropTypes.bool.isRequired,
   onFormReset: PropTypes.func.isRequired,

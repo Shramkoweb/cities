@@ -23,6 +23,10 @@ const withReviewSubmit = (Component) => {
         this.setState({
           isValid: true,
         });
+      } else {
+        this.setState({
+          isValid: false,
+        });
       }
     }
 
@@ -36,8 +40,6 @@ const withReviewSubmit = (Component) => {
         review: ``,
         isValid: false
       });
-
-      this._formRef.current.clear();
     }
 
     render() {
@@ -45,7 +47,6 @@ const withReviewSubmit = (Component) => {
         <Component
           onInputChange={this._handleInputChange}
           onFormReset={this._resetForm}
-          formRef={this._formRef}
           {...this.props}
           {...this.state}
         />
