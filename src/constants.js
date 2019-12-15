@@ -1,6 +1,7 @@
 const Constants = {
   MAX_RATING: 5,
   MAX_GALLERY_PHOTOS: 6,
+  MAX_REVIEW_AMOUNT: 10,
   MAX_MAP_MARKERS: 3,
   CITIES: [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`],
   CITIES_COORDINATES: new Map([
