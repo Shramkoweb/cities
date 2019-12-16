@@ -1,11 +1,10 @@
 import React from "react";
+import Constants from "../../constants";
 
 const withReviewSubmit = (Component) => {
   class WithReviewSubmit extends React.PureComponent {
     constructor(props) {
       super(props);
-
-      this._formRef = React.createRef();
 
       this.state = {
         isValid: false,
@@ -19,7 +18,7 @@ const withReviewSubmit = (Component) => {
     _checkFormValidate() {
       const {rating, review = ``} = this.state;
 
-      if (rating && (review.length >= 50)) {
+      if (rating && (review.length >= Constants.MIN_COMMENT_LENGTH)) {
         this.setState({
           isValid: true,
         });
