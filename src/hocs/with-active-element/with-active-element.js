@@ -6,10 +6,10 @@ const withActiveElement = (Component) => {
       super(props);
       this.state = {activeElement: null};
 
-      this.elementSelectHandler = this.elementSelectHandler.bind(this);
+      this.handleElementSelect = this.handleElementSelect.bind(this);
     }
 
-    elementSelectHandler(id) {
+    handleElementSelect(id) {
       this.setState({
         activeElement: id
       });
@@ -20,7 +20,7 @@ const withActiveElement = (Component) => {
         <Component
           {...this.props}
           activeElement={this.state.activeElement}
-          onSelect={this.elementSelectHandler}
+          onSelect={this.handleElementSelect}
         />
       );
     }
