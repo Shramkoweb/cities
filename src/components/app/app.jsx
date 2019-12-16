@@ -11,15 +11,8 @@ import Property from "../property/property";
 import {getLoadingStatus} from "../../reducer/data/selector";
 import withPrivateRoute from "../../hocs/with-private-route/with-private-route";
 import FavoritesPage from "../favorites-page/favorites-page";
-import {Operation} from "../../reducer/user/user";
 
 class App extends React.PureComponent {
-  componentDidMount() {
-    const {onCheckAuth} = this.props;
-
-    onCheckAuth();
-  }
-
   render() {
     const {isLoading, isAuthorizationRequired} = this.props;
     const FavoritesPrivate = withPrivateRoute(isAuthorizationRequired, PageAddress.MAIN)(FavoritesPage);
@@ -45,7 +38,6 @@ class App extends React.PureComponent {
 App.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  onCheckAuth: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -53,10 +45,5 @@ const mapStateToProps = (state) => ({
   isLoading: getLoadingStatus(state),
 });
 
-
-const mapDispatchToProps = (dispatch) => ({
-  onCheckAuth: () => dispatch(Operation.onCheckAuth()),
-});
-
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
