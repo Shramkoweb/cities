@@ -26,21 +26,24 @@ const SignForm = (props) => {
       method="post"
     >
       <div className="login__input-wrapper form__input-wrapper">
-        <label className="visually-hidden">E-mail</label>
+        <label htmlFor="login-email" className="visually-hidden">E-mail</label>
         <input
           onChange={onInputChange}
           value={email || ``}
+          id="login-email"
           className="login__input form__input"
           name="email"
           placeholder="Email"
           type="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           required
         />
       </div>
       <div className="login__input-wrapper form__input-wrapper">
-        <label className="visually-hidden">Password</label>
+        <label htmlFor="login-password" className="visually-hidden">Password</label>
         <input
           onChange={onInputChange}
+          id="login-password"
           className="login__input form__input"
           value={password || ``}
           name="password"
