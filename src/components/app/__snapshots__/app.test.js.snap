@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Is App render 1`] = `
+<div
+  class="loader-wrapper"
+>
+  <p
+    class="loader"
+  >
+    Loading...
+  </p>
+</div>
+`;
