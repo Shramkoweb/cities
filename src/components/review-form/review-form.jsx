@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import StarRating from "../star-rating/star-rating";
 
 const ReviewForm = (props) => {
-  const {onInputChange, rating, review, id, onSendForm, onFormReset, isValid  } = props;
+  const {onInputChange, rating, review, id, onSendForm, onFormReset, isValid} = props;
 
   const sendFormData = (evt) => {
     evt.preventDefault();

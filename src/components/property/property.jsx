@@ -14,6 +14,8 @@ import {getAuthorizationStatus} from "../../reducer/user/selector";
 import ReviewForm from "../review-form/review-form";
 import {Operation} from "../../reducer/data/data";
 import withReviewSubmit from "../../hocs/with-review-submit/with-review-submit";
+import {history} from "../../index";
+import {PageAddress} from "../../constants";
 
 const ReviewFormWrapped = withReviewSubmit(ReviewForm);
 
@@ -50,6 +52,11 @@ const Property = (props) => {
   } = currentOffer;
 
   const onFavoriteButtonClick = () => {
+    if (!isAuthorized) {
+      history.push(PageAddress.LOGIN);
+      return;
+    }
+
     if (isFavorite) {
       onRemoveFavorite(id);
     } else {

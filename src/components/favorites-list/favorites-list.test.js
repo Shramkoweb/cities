@@ -3,6 +3,8 @@ import {shallow, configure} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {FavoritesList} from "./favorites-list";
 
+jest.mock(`../place-card/place-card.jsx`, () => jest.fn().mockReturnValue(null));
+
 configure({adapter: new Adapter()});
 
 it(`FavoritesList is renders correctly`, () => {
@@ -14,5 +16,6 @@ it(`FavoritesList is renders correctly`, () => {
         favorites={{'Amsterdam': []}}
       />
   );
+
   expect(favorites).toMatchSnapshot();
 });

@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import {convertFloatToPercentage} from "../../utils";
 import {Operation} from "../../reducer/data/data";
 import {PageAddress} from "../../constants";
+import {getAuthorizationStatus} from "../../reducer/user/selector";
+import {history} from "../../index";
 
 const PlaceCard = (props) => {
   const {
@@ -12,7 +14,8 @@ const PlaceCard = (props) => {
     onCardHover,
     onAddFavorite,
     loadFavorites,
-    onRemoveFavorite
+    onRemoveFavorite,
+    isAuthRequire
   } = props;
 
   const {
@@ -31,6 +34,11 @@ const PlaceCard = (props) => {
   };
 
   const onFavoriteButtonClick = () => {
+    if (isAuthRequire) {
+      history.push(PageAddress.LOGIN);
+      return;
+    }
+
     if (isFavorite) {
       onRemoveFavorite(id);
       loadFavorites();
@@ -107,10 +115,15 @@ PlaceCard.propTypes = {
     type: PropTypes.string.isRequired,
   }),
   onCardHover: PropTypes.func.isRequired,
+  isAuthRequire: PropTypes.bool.isRequired,
   loadFavorites: PropTypes.func.isRequired,
   onAddFavorite: PropTypes.func.isRequired,
-  onRemoveFavorite: PropTypes.func.isRequired
+  onRemoveFavorite: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  isAuthRequire: getAuthorizationStatus(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onAddFavorite: (id) => dispatch(Operation.addToFavorites(id)),
@@ -119,4 +132,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {PlaceCard};
-export default connect(null, mapDispatchToProps)(PlaceCard);
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceCard);

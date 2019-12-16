@@ -3,6 +3,8 @@ import renderer from "react-test-renderer";
 import {PlaceCard} from "./place-card";
 
 jest.mock(`react-router-dom`);
+jest.mock(`../../index.js`, () => jest.fn().mockReturnValue(null));
+
 
 const offerData = {
   id: 834576,
@@ -18,11 +20,12 @@ const offerData = {
 it(`PlaceCard component render correct`, () => {
   const placeCardComponent = renderer
     .create(<PlaceCard
+      isAuthRequire={false}
+      loadFavorites={jest.fn()}
       offer={offerData}
       onAddFavorite={jest.fn()}
-      onRemoveFavorite={jest.fn()}
       onCardHover={jest.fn()}
-      loadFavorites={jest.fn()}
+      onRemoveFavorite={jest.fn()}
     />)
     .toJSON();
 
