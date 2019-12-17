@@ -10,7 +10,12 @@ const getUserData = (state) => {
   return state[NAME_SPACE].userData;
 };
 
+const getError = (state) => {
+  return state[NAME_SPACE].error;
+};
+
 export {
   getAuthorizationStatus,
+  getError,
   getUserData,
 };

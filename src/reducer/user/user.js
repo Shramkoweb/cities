@@ -9,6 +9,7 @@ const initialState = {
 const Action = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   AUTHORIZATION: `AUTHORIZATION`,
+  ERROR: ``,
 };
 
 const ActionCreator = {
@@ -21,6 +22,11 @@ const ActionCreator = {
     type: Action.AUTHORIZATION,
     payload: userData
   }),
+
+  setError: (error) => ({
+    type: Action.ERROR,
+    payload: error,
+  }),
 };
 
 const Operation = {
@@ -29,7 +35,8 @@ const Operation = {
       .then(({data}) => {
         dispatch(ActionCreator.authorization(userDataAdapter(data)));
         dispatch(ActionCreator.requireAuthorization(false));
-      });
+      })
+      .catch(() => dispatch(ActionCreator.setError(`Something went wrong, check filled data 😥😥😥`)));
   },
 
   onCheckAuth: () => (dispatch, _, api) => {
@@ -40,7 +47,7 @@ const Operation = {
           dispatch(ActionCreator.requireAuthorization(false));
         }
       });
-  },
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -49,8 +56,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {isAuthorizationRequired: action.payload});
     case Action.AUTHORIZATION:
       return Object.assign({}, state, {userData: action.payload});
+    case Action.ERROR:
+      return Object.assign({}, state, {error: action.payload});
   }
   return state;
 };
 
-export {ActionCreator, Action, reducer, Operation};
+export {ActionCreator, Action, initialState, reducer, Operation};
