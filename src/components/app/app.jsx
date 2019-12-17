@@ -25,7 +25,7 @@ class App extends React.PureComponent {
 
   render() {
     const {isLoading, isAuthorizationRequired, isError} = this.props;
-    const FavoritesPrivate = withPrivateRoute(isAuthorizationRequired, PageAddress.MAIN)(FavoritesPage);
+    const FavoritesPrivate = withPrivateRoute(isAuthorizationRequired, PageAddress.LOGIN)(FavoritesPage);
 
     return (
       <>
