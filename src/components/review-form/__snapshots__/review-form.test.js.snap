@@ -19,10 +19,11 @@ exports[`Review form renders correctly 1`] = `
   />
   <textarea
     className="reviews__textarea form__textarea"
+    disabled={true}
     id="review"
     name="review"
     onChange={[MockFunction]}
-    placeholder="Tell how was your stay, what you like and what can be improved"
+    placeholder="Sending..."
     value="Some test"
   />
   <span
@@ -54,10 +55,10 @@ exports[`Review form renders correctly 1`] = `
     </p>
     <button
       className="reviews__submit form__submit button"
-      disabled={false}
+      disabled={true}
       type="submit"
     >
-      Submit
+      Sending...
     </button>
   </div>
 </form>

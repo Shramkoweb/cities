@@ -5,44 +5,58 @@ import PropTypes from "prop-types";
 import StarRating from "../star-rating/star-rating";
 import {getError, getStatusIsSentReview, getStatusSendingReview} from "../../reducer/data/selector";
 
-const ReviewForm = (props) => {
-  const {onInputChange, rating, review, id, onSendForm, onFormReset, onUpdateForm, isValid, isReviewSent, isReviewSending, error} = props;
+class ReviewForm extends React.PureComponent {
+  constructor(props) {
+    super(props);
 
-  const sendFormData = (evt) => {
-    evt.preventDefault();
-
-    onSendForm(id, {rating: Number(rating), comment: review});
-  };
-
-  if (isReviewSent) {
-    onUpdateForm();
-    onFormReset();
+    this._handleSubmitForm = this._handleSubmitForm.bind(this);
   }
 
-  return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={sendFormData}>
-      <label className="reviews__label form__label" htmlFor="review">Your review</label>
+  componentDidUpdate() {
+    const {isReviewSent, onUpdateForm, onFormReset} = this.props;
 
-      <StarRating onInputChange={onInputChange} rating={rating}/>
+    if (isReviewSent) {
+      onUpdateForm();
+      onFormReset();
+    }
+  }
 
-      <textarea disabled={isReviewSending} value={review || ``} onChange={onInputChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder={isReviewSending ? `Sending...` : `Tell how was your stay, what you like and what can be improved`}/>
-      <span style={{color: `red`}}>{error ? error : ``}</span>
-      <div className="reviews__button-wrapper">
-        <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay
-          with at least <b className="reviews__text-amount">50 characters</b>.
-        </p>
-        <button
-          className="reviews__submit form__submit button"
-          type="submit"
-          disabled={!(isValid && !isReviewSending)}
-        >
-          {isReviewSending ? `Sending...` : `Submit`}
-        </button>
-      </div>
-    </form>
-  );
-};
+  _handleSubmitForm(evt) {
+    evt.preventDefault();
+    const {onSendForm, rating, review, id} = this.props;
+
+    onSendForm(id, {rating: Number(rating), comment: review});
+  }
+
+  render() {
+    const {onInputChange, rating, review, isValid, isReviewSending, error} = this.props;
+
+    return (
+      <form className="reviews__form form" action="#" method="post" onSubmit={this._handleSubmitForm}>
+        <label className="reviews__label form__label" htmlFor="review">Your review</label>
+
+        <StarRating onInputChange={onInputChange} rating={rating}/>
+
+        <textarea disabled={isReviewSending} value={review || ``} onChange={onInputChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder={isReviewSending ? `Sending...` : `Tell how was your stay, what you like and what can be improved`}/>
+        <span style={{color: `red`}}>{error ? error : ``}</span>
+        <div className="reviews__button-wrapper">
+          <p className="reviews__help">
+            To submit review please make sure to set <span className="reviews__star">rating</span> and describe your
+            stay
+            with at least <b className="reviews__text-amount">50 characters</b>.
+          </p>
+          <button
+            className="reviews__submit form__submit button"
+            type="submit"
+            disabled={!(isValid && !isReviewSending)}
+          >
+            {isReviewSending ? `Sending...` : `Submit`}
+          </button>
+        </div>
+      </form>
+    );
+  }
+}
 
 ReviewForm.propTypes = {
   id: PropTypes.number.isRequired,
