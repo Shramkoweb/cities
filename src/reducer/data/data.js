@@ -99,7 +99,7 @@ const Operation = {
         dispatch(ActionCreator.changeCity(response.data[0].city.name));
         dispatch(ActionCreator.changeLoadStatus());
       })
-      .catch((response) => {
+      .catch(() => {
         dispatch(ActionCreator.showError(Constants.ERROR_MESSAGE));
       });
   },

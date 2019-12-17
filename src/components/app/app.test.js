@@ -12,6 +12,7 @@ it(`Is App render`, () => {
   const tree = render((<App
     isAuthorizationRequired={false}
     isLoading={true}
+    onCheckAuth={jest.fn()}
     isOfferExist={jest.fn()}
     isError={``}
   />));

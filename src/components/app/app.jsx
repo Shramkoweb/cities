@@ -47,8 +47,9 @@ class App extends React.PureComponent {
 
 App.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
+  isError: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.string
+  onCheckAuth: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
