@@ -186,4 +186,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {Action, Operation, reducer, ActionCreator};
+export {Action, Operation, reducer, getOffersWithReplacedFavorite, initialState, ActionCreator};
