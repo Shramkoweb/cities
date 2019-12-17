@@ -18,7 +18,7 @@ const withReviewSubmit = (Component) => {
     _checkFormValidate() {
       const {rating, review = ``} = this.state;
 
-      if (rating && (review.length >= Constants.MIN_COMMENT_LENGTH)) {
+      if (rating && ((review.length >= Constants.MIN_COMMENT_LENGTH) && (review.length < Constants.MAX_COMMENT_LENGTH))) {
         this.setState({
           isValid: true,
         });
