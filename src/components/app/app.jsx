@@ -8,10 +8,13 @@ import Sign from "../sign/sign";
 import {PageAddress} from "../../constants";
 import Loader from "../loader/loader";
 import Property from "../property/property";
-import {getLoadingStatus} from "../../reducer/data/selector";
+import {getError, getLoadingStatus} from "../../reducer/data/selector";
 import withPrivateRoute from "../../hocs/with-private-route/with-private-route";
 import FavoritesPage from "../favorites-page/favorites-page";
 import {Operation} from "../../reducer/user/user";
+import withExistOffer from "../../hocs/with-exist-offer/with-exist-offer";
+
+const PropertyWrapped = withExistOffer(Property);
 
 class App extends React.PureComponent {
   componentDidMount() {
@@ -21,18 +24,18 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const {isLoading, isAuthorizationRequired} = this.props;
+    const {isLoading, isAuthorizationRequired, isError} = this.props;
     const FavoritesPrivate = withPrivateRoute(isAuthorizationRequired, PageAddress.MAIN)(FavoritesPage);
 
     return (
       <>
         {
-          isLoading ? <Loader/>
+          isLoading ? <Loader isError={isError}/>
             :
             <Switch>
               <Route path={PageAddress.MAIN} exact component={MainPage}/>
               <Route path={PageAddress.LOGIN} exact component={Sign}/>
-              <Route path={`${PageAddress.OFFER}/:id`} exact render={({match}) => <Property id={Number(match.params.id)}/>}/>
+              <Route path={`${PageAddress.OFFER}/:id`} exact render={({match}) => <PropertyWrapped id={Number(match.params.id)}/>}/>
               <Route path={PageAddress.FAVORITE} exact component={FavoritesPrivate}/>
               <Redirect from='*' to={PageAddress.MAIN}/>
             </Switch>
@@ -44,18 +47,19 @@ class App extends React.PureComponent {
 
 App.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
+  isError: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   onCheckAuth: PropTypes.func.isRequired,
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  onCheckAuth: () => dispatch(Operation.onCheckAuth()),
+});
+
 const mapStateToProps = (state) => ({
   isAuthorizationRequired: getAuthorizationStatus(state),
   isLoading: getLoadingStatus(state),
-});
-
-
-const mapDispatchToProps = (dispatch) => ({
-  onCheckAuth: () => dispatch(Operation.onCheckAuth()),
+  isError: getError(state)
 });
 
 export {App};

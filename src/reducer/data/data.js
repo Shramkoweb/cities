@@ -1,6 +1,6 @@
 import PlaceCardAdapter from "../../adapters/place-card-adapter";
 import ReviewAdapter from "../../adapters/review-adapter";
-import {SortType} from "../../constants";
+import Constants, {SortType} from "../../constants";
 
 export const RequestUrl = {
   FAVORITE: `/favorite`,
@@ -13,6 +13,8 @@ const initialState = {
   currentCity: null,
   favorites: [],
   isLoading: true,
+  isReviewSending: false,
+  isReviewSent: false,
   offers: [],
   reviews: {},
   typeSort: SortType.POPULAR,
@@ -24,7 +26,10 @@ const Action = {
   CHANGE_LOAD_STATUS: `CHANGE_LOAD_STATUS`,
   CHANGE_OFFER_FAVORITE_STATUS: `CHANGE_OFFER_FAVORITE_STATUS`,
   CHANGE_OFFERS: `CHANGE_OFFERS`,
+  LOCK_FORM: `LOCK_FORM`,
+  CLEAN_FORM: `CLEAN_FORM`,
   GET_REVIEWS: `GET_REVIEWS`,
+  SHOW_ERROR: `SHOW_ERROR`,
   SET_SORT_TYPE: `SET_SORT_TYPE`,
   CHANGE_FAVORITES: `CHANGE_FAVORITES`,
 };
@@ -33,6 +38,21 @@ const ActionCreator = {
   changeCity: (city) => ({
     type: Action.CHANGE_CITY,
     payload: city
+  }),
+
+  showError: (error) => ({
+    type: Action.SHOW_ERROR,
+    payload: error,
+  }),
+
+  lockForm: (isLock) => ({
+    type: Action.LOCK_FORM,
+    payload: isLock,
+  }),
+
+  cleanForm: (isSent) => ({
+    type: Action.CLEAN_FORM,
+    payload: isSent,
   }),
 
   changeActiveOffer: (id) => ({
@@ -74,10 +94,13 @@ const ActionCreator = {
 const Operation = {
   loadOffers: () => (dispatch, _, api) => {
     return api.get(RequestUrl.HOTELS)
-      .then(({data}) => {
-        dispatch(ActionCreator.changeOffers(data));
-        dispatch(ActionCreator.changeCity(data[0].city.name));
+      .then((response) => {
+        dispatch(ActionCreator.changeOffers(response.data));
+        dispatch(ActionCreator.changeCity(response.data[0].city.name));
         dispatch(ActionCreator.changeLoadStatus());
+      })
+      .catch(() => {
+        dispatch(ActionCreator.showError(Constants.ERROR_MESSAGE));
       });
   },
 
@@ -115,6 +138,13 @@ const Operation = {
     return api.post(`${RequestUrl.COMMENTS}/${id}`, review)
       .then(({data}) => {
         dispatch(ActionCreator.getReviews(ReviewAdapter.parseReviews(data, id)));
+        dispatch(ActionCreator.lockForm(false));
+        dispatch(ActionCreator.cleanForm(true));
+        dispatch(ActionCreator.showError(``));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.lockForm(false));
+        dispatch(ActionCreator.showError(Constants.ERROR_MESSAGE));
       });
   }
 };
@@ -136,10 +166,16 @@ const reducer = (state = initialState, action) => {
     case Action.CHANGE_OFFERS:
       const parsedOffers = PlaceCardAdapter.parseOffers(action.payload);
       return Object.assign({}, state, {offers: parsedOffers});
+    case Action.SHOW_ERROR:
+      return Object.assign({}, state, {error: action.payload});
     case Action.CHANGE_FAVORITES:
       return Object.assign({}, state, {favorites: PlaceCardAdapter.parseOffers(action.payload)});
     case Action.GET_REVIEWS:
       return Object.assign({}, state, {reviews: action.payload});
+    case Action.LOCK_FORM:
+      return Object.assign({}, state, {isReviewSending: action.payload});
+    case Action.CLEAN_FORM:
+      return Object.assign({}, state, {isReviewSent: action.payload});
     case Action.SET_SORT_TYPE:
       return Object.assign({}, state, {typeSort: action.payload});
     case Action.CHANGE_OFFER_FAVORITE_STATUS:
@@ -150,4 +186,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {Action, Operation, reducer, ActionCreator};
+export {Action, Operation, reducer, getOffersWithReplacedFavorite, initialState, ActionCreator};

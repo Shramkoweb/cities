@@ -1,11 +1,10 @@
 import React from "react";
+import Constants from "../../constants";
 
 const withReviewSubmit = (Component) => {
   class WithReviewSubmit extends React.PureComponent {
     constructor(props) {
       super(props);
-
-      this._formRef = React.createRef();
 
       this.state = {
         isValid: false,
@@ -16,32 +15,30 @@ const withReviewSubmit = (Component) => {
       this._handleInputChange = this._handleInputChange.bind(this);
     }
 
-    componentDidUpdate() {
-      this._checkFormValidate();
-    }
-
     _checkFormValidate() {
       const {rating, review = ``} = this.state;
 
-      if (rating && (review.length >= 50)) {
+      if (rating && (review.length >= Constants.MIN_COMMENT_LENGTH)) {
         this.setState({
           isValid: true,
+        });
+      } else {
+        this.setState({
+          isValid: false,
         });
       }
     }
 
     _handleInputChange(evt) {
-      this.setState({[evt.target.name]: evt.target.value});
+      this.setState({[evt.target.name]: evt.target.value}, () => this._checkFormValidate());
     }
 
     _resetForm() {
       this.setState({
-        rating: ``,
+        rating: 0,
         review: ``,
         isValid: false
       });
-
-      this._formRef.current.reset();
     }
 
     render() {
@@ -49,7 +46,6 @@ const withReviewSubmit = (Component) => {
         <Component
           onInputChange={this._handleInputChange}
           onFormReset={this._resetForm}
-          formRef={this._formRef}
           {...this.props}
           {...this.state}
         />

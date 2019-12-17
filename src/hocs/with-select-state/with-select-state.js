@@ -13,7 +13,7 @@ const witSelectState = (Component) => {
       };
 
       this._handleSortClick = this._handleSortClick.bind(this);
-      this._onSelectOption = this._onSelectOption.bind(this);
+      this._handleOptionSelect = this._handleOptionSelect.bind(this);
     }
 
     _handleSortClick() {
@@ -22,7 +22,7 @@ const witSelectState = (Component) => {
       });
     }
 
-    _onSelectOption(value, name) {
+    _handleOptionSelect(value, name) {
       this.setState((currentState) => ({
         isOpen: !currentState.isOpen,
         labelName: name,
@@ -37,7 +37,7 @@ const witSelectState = (Component) => {
           isOpen={this.state.isOpen}
           labelName={this.state.labelName}
           onOpenSorting={this._handleSortClick}
-          onSelectOption={this._onSelectOption}
+          onSelectOption={this._handleOptionSelect}
         />
       );
     }

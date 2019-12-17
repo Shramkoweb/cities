@@ -39,6 +39,18 @@ const getCities = createSelector(
     (offers) => [...new Set(offers.map((item) => item.city.name))].sort()
 );
 
+const getStatusSendingReview = (state) => {
+  return state[NAME_SPACE].isReviewSending;
+};
+
+const getStatusIsSentReview = (state) => {
+  return state[NAME_SPACE].isReviewSent;
+};
+
+const getError = (state) => {
+  return state[NAME_SPACE].error;
+};
+
 const getTypeSort = (state) => {
   return state[NAME_SPACE].typeSort;
 };
@@ -64,12 +76,6 @@ const getSortedOffers = createSelector(
           return offers;
       }
     }
-);
-
-const getNearbyOffers = createSelector(
-    getOffers,
-    getFilteredOffers,
-    (offers, filteredOffers) => filteredOffers.slice(0, Constants.MAX_MAP_MARKERS)
 );
 
 const getOfferById = (state, id) => {
@@ -102,6 +108,24 @@ const getGroupingFavoritesByCities = createSelector(
     }
 );
 
+const getNearbyOffers = (state, id) => {
+  const offers = getFilteredOffers(state);
+  const currentOffer = getOfferById(state, id);
+  const nearbyOffers = offers.map((offer) => {
+    offer.dist = calcDistance([currentOffer.location.coordinates[0], currentOffer.location.coordinates[1], offer.location.coordinates[0], offer.location.coordinates[1]]);
+    return offer;
+  })
+    .sort((current, next) => {
+      return current.dist - next.dist;
+    })
+    .filter((item) => item.id !== currentOffer.id)
+    .slice(1, Constants.MAX_MAP_MARKERS);
+
+  return [currentOffer, ...nearbyOffers];
+};
+
+const calcDistance = (x1, y1, x2, y2) => Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+
 export {
   getActiveCity,
   getCities,
@@ -113,6 +137,9 @@ export {
   getLoadingStatus,
   getNearbyOffers,
   getOfferById,
+  getError,
+  getStatusIsSentReview,
+  getStatusSendingReview,
   getOffers,
   getReviews,
   getSortedOffers,

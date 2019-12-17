@@ -6,6 +6,8 @@ jest.mock(`../header/header.jsx`, () => jest.fn().mockReturnValue(null));
 jest.mock(`../review-list/review-list.jsx`, () => jest.fn().mockReturnValue(null));
 jest.mock(`../map/map.jsx`, () => jest.fn().mockReturnValue(null));
 jest.mock(`../places-list/places-list.jsx`, () => jest.fn().mockReturnValue(null));
+jest.mock(`../../index.js`, () => jest.fn().mockReturnValue(null));
+
 
 it(`Property render is correct`, () => {
   const mockOffer = {
@@ -14,6 +16,9 @@ it(`Property render is correct`, () => {
     title: `Waterfront with extraordinary view`,
     rating: 3,
     price: 1234,
+    city: {
+      name: `Moscow`
+    },
     images: [],
     goods: [`Washer`, `Towels`],
     bedrooms: 4,
@@ -30,14 +35,15 @@ it(`Property render is correct`, () => {
   const propertyComponent = renderer
     .create(
         <Property
+          currentCity={`Paris`}
+          currentOffer={mockOffer}
           id={1}
           isAuthorized={false}
-          currentCity={`Paris`}
-          onAddFavorite={jest.fn()}
+          onSetCurrentCity={jest.fn()}
           nearbyOffers={[]}
-          onRemoveFavorite={jest.fn()}
           nearbyOffersCoordinates={[]}
-          currentOffer={mockOffer}
+          onAddFavorite={jest.fn()}
+          onRemoveFavorite={jest.fn()}
         />
     )
     .toJSON();

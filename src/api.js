@@ -14,11 +14,12 @@ export const createAPI = (onLoginFail) => {
 
   const onFail = (err) => {
     if (err.response.status === REQUEST.STATUS_CODE.DENIED) {
-      onLoginFail();
-      return;
+      if (err.response.config.method === `get`) {
+        return false;
+      }
     }
-
-    throw err;
+    onLoginFail();
+    return true;
   };
 
   api.interceptors.response.use(onSuccess, onFail);

@@ -2,7 +2,11 @@ import React from "react";
 import {connect} from "react-redux";
 import {convertFloatToPercentage} from "../../utils";
 import PropTypes from "prop-types";
-import {getActiveCity, getHoveredOffer, getNearbyOffers, getOfferById} from "../../reducer/data/selector";
+import {
+  getActiveCity,
+  getNearbyOffers,
+  getOfferById
+} from "../../reducer/data/selector";
 import Gallery from "../gallery/gallery";
 import Goods from "../goods/goods";
 import PageLayout from "../page-layout/page-layout";
@@ -12,146 +16,161 @@ import Map from "../map/map";
 import PlacesList from "../places-list/places-list";
 import {getAuthorizationStatus} from "../../reducer/user/selector";
 import ReviewForm from "../review-form/review-form";
-import {Operation} from "../../reducer/data/data";
+import {ActionCreator, Operation} from "../../reducer/data/data";
 import withReviewSubmit from "../../hocs/with-review-submit/with-review-submit";
+import {history} from "../../index";
+import {PageAddress} from "../../constants";
 
 const ReviewFormWrapped = withReviewSubmit(ReviewForm);
 
-const Property = (props) => {
-  const {
-    activeOffer,
-    currentCity,
-    currentOffer,
-    id,
-    nearbyOffers,
-    nearbyOffersCoordinates,
-    isAuthorized,
-    onAddFavorite,
-    onRemoveFavorite
-  } = props;
+class Property extends React.PureComponent {
+  componentDidMount() {
+    const {onSetCurrentCity, currentOffer} = this.props;
 
-  const {
-    bedrooms,
-    description,
-    goods,
-    host: {
-      avatar,
-      isPro,
-      name,
-    },
-    images,
-    isFavorite,
-    isPremium,
-    maxAdults,
-    price,
-    rating,
-    title,
-    type,
-  } = currentOffer;
+    onSetCurrentCity(currentOffer.city.name);
+  }
 
-  const onFavoriteButtonClick = () => {
-    if (isFavorite) {
-      onRemoveFavorite(id);
-    } else {
-      onAddFavorite(id);
-    }
-  };
+  render() {
+    const {
+      activeOffer,
+      currentCity,
+      currentOffer,
+      id,
+      nearbyOffers,
+      nearbyOffersCoordinates,
+      isAuthorized,
+      onAddFavorite,
+      onRemoveFavorite
+    } = this.props;
 
-  return (
-    <PageLayout pageClasses={[`page__main`, `page__main--property`]}>
-      <Header/>
+    const onFavoriteButtonClick = () => {
+      if (!isAuthorized) {
+        history.push(PageAddress.LOGIN);
+        return;
+      }
 
-      <section className="property">
+      if (isFavorite) {
+        onRemoveFavorite(id);
+      } else {
+        onAddFavorite(id);
+      }
+    };
 
-        <Gallery photos={images}/>
+    const {
+      bedrooms,
+      description,
+      goods,
+      host: {
+        avatar,
+        isPro,
+        name,
+      },
+      images,
+      isFavorite,
+      isPremium,
+      maxAdults,
+      price,
+      rating,
+      title,
+      type,
+    } = currentOffer;
 
-        <div className="property__container container">
-          <div className="property__wrapper">
+    return (
+      <PageLayout pageClasses={[`page__main`, `page__main--property`]}>
+        <Header/>
 
-            {isPremium && <div className="property__mark"><span>Premium</span></div>}
+        <section className="property">
 
-            <div className="property__name-wrapper">
-              <h1 className="property__name">
-                {title}
-              </h1>
-              <button
-                onClick={onFavoriteButtonClick}
-                className={`property__bookmark-button button ${isFavorite && `property__bookmark-button--active`}`}
-                type="button">
-                <svg className="property__bookmark-icon" width="31" height="33">
-                  <use xlinkHref="#icon-bookmark"/>
-                </svg>
-                <span className="visually-hidden">To bookmarks</span>
-              </button>
-            </div>
-            <div className="property__rating rating">
-              <div className="property__stars rating__stars">
-                <span style={{width: `${convertFloatToPercentage(rating)}%`}}/>
-                <span className="visually-hidden">Rating</span>
+          <Gallery photos={images}/>
+
+          <div className="property__container container">
+            <div className="property__wrapper">
+
+              {isPremium && <div className="property__mark"><span>Premium</span></div>}
+
+              <div className="property__name-wrapper">
+                <h1 className="property__name">
+                  {title}
+                </h1>
+                <button
+                  onClick={onFavoriteButtonClick}
+                  className={`property__bookmark-button button ${isFavorite && `property__bookmark-button--active`}`}
+                  type="button">
+                  <svg className="property__bookmark-icon" width="31" height="33">
+                    <use xlinkHref="#icon-bookmark"/>
+                  </svg>
+                  <span className="visually-hidden">To bookmarks</span>
+                </button>
               </div>
-              <span className="property__rating-value rating__value">{rating}</span>
-            </div>
-            <ul className="property__features">
-              <li className="property__feature property__feature--entire">
-                {type}
-              </li>
-              <li className="property__feature property__feature--bedrooms">
-                {bedrooms} Bedrooms
-              </li>
-              <li className="property__feature property__feature--adults">
-                Max {maxAdults} adults
-              </li>
-            </ul>
-            <div className="property__price">
-              <b className="property__price-value">&euro;{price}</b>
-              <span className="property__price-text">&nbsp;night</span>
-            </div>
-            <div className="property__inside">
-              <h2 className="property__inside-title">What&apos;s inside</h2>
-
-              <Goods goods={goods}/>
-
-            </div>
-            <div className="property__host">
-              <h2 className="property__host-title">Meet the host</h2>
-              <div className="property__host-user user">
-                <div
-                  className={`property__avatar-wrapper user__avatar-wrapper ${isPro ? `property__avatar-wrapper--pro` : ``}`}>
-                  <img className="property__avatar user__avatar" src={`/${avatar}`} width="74" height="74" alt="Host avatar"/>
+              <div className="property__rating rating">
+                <div className="property__stars rating__stars">
+                  <span style={{width: `${convertFloatToPercentage(rating)}%`}}/>
+                  <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__user-name">
-                  {name}
-                </span>
-                {isPro && <span className="property__user-status">Pro</span>}
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
-              <div className="property__description">
-                <p className="property__text">{description}</p>
+              <ul className="property__features">
+                <li className="property__feature property__feature--entire">
+                  {type}
+                </li>
+                <li className="property__feature property__feature--bedrooms">
+                  {bedrooms} Bedrooms
+                </li>
+                <li className="property__feature property__feature--adults">
+                  Max {maxAdults} adults
+                </li>
+              </ul>
+              <div className="property__price">
+                <b className="property__price-value">&euro;{price}</b>
+                <span className="property__price-text">&nbsp;night</span>
               </div>
+              <div className="property__inside">
+                <h2 className="property__inside-title">What&apos;s inside</h2>
+
+                <Goods goods={goods}/>
+
+              </div>
+              <div className="property__host">
+                <h2 className="property__host-title">Meet the host</h2>
+                <div className="property__host-user user">
+                  <div
+                    className={`property__avatar-wrapper user__avatar-wrapper ${isPro ? `property__avatar-wrapper--pro` : ``}`}>
+                    <img className="property__avatar user__avatar" src={`/${avatar}`} width="74" height="74" alt="Host avatar"/>
+                  </div>
+                  <span className="property__user-name">
+                    {name}
+                  </span>
+                  {isPro && <span className="property__user-status">Pro</span>}
+                </div>
+                <div className="property__description">
+                  <p className="property__text">{description}</p>
+                </div>
+              </div>
+              <section className="property__reviews reviews">
+
+                <ReviewList id={id}/>
+
+                {isAuthorized && <ReviewFormWrapped id={id}/>}
+              </section>
             </div>
-            <section className="property__reviews reviews">
+          </div>
+          <section className="property__map map">
+            <Map currentCity={currentCity} coordinates={nearbyOffersCoordinates} activeOffer={activeOffer}/>
+          </section>
 
-              <ReviewList id={id}/>
-
-              {isAuthorized && <ReviewFormWrapped id={id}/>}
+          <div className="container">
+            <section className="near-places places">
+              <h2 className="near-places__title">Other places in the neighbourhood</h2>
+              <div className="near-places__list places__list">
+                <PlacesList offers={nearbyOffers}/>
+              </div>
             </section>
           </div>
-        </div>
-        <section className="property__map map">
-          <Map currentCity={currentCity} coordinates={nearbyOffersCoordinates} activeOffer={activeOffer}/>
         </section>
-
-        <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              <PlacesList offers={nearbyOffers}/>
-            </div>
-          </section>
-        </div>
-      </section>
-    </PageLayout>
-  );
-};
+      </PageLayout>
+    );
+  }
+}
 
 Property.propTypes = {
   activeOffer: PropTypes.shape({
@@ -180,16 +199,17 @@ Property.propTypes = {
   nearbyOffers: PropTypes.array.isRequired,
   nearbyOffersCoordinates: PropTypes.array.isRequired,
   onAddFavorite: PropTypes.func.isRequired,
+  onSetCurrentCity: PropTypes.func.isRequired,
   onRemoveFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const nearbyOffers = getNearbyOffers(state);
+  const nearbyOffers = getNearbyOffers(state, ownProps.id);
 
   return {
-    activeOffer: getHoveredOffer(state),
+    activeOffer: getOfferById(state, ownProps.id),
     currentCity: getActiveCity(state),
-    currentOffer: getOfferById(state, ownProps.id),
+    currentOffer: getOfferById(state, ownProps.id) || {},
     isAuthorized: !getAuthorizationStatus(state),
     nearbyOffers: nearbyOffers || [],
     nearbyOffersCoordinates: nearbyOffers.map((offer) => offer.location.coordinates),
@@ -198,7 +218,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onAddFavorite: (id) => dispatch(Operation.addToFavorites(id)),
-  onRemoveFavorite: (id) => dispatch(Operation.removeFromFavorite(id))
+  onRemoveFavorite: (id) => dispatch(Operation.removeFromFavorite(id)),
+  onSetCurrentCity: (city) => dispatch(ActionCreator.changeCity(city)),
 });
 
 export {Property};

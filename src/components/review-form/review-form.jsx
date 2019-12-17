@@ -1,10 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Operation} from "../../reducer/data/data";
+import {ActionCreator, Operation} from "../../reducer/data/data";
 import PropTypes from "prop-types";
+import StarRating from "../star-rating/star-rating";
+import {getError, getStatusIsSentReview, getStatusSendingReview} from "../../reducer/data/selector";
 
 const ReviewForm = (props) => {
-  const {onInputChange, rating, review, id, onSendForm, onFormReset, isValid, formRef} = props;
+  const {onInputChange, rating, review, id, onSendForm, onFormReset, isValid, isReviewSending, error} = props;
 
   const sendFormData = (evt) => {
     evt.preventDefault();
@@ -14,45 +16,13 @@ const ReviewForm = (props) => {
   };
 
   return (
-    <form ref={formRef} className="reviews__form form" action="#" method="post" onSubmit={sendFormData}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={sendFormData}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <div className="reviews__rating-form form__rating">
-        <input onChange={onInputChange} className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"/>
-        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"/>
-          </svg>
-        </label>
 
-        <input onChange={onInputChange} className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"/>
-        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"/>
-          </svg>
-        </label>
+      <StarRating onInputChange={onInputChange} rating={rating}/>
 
-        <input onChange={onInputChange} className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"/>
-        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"/>
-          </svg>
-        </label>
-
-        <input onChange={onInputChange} className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"/>
-        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"/>
-          </svg>
-        </label>
-
-        <input onChange={onInputChange} className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"/>
-        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"/>
-          </svg>
-        </label>
-      </div>
-      <textarea value={review || ``} onChange={onInputChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"/>
+      <textarea disabled={isReviewSending} value={review || ``} onChange={onInputChange} className="reviews__textarea form__textarea" id="review" name="review" placeholder={isReviewSending ? `Sending...` : `Tell how was your stay, what you like and what can be improved`}/>
+      <span style={{color: `red`}}>{error ? error : ``}</span>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay
@@ -61,7 +31,9 @@ const ReviewForm = (props) => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={!isValid}>Submit
+          disabled={!(isValid && !isReviewSending)}
+        >
+          {isReviewSending ? `Sending...` : `Submit`}
         </button>
       </div>
     </form>
@@ -69,7 +41,6 @@ const ReviewForm = (props) => {
 };
 
 ReviewForm.propTypes = {
-  formRef: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
   isValid: PropTypes.bool.isRequired,
   onFormReset: PropTypes.func.isRequired,
@@ -80,11 +51,23 @@ ReviewForm.propTypes = {
     PropTypes.number,
   ]),
   review: PropTypes.string,
+  error: PropTypes.string,
+  isReviewSending: PropTypes.bool.isRequired,
+  isReviewSent: PropTypes.bool.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  isReviewSending: getStatusSendingReview(state),
+  isReviewSent: getStatusIsSentReview(state),
+  error: getError(state),
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  onSendForm: (id, formData) => dispatch(Operation.sendReview(id, formData))
+  onSendForm: (id, formData) => {
+    dispatch(Operation.sendReview(id, formData));
+    dispatch(ActionCreator.lockForm(true));
+  }
 });
 
 export {ReviewForm};
-export default connect(null, mapDispatchToProps)(ReviewForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

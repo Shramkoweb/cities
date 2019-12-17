@@ -5,6 +5,9 @@ import {PlaceCard} from "./place-card";
 
 Enzyme.configure({adapter: new Adapter()});
 
+jest.mock(`../../index.js`, () => jest.fn().mockReturnValue(null));
+
+
 describe(`PlaceCard callbacks are called correct`, () => {
   const onPlaceCardHover = jest.fn();
   const offer = {
@@ -19,12 +22,14 @@ describe(`PlaceCard callbacks are called correct`, () => {
   };
   const placeCardComponent = shallow(
       <PlaceCard
-        offer={offer}
-        onSelect={jest.fn()}
-        onAddFavorite={jest.fn()}
-        onRemoveFavorite={jest.fn()}
+        isAuthRequire={false}
+        onFavoriteButtonClick={jest.fn()}
         loadFavorites={jest.fn()}
+        offer={offer}
+        onAddFavorite={jest.fn()}
         onCardHover={onPlaceCardHover}
+        onRemoveFavorite={jest.fn()}
+        onSelect={jest.fn()}
       />
   );
   const placeCard = placeCardComponent.find(`.cities__place-card`);

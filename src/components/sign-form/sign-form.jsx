@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 import {Operation} from "../../reducer/user/user";
 import {history} from "../../index";
 import {PageAddress} from "../../constants";
+import {getError} from "../../reducer/user/selector";
 
 const SignForm = (props) => {
-  const {onInputChange, sendAuthData, email, password} = props;
+  const {onInputChange, sendAuthData, email, password, error} = props;
 
   const handleSubmitForm = (evt) => {
     evt.preventDefault();
@@ -26,21 +27,24 @@ const SignForm = (props) => {
       method="post"
     >
       <div className="login__input-wrapper form__input-wrapper">
-        <label className="visually-hidden">E-mail</label>
+        <label htmlFor="login-email" className="visually-hidden">E-mail</label>
         <input
           onChange={onInputChange}
           value={email || ``}
+          id="login-email"
           className="login__input form__input"
           name="email"
           placeholder="Email"
           type="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           required
         />
       </div>
       <div className="login__input-wrapper form__input-wrapper">
-        <label className="visually-hidden">Password</label>
+        <label htmlFor="login-password" className="visually-hidden">Password</label>
         <input
           onChange={onInputChange}
+          id="login-password"
           className="login__input form__input"
           value={password || ``}
           name="password"
@@ -49,10 +53,15 @@ const SignForm = (props) => {
           required
         />
       </div>
+      <span>{error}</span>
       <button className="login__submit form__submit button" type="submit">Sign in</button>
     </form>
   );
 };
+
+const mapStateToProps = (state) => ({
+  error: getError(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   sendAuthData: (data) => dispatch(Operation.sendAuthData(data))
@@ -62,8 +71,9 @@ SignForm.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   email: PropTypes.string,
   password: PropTypes.string,
-  sendAuthData: PropTypes.func.isRequired
+  sendAuthData: PropTypes.func.isRequired,
+  error: PropTypes.string
 };
 
 export {SignForm};
-export default connect(null, mapDispatchToProps)(SignForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignForm);

@@ -1,4 +1,5 @@
 import {convertIsoDateToString} from "../utils";
+import Constants from "../constants";
 
 class ReviewAdapter {
   static parseReviews(reviews, id) {
@@ -14,6 +15,10 @@ class ReviewAdapter {
           date: convertIsoDateToString(review[`date`]),
         };
       })
+        .sort((current, next) => {
+          return new Date(current.date) < new Date(next.date) ? 1 : -1;
+        })
+        .slice(0, Constants.MAX_REVIEW_AMOUNT)
     };
   }
 }

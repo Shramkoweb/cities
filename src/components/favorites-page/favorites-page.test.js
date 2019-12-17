@@ -6,6 +6,7 @@ import {FavoritesPage} from "./favorites-page.jsx";
 configure({adapter: new Adapter()});
 
 jest.mock(`../page-layout/page-layout.jsx`, () => jest.fn().mockReturnValue(null));
+jest.mock(`../place-card/place-card.jsx`, () => jest.fn().mockReturnValue(null));
 jest.mock(`../header/header.jsx`, () => jest.fn().mockReturnValue(null));
 
 describe(`FavoritesPage should correctly render`, () => {

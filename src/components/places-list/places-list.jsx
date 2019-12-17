@@ -4,26 +4,20 @@ import {connect} from "react-redux";
 import PlaceCard from "../place-card/place-card";
 import {ActionCreator} from "../../reducer/data/data";
 
-class PlacesList extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const PlacesList = (props) => {
+  const {offers, changeActiveOffer} = props;
 
-  render() {
-    const {offers, changeActiveOffer} = this.props;
-
-    return (
-      <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) =>
-          <PlaceCard
-            key={offer.id}
-            offer={offer}
-            onCardHover={changeActiveOffer}
-          />)}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="cities__places-list places__list tabs__content">
+      {offers.map((offer) =>
+        <PlaceCard
+          key={offer.id}
+          offer={offer}
+          onCardHover={changeActiveOffer}
+        />)}
+    </div>
+  );
+};
 
 PlacesList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
