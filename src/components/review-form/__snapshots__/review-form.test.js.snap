@@ -25,6 +25,13 @@ exports[`Review form renders correctly 1`] = `
     placeholder="Tell how was your stay, what you like and what can be improved"
     value="Some test"
   />
+  <span
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  />
   <div
     className="reviews__button-wrapper"
   >

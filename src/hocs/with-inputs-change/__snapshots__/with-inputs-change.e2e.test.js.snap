@@ -19,13 +19,16 @@ exports[`WithSignForm wrapper work correct should render correctly 1`] = `
       >
         <label
           className="visually-hidden"
+          htmlFor="login-email"
         >
           E-mail
         </label>
         <input
           className="login__input form__input"
+          id="login-email"
           name="email"
           onChange={[Function]}
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
           placeholder="Email"
           required={true}
           type="email"
@@ -37,11 +40,13 @@ exports[`WithSignForm wrapper work correct should render correctly 1`] = `
       >
         <label
           className="visually-hidden"
+          htmlFor="login-password"
         >
           Password
         </label>
         <input
           className="login__input form__input"
+          id="login-password"
           name="password"
           onChange={[Function]}
           placeholder="Password"
@@ -50,6 +55,7 @@ exports[`WithSignForm wrapper work correct should render correctly 1`] = `
           value=""
         />
       </div>
+      <span />
       <button
         className="login__submit form__submit button"
         type="submit"

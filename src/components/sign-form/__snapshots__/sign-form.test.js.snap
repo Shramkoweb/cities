@@ -48,6 +48,7 @@ exports[`SignForm form renders correctly 1`] = `
       value="12345"
     />
   </div>
+  <span />
   <button
     className="login__submit form__submit button"
     type="submit"
