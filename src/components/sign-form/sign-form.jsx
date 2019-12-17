@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 import {Operation} from "../../reducer/user/user";
 import {history} from "../../index";
 import {PageAddress} from "../../constants";
+import {getError} from "../../reducer/user/selector";
 
 const SignForm = (props) => {
-  const {onInputChange, sendAuthData, email, password} = props;
+  const {onInputChange, sendAuthData, email, password, error} = props;
 
   const handleSubmitForm = (evt) => {
     evt.preventDefault();
@@ -52,10 +53,15 @@ const SignForm = (props) => {
           required
         />
       </div>
+      <span>{error}</span>
       <button className="login__submit form__submit button" type="submit">Sign in</button>
     </form>
   );
 };
+
+const mapStateToProps = (state) => ({
+  error: getError(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   sendAuthData: (data) => dispatch(Operation.sendAuthData(data))
@@ -65,8 +71,9 @@ SignForm.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   email: PropTypes.string,
   password: PropTypes.string,
-  sendAuthData: PropTypes.func.isRequired
+  sendAuthData: PropTypes.func.isRequired,
+  error: PropTypes.string
 };
 
 export {SignForm};
-export default connect(null, mapDispatchToProps)(SignForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignForm);

@@ -16,6 +16,9 @@ it(`Property render is correct`, () => {
     title: `Waterfront with extraordinary view`,
     rating: 3,
     price: 1234,
+    city: {
+      name: `Moscow`
+    },
     images: [],
     goods: [`Washer`, `Towels`],
     bedrooms: 4,
@@ -36,6 +39,7 @@ it(`Property render is correct`, () => {
           currentOffer={mockOffer}
           id={1}
           isAuthorized={false}
+          onSetCurrentCity={jest.fn()}
           nearbyOffers={[]}
           nearbyOffersCoordinates={[]}
           onAddFavorite={jest.fn()}

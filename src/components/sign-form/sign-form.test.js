@@ -12,6 +12,7 @@ it(`SignForm form renders correctly`, () => {
   const signForm = shallow(<SignForm
     onInputChange={jest.fn()}
     sendAuthData={jest.fn()}
+    error={null}
     email={`shramko.web@yahoo.com`}
     password={`12345`}
   />);
