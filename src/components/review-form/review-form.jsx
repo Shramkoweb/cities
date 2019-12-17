@@ -6,14 +6,18 @@ import StarRating from "../star-rating/star-rating";
 import {getError, getStatusIsSentReview, getStatusSendingReview} from "../../reducer/data/selector";
 
 const ReviewForm = (props) => {
-  const {onInputChange, rating, review, id, onSendForm, onFormReset, isValid, isReviewSending, error} = props;
+  const {onInputChange, rating, review, id, onSendForm, onFormReset, onUpdateForm, isValid, isReviewSent, isReviewSending, error} = props;
 
   const sendFormData = (evt) => {
     evt.preventDefault();
 
     onSendForm(id, {rating: Number(rating), comment: review});
-    onFormReset();
   };
+
+  if (isReviewSent) {
+    onUpdateForm();
+    onFormReset();
+  }
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={sendFormData}>
@@ -50,10 +54,11 @@ ReviewForm.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
-  review: PropTypes.string,
   error: PropTypes.string,
   isReviewSending: PropTypes.bool.isRequired,
   isReviewSent: PropTypes.bool.isRequired,
+  onUpdateForm: PropTypes.func.isRequired,
+  review: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
@@ -66,7 +71,8 @@ const mapDispatchToProps = (dispatch) => ({
   onSendForm: (id, formData) => {
     dispatch(Operation.sendReview(id, formData));
     dispatch(ActionCreator.lockForm(true));
-  }
+  },
+  onUpdateForm: () => dispatch(ActionCreator.cleanForm(false)),
 });
 
 export {ReviewForm};
