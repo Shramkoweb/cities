@@ -6,6 +6,7 @@ import {compose} from "recompose";
 
 import {ActionCreator} from "../../reducer/data/data";
 import CardPlace from "../place-card/place-card.jsx";
+import {PageAddress} from "../../constants";
 
 class FavoritesList extends PureComponent {
   constructor(props) {
@@ -20,7 +21,7 @@ class FavoritesList extends PureComponent {
     const city = evt.currentTarget.getAttribute(`data-city`);
 
     onChangeCity(city);
-    history.push(city);
+    history.push(PageAddress.MAIN);
   }
 
   render() {

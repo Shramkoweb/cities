@@ -119,9 +119,9 @@ const getNearbyOffers = (state, id) => {
       return current.dist - next.dist;
     })
     .filter((item) => item.id !== currentOffer.id)
-    .slice(1, Constants.MAX_MAP_MARKERS);
+    .slice(0, Constants.MAX_MAP_MARKERS);
 
-  return [currentOffer, ...nearbyOffers];
+  return nearbyOffers;
 };
 
 const calcDistance = (x1, y1, x2, y2) => Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));

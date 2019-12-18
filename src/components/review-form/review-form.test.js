@@ -10,11 +10,13 @@ it(`Review form renders correctly`, () => {
     onInputChange={jest.fn()}
     rating={`5`}
     review={`Some test`}
+    isReviewSent={true}
+    onUpdateForm={jest.fn()}
+    isReviewSending={true}
     id={5}
     onSendForm={jest.fn()}
     onFormReset={jest.fn()}
     isValid={true}
-    formRef={{}}
   />);
 
   expect(reviewForm).toMatchSnapshot();

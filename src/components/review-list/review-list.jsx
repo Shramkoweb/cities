@@ -24,7 +24,17 @@ class ReviewList extends PureComponent {
 }
 
 ReviewList.propTypes = {
-  reviews: PropTypes.array.isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        comment: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        userName: PropTypes.string.isRequired,
+        avatarUrl: PropTypes.string.isRequired,
+        isPro: PropTypes.bool.isRequired,
+        date: PropTypes.string.isRequired
+      })
+  ).isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {

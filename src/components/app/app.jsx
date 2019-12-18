@@ -16,6 +16,7 @@ import withExistOffer from "../../hocs/with-exist-offer/with-exist-offer";
 
 const PropertyWrapped = withExistOffer(Property);
 
+
 class App extends React.PureComponent {
   componentDidMount() {
     const {onCheckAuth} = this.props;
@@ -25,7 +26,8 @@ class App extends React.PureComponent {
 
   render() {
     const {isLoading, isAuthorizationRequired, isError} = this.props;
-    const FavoritesPrivate = withPrivateRoute(isAuthorizationRequired, PageAddress.MAIN)(FavoritesPage);
+    const FavoritesPrivate = withPrivateRoute(isAuthorizationRequired, PageAddress.LOGIN)(FavoritesPage);
+    const SignPrivate = withPrivateRoute(!isAuthorizationRequired)(Sign);
 
     return (
       <>
@@ -34,7 +36,7 @@ class App extends React.PureComponent {
             :
             <Switch>
               <Route path={PageAddress.MAIN} exact component={MainPage}/>
-              <Route path={PageAddress.LOGIN} exact component={Sign}/>
+              <Route path={PageAddress.LOGIN} exact component={SignPrivate}/>
               <Route path={`${PageAddress.OFFER}/:id`} exact render={({match}) => <PropertyWrapped id={Number(match.params.id)}/>}/>
               <Route path={PageAddress.FAVORITE} exact component={FavoritesPrivate}/>
               <Redirect from='*' to={PageAddress.MAIN}/>
