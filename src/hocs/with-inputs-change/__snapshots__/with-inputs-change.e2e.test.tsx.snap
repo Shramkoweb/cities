@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WithSignForm wrapper work correct should render correctly 1`] = `
+<WithInputsChange>
+  <SignForm
+    onInputChange={[Function]}
+  >
+    <form
+      action="#"
+      className="login__form form"
+      method="post"
+      onSubmit={[Function]}
+    >
+      <div
+        className="login__input-wrapper form__input-wrapper"
+      >
+        <label
+          className="visually-hidden"
+          htmlFor="login-email"
+        >
+          E-mail
+        </label>
+        <input
+          className="login__input form__input"
+          id="login-email"
+          name="email"
+          onChange={[Function]}
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$"
+          placeholder="Email"
+          required={true}
+          type="email"
+          value=""
+        />
+      </div>
+      <div
+        className="login__input-wrapper form__input-wrapper"
+      >
+        <label
+          className="visually-hidden"
+          htmlFor="login-password"
+        >
+          Password
+        </label>
+        <input
+          className="login__input form__input"
+          id="login-password"
+          name="password"
+          onChange={[Function]}
+          placeholder="Password"
+          required={true}
+          type="password"
+          value=""
+        />
+      </div>
+      <span />
+      <button
+        className="login__submit form__submit button"
+        type="submit"
+      >
+        Sign in
+      </button>
+    </form>
+  </SignForm>
+</WithInputsChange>
+`;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Goods component render correct 1`] = `
+<li
+  className=" places__option"
+  onClick={[Function]}
+  tabIndex={0}
+/>
+`;
