@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should render is correctly if user already authorization 1`] = `ShallowWrapper {}`;
+
+exports[`Header component should render is correctly if user require authorization 1`] = `ShallowWrapper {}`;

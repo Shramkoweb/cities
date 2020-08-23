@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavoritesPage should correctly render FavoritesPage empty page renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`FavoritesPage should correctly render FavoritesPage is renders correctly 1`] = `ShallowWrapper {}`;
