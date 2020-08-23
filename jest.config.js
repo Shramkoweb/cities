@@ -3,6 +3,7 @@ module.exports = {
     '^.+\\.tsx?$': `ts-jest`,
     '^.+\\.js?$': `babel-jest`,
   },
+  'snapshotSerializers': [`enzyme-to-json/serializer`],
   'testRegex': `.test.(js?|jsx?|tsx?)$`,
   'moduleFileExtensions': [
     `ts`,

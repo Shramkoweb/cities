@@ -1,11 +1,14 @@
 import * as React from "react";
-import * as renderer from "react-test-renderer";import {Catalog} from "./catalog";
+import * as renderer from "react-test-renderer";
+import {Catalog} from "./catalog";
 import {OFFERS} from "../../mocks/offers";
 
-jest.mock(`../map/map.tsx`, () => jest.fn().mockReturnValue(null));
-jest.mock(`../tabs/tabs.tsx`, () => jest.fn().mockReturnValue(null));
-jest.mock(`../sort/sort.tsx`, () => jest.fn().mockReturnValue(null));
-jest.mock(`../places-list/places-list.tsx`, () => jest.fn().mockReturnValue(null));
+
+jest.mock(`../../index.tsx`, () => jest.fn().mockReturnValue(null));
+jest.mock(`../map/map.tsx`);
+jest.mock(`../tabs/tabs.tsx`);
+jest.mock(`../sort/sort.tsx`);
+jest.mock(`../places-list/places-list.tsx`);
 
 
 it(`Catalog component render correct`, () => {

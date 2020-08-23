@@ -1,7 +1,12 @@
 import * as React from "react";
-import * as renderer from "react-test-renderer";import {PlacesList} from "./places-list";
+import * as renderer from "react-test-renderer";
 
-jest.mock(`../place-card/place-card.tsx`, () => jest.fn().mockReturnValue(null));
+import {PlacesList} from "./places-list";
+
+// add mocked for work
+jest.mock(`../../index.tsx`, () => jest.fn().mockReturnValue(null));
+// TODO if use jest.mock(`../place-card/place-card.tsx`, () => jest.fn().mockReturnValue(null)); not work
+jest.mock('../place-card/place-card.tsx');
 
 it(`PlacesList component render correct`, () => {
   const OFFERS = [
@@ -39,11 +44,11 @@ it(`PlacesList component render correct`, () => {
 
   const app = renderer
     .create(
-        <PlacesList
-          offers={OFFERS}
-          changeActiveOffer={jest.fn()}
-          onSelect={jest.fn()}
-        />)
+      <PlacesList
+        offers={OFFERS}
+        changeActiveOffer={jest.fn()}
+        onSelect={jest.fn()}
+      />)
     .toJSON();
 
   expect(app).toMatchSnapshot();

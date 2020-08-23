@@ -1,13 +1,15 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
+import {mocked} from 'ts-jest/utils';
 
 import {Property} from "./property";
 
-jest.mock(`../header/header.tsx`, () => jest.fn().mockReturnValue(null));
-jest.mock(`../review-list/review-list.tsx`, () => jest.fn().mockReturnValue(null));
-jest.mock(`../map/map.tsx`, () => jest.fn().mockReturnValue(null));
-jest.mock(`../places-list/places-list.tsx`, () => jest.fn().mockReturnValue(null));
 jest.mock(`../../index.tsx`, () => jest.fn().mockReturnValue(null));
+
+jest.mock(`../header/header.tsx`)
+jest.mock(`../review-list/review-list.tsx`);
+jest.mock(`../map/map.tsx`);
+jest.mock(`../places-list/places-list.tsx`);
 
 
 it(`Property render is correct`, () => {

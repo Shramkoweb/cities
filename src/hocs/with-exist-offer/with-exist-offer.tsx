@@ -5,7 +5,6 @@ import {Redirect} from "react-router-dom";
 import {getOfferById} from "../../reducer/data/selector";
 import {PageAddress} from "../../constants";
 
-
 interface InjectedProps {
   isOfferExist: boolean,
 }
