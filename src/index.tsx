@@ -16,8 +16,11 @@ import {PageAddress} from "./constants";
 const rootElement = document.querySelector(`#root`);
 const history = createBrowserHistory();
 
-declare const __REDUX_DEVTOOLS_EXTENSION__: () => any;
-
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION__?: typeof compose;
+  }
+}
 
 const init = () => {
   const api = createAPI(() => history.push(PageAddress.LOGIN));
@@ -25,7 +28,7 @@ const init = () => {
       reducer,
       compose(
           applyMiddleware(thunk.withExtraArgument(api)),
-          __REDUX_DEVTOOLS_EXTENSION__ ? __REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
       )
   );
 
