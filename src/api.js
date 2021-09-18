@@ -6,6 +6,9 @@ export const createAPI = (onLoginFail) => {
     baseURL: REQUEST.BASE_URL,
     timeout: REQUEST.TIMEOUT,
     withCredentials: true,
+    headers: {
+      "X-Token": sessionStorage.getItem(`6-sites-token`),
+    }
   });
 
   const onSuccess = (response) => {

@@ -19,7 +19,7 @@ const Constants = {
 };
 
 const REQUEST = {
-  BASE_URL: `https://htmlacademy-react-2.appspot.com/six-cities`,
+  BASE_URL: `https://7.react.pages.academy/six-cities`,
   TIMEOUT: 5000,
   STATUS_CODE: {
     DENIED: 401,

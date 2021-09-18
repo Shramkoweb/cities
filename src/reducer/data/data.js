@@ -37,7 +37,7 @@ const Action = {
 const ActionCreator = {
   changeCity: (city) => ({
     type: Action.CHANGE_CITY,
-    payload: city
+    payload: city,
   }),
 
   showError: (error) => ({
@@ -57,38 +57,38 @@ const ActionCreator = {
 
   changeActiveOffer: (id) => ({
     type: Action.CHANGE_ACTIVE_OFFER,
-    payload: id
+    payload: id,
   }),
 
   setSortType: (type) => ({
     type: Action.SET_SORT_TYPE,
-    payload: type
+    payload: type,
   }),
 
   changeOffers: (offers) => ({
     type: Action.CHANGE_OFFERS,
-    payload: offers
+    payload: offers,
   }),
 
   changeOfferFavoriteStatus: (offer) => ({
     type: Action.CHANGE_OFFER_FAVORITE_STATUS,
-    payload: offer
+    payload: offer,
   }),
 
   changeLoadStatus: () => ({
     type: Action.CHANGE_LOAD_STATUS,
-    payload: false
+    payload: false,
   }),
 
   getReviews: (reviews) => ({
     type: Action.GET_REVIEWS,
-    payload: reviews
+    payload: reviews,
   }),
 
   changeFavorites: (list) => ({
     type: Action.CHANGE_FAVORITES,
     payload: list,
-  })
+  }),
 };
 
 const Operation = {
@@ -146,7 +146,7 @@ const Operation = {
         dispatch(ActionCreator.lockForm(false));
         dispatch(ActionCreator.showError(Constants.ERROR_MESSAGE));
       });
-  }
+  },
 };
 
 const getOffersWithReplacedFavorite = (offers, favorite) => {

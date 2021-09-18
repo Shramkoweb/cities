@@ -6,10 +6,10 @@ const convertFloatToPercentage = (rating) => {
 
 const parseHost = (data = {}) => {
   return {
-    id: data[`id`] || ``,
-    name: data[`name`] || ``,
-    isPro: data[`is_pro`] || ``,
-    avatar: data[`avatar_url`] || ``
+    "id": data[`id`] || ``,
+    "name": data[`name`] || ``,
+    'is_pro': data[`is_pro`] || ``,
+    'avatar_url': data[`avatar_url`] || ``
   };
 };
 
