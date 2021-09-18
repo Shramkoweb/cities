@@ -32,6 +32,7 @@ const Operation = {
   sendAuthData: (authData) => (dispatch, _, api) => {
     return api.post(`/login`, authData)
       .then(({data}) => {
+        sessionStorage.setItem(`6-sites-token`, data.token);
         dispatch(ActionCreator.authorization(data));
         dispatch(ActionCreator.requireAuthorization(false));
       })
@@ -39,8 +40,6 @@ const Operation = {
   },
 
   onCheckAuth: () => (dispatch, _, api) => {
-    console.log(api.headers);
-
     return api.get(`/login`)
       .then(({status, data}) => {
         if (status === REQUEST.STATUS_CODE.SUCCESS) {

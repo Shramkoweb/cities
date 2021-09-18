@@ -8,7 +8,7 @@ export const createAPI = (onLoginFail) => {
     withCredentials: true,
     headers: {
       "X-Token": sessionStorage.getItem(`6-sites-token`),
-    }
+    },
   });
 
   const onSuccess = (response) => {
@@ -26,6 +26,22 @@ export const createAPI = (onLoginFail) => {
   };
 
   api.interceptors.response.use(onSuccess, onFail);
+  api.interceptors.request.use(
+    (config) => {
+      const token = sessionStorage.getItem(`6-sites-token`);
+
+      if (token) {
+        config.headers = {
+          'X-Token': token,
+        };
+      } else {
+        delete api.defaults.headers['X-Token'];
+      }
+      return config;
+    },
+
+    (error) => Promise.reject(error),
+  );
 
   return api;
 };
