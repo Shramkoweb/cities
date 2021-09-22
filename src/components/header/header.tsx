@@ -23,7 +23,7 @@ const Header = ({isAuthorizationRequired, userData}) => {
                 >
                   <div
                     className="header__avatar-wrapper user__avatar-wrapper"
-                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${REQUEST.BASE_URL}${userData.avatar})`}}
+                    style={isAuthorizationRequired ? {} : {backgroundImage: `url(${userData['avatar_url']})`}}
                   >
                   </div>
                   <span className="header__user-name user__name">

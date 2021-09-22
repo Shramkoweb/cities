@@ -1,4 +1,3 @@
-import userDataAdapter from "../../adapters/user-data-adapter";
 import {REQUEST} from "../../constants";
 
 const initialState = {
@@ -15,12 +14,12 @@ const Action = {
 const ActionCreator = {
   requireAuthorization: (status) => ({
     type: Action.REQUIRED_AUTHORIZATION,
-    payload: status
+    payload: status,
   }),
 
   authorization: (userData) => ({
     type: Action.AUTHORIZATION,
-    payload: userData
+    payload: userData,
   }),
 
   setError: (error) => ({
@@ -33,7 +32,8 @@ const Operation = {
   sendAuthData: (authData) => (dispatch, _, api) => {
     return api.post(`/login`, authData)
       .then(({data}) => {
-        dispatch(ActionCreator.authorization(userDataAdapter(data)));
+        sessionStorage.setItem(`6-sites-token`, data.token);
+        dispatch(ActionCreator.authorization(data));
         dispatch(ActionCreator.requireAuthorization(false));
       })
       .catch(() => dispatch(ActionCreator.setError(`Something went wrong, check filled data 😥😥😥`)));
@@ -43,11 +43,11 @@ const Operation = {
     return api.get(`/login`)
       .then(({status, data}) => {
         if (status === REQUEST.STATUS_CODE.SUCCESS) {
-          dispatch(ActionCreator.authorization(userDataAdapter(data)));
+          dispatch(ActionCreator.authorization(data));
           dispatch(ActionCreator.requireAuthorization(false));
         }
       });
-  }
+  },
 };
 
 const reducer = (state = initialState, action) => {
